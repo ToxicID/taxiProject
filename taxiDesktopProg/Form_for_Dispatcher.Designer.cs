@@ -36,15 +36,21 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.newOrder = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.performedOrders = new System.Windows.Forms.TabPage();
             this.preliminaryOrders = new System.Windows.Forms.TabPage();
             this.completedOrders = new System.Windows.Forms.TabPage();
             this.falseOrders = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.performedOrders.SuspendLayout();
+            this.preliminaryOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -55,20 +61,20 @@
             this.клиентыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1248, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1248, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // водителиToolStripMenuItem
             // 
             this.водителиToolStripMenuItem.Name = "водителиToolStripMenuItem";
-            this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 26);
+            this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
             this.водителиToolStripMenuItem.Text = "Водители";
             // 
             // клиентыToolStripMenuItem
             // 
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
-            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
+            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
             // 
             // nowTime
@@ -99,6 +105,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1248, 465);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
             // newOrder
             // 
@@ -111,8 +118,22 @@
             this.newOrder.Text = "Новые заказы";
             this.newOrder.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1199, 430);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // performedOrders
             // 
+            this.performedOrders.Controls.Add(this.dataGridView2);
             this.performedOrders.Location = new System.Drawing.Point(4, 25);
             this.performedOrders.Name = "performedOrders";
             this.performedOrders.Padding = new System.Windows.Forms.Padding(3);
@@ -123,6 +144,7 @@
             // 
             // preliminaryOrders
             // 
+            this.preliminaryOrders.Controls.Add(this.dataGridView3);
             this.preliminaryOrders.Location = new System.Drawing.Point(4, 25);
             this.preliminaryOrders.Name = "preliminaryOrders";
             this.preliminaryOrders.Padding = new System.Windows.Forms.Padding(3);
@@ -151,18 +173,31 @@
             this.falseOrders.Text = "Ложные";
             this.falseOrders.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridView2
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1199, 430);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(1199, 430);
+            this.dataGridView2.TabIndex = 1;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridView3.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.RowTemplate.Height = 24;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView3.Size = new System.Drawing.Size(1199, 430);
+            this.dataGridView3.TabIndex = 2;
             // 
             // Form_for_Dispatcher
             // 
@@ -181,6 +216,10 @@
             this.tabControl1.ResumeLayout(false);
             this.newOrder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.performedOrders.ResumeLayout(false);
+            this.preliminaryOrders.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +239,7 @@
         private System.Windows.Forms.TabPage preliminaryOrders;
         private System.Windows.Forms.TabPage completedOrders;
         private System.Windows.Forms.TabPage falseOrders;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }
