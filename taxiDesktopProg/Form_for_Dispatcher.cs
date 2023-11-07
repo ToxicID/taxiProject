@@ -17,7 +17,7 @@ namespace taxiDesktopProg
         public static long id;
         private long? DataGridIndex = null;
         Form1 po;
-       
+        //Метод вывода в dataGrid
         public void printNewOrders()
         {
             using (Context db = new Context(Form1.connectionString))
@@ -62,6 +62,7 @@ namespace taxiDesktopProg
               
             }
         }
+        //Метод вывода в dataGrid
         public void printNowTimeOrders()
         {
             using (Context db = new Context(Form1.connectionString))
@@ -85,7 +86,7 @@ namespace taxiDesktopProg
                                status = ord.status
                            };
 
-                dataGridView2.DataSource = list.Where(p => p.status == "Выполнение").ToList();
+                dataGridView2.DataSource = list.Where(p => p.status == "Выполнение").Distinct().ToList();
                 dataGridView2.Columns[0].Visible = false;
                 dataGridView2.Columns[1].HeaderText = "Адрес подачи";
                 dataGridView2.Columns[2].HeaderText = "Адрес назначения";
@@ -105,7 +106,7 @@ namespace taxiDesktopProg
                 dataGridView2.EnableHeadersVisualStyles = false;
             }
         }
-
+        //Метод вывода в dataGrid
         public void printPreliminaryOrders()
         {
             using (Context db = new Context(Form1.connectionString))
@@ -149,7 +150,7 @@ namespace taxiDesktopProg
                 dataGridView3.EnableHeadersVisualStyles = false;
             }
         }
-        
+        //Метод вывода в dataGrid
         public void printOrders(string name, DataGridView dataName)
         {
             using (Context db = new Context(Form1.connectionString))
@@ -174,7 +175,7 @@ namespace taxiDesktopProg
                                status = ord.status
                            };
 
-                dataName.DataSource = list.Where(p => p.status == name).ToList();
+                dataName.DataSource = list.Where(p => p.status == name).Distinct().ToList();
                 dataName.Columns[0].Visible = false;
                 dataName.Columns[1].HeaderText = "Адрес подачи";
                 dataName.Columns[2].HeaderText = "Адрес назначения";
@@ -207,6 +208,7 @@ namespace taxiDesktopProg
             }
             timer1.Enabled = true;
             printNewOrders();
+            //Запись лейблов
             newOrderLabel.Text = "Новый заказ";
             editOrderLabel.Text = "Редактировать" + Environment.NewLine + "Заказ";
             failOrderLabel.Text = "Отправить в" + Environment.NewLine + "ложные";
@@ -221,12 +223,13 @@ namespace taxiDesktopProg
             po.Show();
             
         }
-
+        //Таймер
         private void timer1_Tick(object sender, EventArgs e)
         {
             nowTime.Text = DateTime.Now.ToLongTimeString().ToString() ;
         }
         private int tabPageIndex = 0;
+        //Вывод данных в dataGrid при переходе в определённую вкладку
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -258,6 +261,7 @@ namespace taxiDesktopProg
         {
             DataGridIndex = null;
         }
+        //Метож для получения id
         private void getIndexDataGrid(DataGridView data, DataGridViewCellEventArgs e)
         {
             try
@@ -269,6 +273,7 @@ namespace taxiDesktopProg
                 DataGridIndex = null;
             }
         } 
+        //Получение id и запись в DataGrigindex из всех datagrid
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             getIndexDataGrid(dataGridView1, e);
@@ -294,10 +299,9 @@ namespace taxiDesktopProg
             getIndexDataGrid(dataGridView5, e);
         }
 
+        //Вывод свободных водителей
         private void assignDriver_Click(object sender, EventArgs e)
         {
-           
-
             if (tabPageIndex == 0 || tabPageIndex == 1)
             {
                 label1.Text = "Назначить водителя";
@@ -332,7 +336,7 @@ namespace taxiDesktopProg
                 return;
             }
         }
-
+        //Направление автомобиля на заказ
         private void dataGridView6_DoubleClick(object sender, EventArgs e)
         {
             using (Context db = new Context(Form1.connectionString))
@@ -363,7 +367,7 @@ namespace taxiDesktopProg
 
             }
         }
-
+        //Получение id у водителя
         private long? DataGrid6Index = null;
         private void dataGridView6_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -374,6 +378,45 @@ namespace taxiDesktopProg
             catch
             {
                 DataGrid6Index = null;
+            }
+        }
+        //Добавление заказа в ложный
+        private void falseOrder_Click(object sender, EventArgs e)
+        {
+            if (tabPageIndex == 0 || tabPageIndex == 1)
+            {
+                using (Context db = new Context(Form1.connectionString))
+                {
+                    if (DataGridIndex != null)
+                    {
+                        DialogResult result = MessageBox.Show("Перенести заказ в ложные?", "Перенос",
+                                                                                           MessageBoxButtons.YesNo,
+                                                                                           MessageBoxIcon.Information);
+                        if (result == DialogResult.No) return;
+                        var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+
+
+
+                        order.status = "Ложный";
+                        if (order.order_completion_datetime == null)
+                            order.order_completion_datetime = DateTime.Now;
+                        db.SaveChanges();
+                        dataGridView6.Visible = false;
+                        label1.Text = "";
+                        MessageBox.Show($"Заказ был перенесён в ложные");
+
+                    }
+                    DataGrid6Index = null;
+                    DataGridIndex = null;
+                    if (tabPageIndex == 0) printNewOrders();
+                    if (tabPageIndex == 1) printNowTimeOrders();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заказ уже завершён или ещё не началась его обработка");
+                return;
             }
         }
     }
