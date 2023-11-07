@@ -115,8 +115,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="imgFile\add.png" />
+    <Content Include="imgFile\edit.png" />
     <Content Include="imgFile\eyeOff.png" />
     <Content Include="imgFile\eyeOn.png" />
+    <Content Include="imgFile\false.png" />
+    <Content Include="imgFile\naznDriver.png" />
+    <Content Include="imgFile\Okey.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
