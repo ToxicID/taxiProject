@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -14,10 +15,9 @@ namespace taxiDesktopProg
     public partial class Form_for_Dispatcher : Form
     {
         public static long id;
+        private long? DataGridIndex = null;
         Form1 po;
-        private string surnamenameDis = "";
-        private string nameDispatcher = "";
-        private string otchesDisp = "";
+       
         public void printNewOrders()
         {
             using (Context db = new Context(Form1.connectionString))
@@ -41,7 +41,7 @@ namespace taxiDesktopProg
                                status = ord.status
                            };
                 
-                dataGridView1.DataSource = list.Where(p=>p.status == "В ожидании").ToList();
+                dataGridView1.DataSource = list.Where(p=>p.status == "В ожидании").Distinct().ToList();
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[1].HeaderText = "Адрес подачи";
                 dataGridView1.Columns[2].HeaderText = "Адрес назначения";
@@ -55,6 +55,11 @@ namespace taxiDesktopProg
                 foreach (DataGridViewColumn data in dataGridView1.Columns)
                     data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                dataGridView1.EnableHeadersVisualStyles = false;
+              
             }
         }
         public void printNowTimeOrders()
@@ -95,8 +100,12 @@ namespace taxiDesktopProg
                 foreach (DataGridViewColumn data in dataGridView2.Columns)
                     data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                dataGridView2.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                dataGridView2.EnableHeadersVisualStyles = false;
             }
         }
+
         public void printPreliminaryOrders()
         {
             using (Context db = new Context(Form1.connectionString))
@@ -119,8 +128,9 @@ namespace taxiDesktopProg
                            };
 
                 DateTime dt = DateTime.Now.AddDays(3);
+                DateTime dh = DateTime.Now.AddHours(1);
 
-                dataGridView3.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing>DateTime.Now && p.datetime_placing <= dt).Distinct().ToList();
+                dataGridView3.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing>dh && p.datetime_placing <= dt).Distinct().ToList();
                 dataGridView3.Columns[0].Visible = false;
                 dataGridView3.Columns[1].HeaderText = "Адрес подачи";
                 dataGridView3.Columns[2].HeaderText = "Адрес назначения";
@@ -134,6 +144,55 @@ namespace taxiDesktopProg
                 foreach (DataGridViewColumn data in dataGridView3.Columns)
                     data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                dataGridView3.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                dataGridView3.EnableHeadersVisualStyles = false;
+            }
+        }
+        
+        public void printOrders(string name, DataGridView dataName)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var list = from ord in db.orders
+                           join ad1 in db.addresses on ord.address.id_address equals ad1.id_address
+                           join ad2 in db.addresses on ord.address1.id_address equals ad2.id_address
+                           join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
+                           join driv in db.drivers on ord.id_driver equals driv.id_driver
+                           select new
+                           {
+                               id_order = ord.id_order,
+                               place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
+                               place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
+                               order_cost = ord.order_cost,
+                               payment_method = ord.payment_method,
+                               datetime_placing = ord.datetime_placing_the_order,
+                               datetime_complete_order = ord.order_completion_datetime,
+                               id_driver = driv.call_sign,
+                               id_client = ord.client.mobile_phone,
+                               id_rate = ord.rate.name,
+                               status = ord.status
+                           };
+
+                dataName.DataSource = list.Where(p => p.status == name).ToList();
+                dataName.Columns[0].Visible = false;
+                dataName.Columns[1].HeaderText = "Адрес подачи";
+                dataName.Columns[2].HeaderText = "Адрес назначения";
+                dataName.Columns[3].HeaderText = "Примерная стоимость";
+                dataName.Columns[4].HeaderText = "Способ оплаты";
+                dataName.Columns[5].HeaderText = "Дата и время оформления заказа";
+                dataName.Columns[6].HeaderText = "Дата и время завершения заказа";
+                dataName.Columns[7].HeaderText = "Позывной";
+                dataName.Columns[8].HeaderText = "Телефона";
+                dataName.Columns[9].HeaderText = "Тариф";
+                dataName.Columns[10].Visible = false;
+                foreach (DataGridViewColumn data in dataName.Columns)
+                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataName.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataName.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                dataName.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                dataName.EnableHeadersVisualStyles = false;
+
             }
         }
         public Form_for_Dispatcher(long id_dis, Form1 po)
@@ -144,12 +203,17 @@ namespace taxiDesktopProg
             using (Context db = new Context(Form1.connectionString))
             {
                 var dispatcher = db.dispatchers.Where(p => p.id_dispatcher == id).FirstOrDefault();
-                surnamenameDis = dispatcher.surname;
-                nameDispatcher = dispatcher.name;
-                otchesDisp = dispatcher.patronymic;
+                
             }
             timer1.Enabled = true;
             printNewOrders();
+            newOrderLabel.Text = "Новый заказ";
+            editOrderLabel.Text = "Редактировать" + Environment.NewLine + "Заказ";
+            failOrderLabel.Text = "Отправить в" + Environment.NewLine + "ложные";
+            directDriverLabel.Text = "Назначить" + Environment.NewLine + "водителя";
+            label1.Text = "";
+            dataGridView6.Visible = false;
+
         }
 
         private void Form_for_Dispatcher_FormClosed(object sender, FormClosedEventArgs e)
@@ -162,10 +226,12 @@ namespace taxiDesktopProg
         {
             nowTime.Text = DateTime.Now.ToLongTimeString().ToString() ;
         }
+        private int tabPageIndex = 0;
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
-            switch (e.TabPageIndex)
+            tabPageIndex = e.TabPageIndex;
+            switch (tabPageIndex)
             {
                 case 0:
                     printNewOrders();
@@ -176,7 +242,138 @@ namespace taxiDesktopProg
                 case 2:
                     printPreliminaryOrders();
                     break;
+                case 3:
+                    printOrders("Завершён", dataGridView4);
+                    break;
+                case 4:
+                    printOrders("Ложный",dataGridView5);
+                    
+                    break;
+                      
 
+            }
+        }
+
+        private void Form_for_Dispatcher_Click(object sender, EventArgs e)
+        {
+            DataGridIndex = null;
+        }
+        private void getIndexDataGrid(DataGridView data, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                DataGridIndex = (long)data.Rows[e.RowIndex].Cells[0].Value;
+            }
+            catch
+            {
+                DataGridIndex = null;
+            }
+        } 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            getIndexDataGrid(dataGridView1, e);
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            getIndexDataGrid(dataGridView2, e);
+        }
+
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            getIndexDataGrid(dataGridView3, e);
+        }
+
+        private void dataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            getIndexDataGrid(dataGridView4, e);
+        }
+
+        private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            getIndexDataGrid(dataGridView5, e);
+        }
+
+        private void assignDriver_Click(object sender, EventArgs e)
+        {
+           
+
+            if (tabPageIndex == 0 || tabPageIndex == 1)
+            {
+                label1.Text = "Назначить водителя";
+                dataGridView6.Visible = true;
+                using (Context db = new Context(Form1.connectionString)) {
+                    var list = db.drivers.Where(p => p.status == "Свободен" && p.driver_readiness == "Готов").ToList();
+                    dataGridView6.DataSource = list;
+                    dataGridView6.Columns[0].Visible = false;
+                    dataGridView6.Columns[1].Visible = false;
+                    dataGridView6.Columns[2].Visible = false;
+                    dataGridView6.Columns[3].HeaderText = "Позывной";
+                    dataGridView6.Columns[4].Visible = false;
+                    dataGridView6.Columns[5].Visible = false;
+                    dataGridView6.Columns[6].Visible = false;
+                    dataGridView6.Columns[7].Visible = false;
+                    dataGridView6.Columns[8].Visible = false;
+                    dataGridView6.Columns[9].Visible = false;
+                    dataGridView6.Columns[10].Visible = false;
+                    dataGridView6.Columns[11].Visible = false;
+                    dataGridView6.Columns[12].Visible = false;
+                    dataGridView6.Columns[13].Visible = false;
+                    dataGridView6.Columns[14].Visible = false;
+                    dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                    dataGridView6.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                    dataGridView6.EnableHeadersVisualStyles = false;
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Автомобиль уже назначен, выполнить данную функцию нельзя");
+                return;
+            }
+        }
+
+        private void dataGridView6_DoubleClick(object sender, EventArgs e)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                if(DataGridIndex != null && DataGrid6Index != null)
+                {
+                    DialogResult result = MessageBox.Show("Назначить этого водителя на выбранный заказ?", "Назначение",
+                                                                                       MessageBoxButtons.YesNo,
+                                                                                       MessageBoxIcon.Information);
+                    if (result == DialogResult.No) return;
+                    var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+                    var driver = db.drivers.Where(p => p.id_driver == DataGrid6Index).FirstOrDefault();
+                   
+
+                    order.id_driver = driver.id_driver;
+                    driver.status = "Занят";
+                    order.status = "Выполнение";
+                    db.SaveChanges();
+                    dataGridView6.Visible = false;
+                    label1.Text = "";
+                    MessageBox.Show($"Водитель {driver.call_sign} отправлен на заказ");
+
+                }
+                DataGrid6Index = null;
+                DataGridIndex = null;
+                if (tabPageIndex == 0) printNewOrders();
+                if (tabPageIndex == 1) printNowTimeOrders();
+
+            }
+        }
+
+        private long? DataGrid6Index = null;
+        private void dataGridView6_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                DataGrid6Index = (long)dataGridView6.Rows[e.RowIndex].Cells[0].Value;
+            }
+            catch
+            {
+                DataGrid6Index = null;
             }
         }
     }

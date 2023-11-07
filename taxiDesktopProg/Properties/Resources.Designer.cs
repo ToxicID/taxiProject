@@ -63,6 +63,36 @@ namespace taxiDesktopProg.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _false {
+            get {
+                object obj = ResourceManager.GetObject("false", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add {
+            get {
+                object obj = ResourceManager.GetObject("add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit {
+            get {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eyeOff {
             get {
                 object obj = ResourceManager.GetObject("eyeOff", resourceCulture);
@@ -76,6 +106,16 @@ namespace taxiDesktopProg.Properties {
         internal static System.Drawing.Bitmap eyeOn {
             get {
                 object obj = ResourceManager.GetObject("eyeOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap naznDriver {
+            get {
+                object obj = ResourceManager.GetObject("naznDriver", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

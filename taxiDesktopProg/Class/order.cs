@@ -28,9 +28,9 @@ namespace taxiDesktopProg
 
         public DateTime datetime_placing_the_order { get; set; }
 
-        public DateTime order_completion_datetime { get; set; }
+        public DateTime? order_completion_datetime { get; set; }
 
-        public long id_driver { get; set; }
+        public long? id_driver { get; set; }
 
         public long id_client { get; set; }
 
