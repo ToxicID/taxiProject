@@ -36,6 +36,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.newOrder = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.performedOrders = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -53,11 +55,10 @@
             this.falseOrder = new System.Windows.Forms.PictureBox();
             this.editOrder = new System.Windows.Forms.PictureBox();
             this.addOrder = new System.Windows.Forms.PictureBox();
-            this.dataGridView6 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.performedOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -71,7 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -141,6 +141,33 @@
             this.newOrder.Text = "Новые заказы";
             this.newOrder.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(1332, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 22);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Новый заказ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dataGridView6
+            // 
+            this.dataGridView6.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView6.Location = new System.Drawing.Point(1202, 53);
+            this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.ReadOnly = true;
+            this.dataGridView6.RowHeadersWidth = 51;
+            this.dataGridView6.RowTemplate.Height = 24;
+            this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView6.Size = new System.Drawing.Size(474, 380);
+            this.dataGridView6.TabIndex = 1;
+            this.dataGridView6.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellClick);
+            this.dataGridView6.DoubleClick += new System.EventHandler(this.dataGridView6_DoubleClick);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
@@ -161,7 +188,7 @@
             this.performedOrders.Location = new System.Drawing.Point(4, 25);
             this.performedOrders.Name = "performedOrders";
             this.performedOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.performedOrders.Size = new System.Drawing.Size(1368, 436);
+            this.performedOrders.Size = new System.Drawing.Size(1679, 436);
             this.performedOrders.TabIndex = 1;
             this.performedOrders.Text = "Выполняемые";
             this.performedOrders.UseVisualStyleBackColor = true;
@@ -186,7 +213,7 @@
             this.preliminaryOrders.Location = new System.Drawing.Point(4, 25);
             this.preliminaryOrders.Name = "preliminaryOrders";
             this.preliminaryOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.preliminaryOrders.Size = new System.Drawing.Size(1368, 436);
+            this.preliminaryOrders.Size = new System.Drawing.Size(1679, 436);
             this.preliminaryOrders.TabIndex = 2;
             this.preliminaryOrders.Text = "Предварительные";
             this.preliminaryOrders.UseVisualStyleBackColor = true;
@@ -211,7 +238,7 @@
             this.completedOrders.Location = new System.Drawing.Point(4, 25);
             this.completedOrders.Name = "completedOrders";
             this.completedOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.completedOrders.Size = new System.Drawing.Size(1368, 436);
+            this.completedOrders.Size = new System.Drawing.Size(1679, 436);
             this.completedOrders.TabIndex = 3;
             this.completedOrders.Text = "Выполненные";
             this.completedOrders.UseVisualStyleBackColor = true;
@@ -236,7 +263,7 @@
             this.falseOrders.Location = new System.Drawing.Point(4, 25);
             this.falseOrders.Name = "falseOrders";
             this.falseOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.falseOrders.Size = new System.Drawing.Size(1368, 436);
+            this.falseOrders.Size = new System.Drawing.Size(1679, 436);
             this.falseOrders.TabIndex = 4;
             this.falseOrders.Text = "Ложные";
             this.falseOrders.UseVisualStyleBackColor = true;
@@ -321,6 +348,7 @@
             this.falseOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.falseOrder.TabIndex = 9;
             this.falseOrder.TabStop = false;
+            this.falseOrder.Click += new System.EventHandler(this.falseOrder_Click);
             // 
             // editOrder
             // 
@@ -343,33 +371,6 @@
             this.addOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.addOrder.TabIndex = 7;
             this.addOrder.TabStop = false;
-            // 
-            // dataGridView6
-            // 
-            this.dataGridView6.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView6.Location = new System.Drawing.Point(1202, 53);
-            this.dataGridView6.Name = "dataGridView6";
-            this.dataGridView6.ReadOnly = true;
-            this.dataGridView6.RowHeadersWidth = 51;
-            this.dataGridView6.RowTemplate.Height = 24;
-            this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView6.Size = new System.Drawing.Size(474, 380);
-            this.dataGridView6.TabIndex = 1;
-            this.dataGridView6.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellClick);
-            this.dataGridView6.DoubleClick += new System.EventHandler(this.dataGridView6_DoubleClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(1332, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 22);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Новый заказ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form_for_Dispatcher
             // 
@@ -397,6 +398,7 @@
             this.tabControl1.ResumeLayout(false);
             this.newOrder.ResumeLayout(false);
             this.newOrder.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.performedOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -410,7 +412,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
