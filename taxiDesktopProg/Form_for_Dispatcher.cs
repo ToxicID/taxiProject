@@ -419,5 +419,11 @@ namespace taxiDesktopProg
                 return;
             }
         }
+
+        private void addOrder_Click(object sender, EventArgs e)
+        {
+            addOrEditOrders fm = new addOrEditOrders();
+            fm.Show();
+        }
     }
 }

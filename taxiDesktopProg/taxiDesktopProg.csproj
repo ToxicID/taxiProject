@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addOrEditOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addOrEditOrders.Designer.cs">
+      <DependentUpon>addOrEditOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="address.cs" />
     <Compile Include="Class\car.cs" />
     <Compile Include="Class\car_category.cs" />
@@ -83,6 +89,9 @@
     <Compile Include="Class\rate.cs" />
     <Compile Include="Class\violation.cs" />
     <Compile Include="Class\work_schedule.cs" />
+    <EmbeddedResource Include="addOrEditOrders.resx">
+      <DependentUpon>addOrEditOrders.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
