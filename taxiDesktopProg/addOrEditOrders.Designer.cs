@@ -31,12 +31,12 @@
             this.textBoxStreet1 = new System.Windows.Forms.TextBox();
             this.textBoxCity1 = new System.Windows.Forms.TextBox();
             this.place_of_departureBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.textBoxHouse1 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.destinationBox = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,14 +51,24 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.transportationOfPetCheck = new System.Windows.Forms.CheckBox();
+            this.childSafetySeatCheck = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.transportationOfPetBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.childSafetySeatBox = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.costPerKilometerBox = new System.Windows.Forms.TextBox();
+            this.costDowntimeBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.boardingBox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.priceBox = new System.Windows.Forms.TextBox();
+            this.estimatedСost = new System.Windows.Forms.Button();
+            this.PlaceOrder = new System.Windows.Forms.Button();
             this.place_of_departureBox.SuspendLayout();
             this.destinationBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -71,7 +81,8 @@
             this.textBoxStreet1.Location = new System.Drawing.Point(179, 107);
             this.textBoxStreet1.Name = "textBoxStreet1";
             this.textBoxStreet1.Size = new System.Drawing.Size(211, 30);
-            this.textBoxStreet1.TabIndex = 0;
+            this.textBoxStreet1.TabIndex = 2;
+            this.textBoxStreet1.Leave += new System.EventHandler(this.textBoxStreet1_Leave);
             // 
             // textBoxCity1
             // 
@@ -82,6 +93,7 @@
             this.textBoxCity1.Size = new System.Drawing.Size(211, 30);
             this.textBoxCity1.TabIndex = 1;
             this.textBoxCity1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
+            this.textBoxCity1.Leave += new System.EventHandler(this.textBoxCity1_Leave);
             // 
             // place_of_departureBox
             // 
@@ -96,37 +108,28 @@
             this.place_of_departureBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.place_of_departureBox.Location = new System.Drawing.Point(39, 66);
             this.place_of_departureBox.Name = "place_of_departureBox";
-            this.place_of_departureBox.Size = new System.Drawing.Size(426, 291);
+            this.place_of_departureBox.Size = new System.Drawing.Size(426, 264);
             this.place_of_departureBox.TabIndex = 2;
             this.place_of_departureBox.TabStop = false;
             this.place_of_departureBox.Text = "Место отправления";
             // 
-            // label1
+            // label4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 22);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Город";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 207);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 22);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Подъед";
             // 
-            // textBoxHouse1
+            // label3
             // 
-            this.textBoxHouse1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxHouse1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBoxHouse1.Location = new System.Drawing.Point(179, 167);
-            this.textBoxHouse1.Name = "textBoxHouse1";
-            this.textBoxHouse1.Size = new System.Drawing.Size(211, 30);
-            this.textBoxHouse1.TabIndex = 4;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox4.Location = new System.Drawing.Point(179, 216);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(211, 30);
-            this.textBox4.TabIndex = 3;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 158);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 22);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Дом";
             // 
             // label2
             // 
@@ -137,23 +140,32 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Улица";
             // 
-            // label3
+            // textBoxHouse1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 175);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 22);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Дом";
+            this.textBoxHouse1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxHouse1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBoxHouse1.Location = new System.Drawing.Point(179, 150);
+            this.textBoxHouse1.Name = "textBoxHouse1";
+            this.textBoxHouse1.Size = new System.Drawing.Size(211, 30);
+            this.textBoxHouse1.TabIndex = 3;
             // 
-            // label4
+            // textBox4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 224);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 22);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Подъед";
+            this.textBox4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox4.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBox4.Location = new System.Drawing.Point(179, 199);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(211, 30);
+            this.textBox4.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 61);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 22);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Город";
             // 
             // destinationBox
             // 
@@ -168,7 +180,7 @@
             this.destinationBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.destinationBox.Location = new System.Drawing.Point(515, 66);
             this.destinationBox.Name = "destinationBox";
-            this.destinationBox.Size = new System.Drawing.Size(426, 291);
+            this.destinationBox.Size = new System.Drawing.Size(426, 264);
             this.destinationBox.TabIndex = 8;
             this.destinationBox.TabStop = false;
             this.destinationBox.Text = "Место назначения";
@@ -176,7 +188,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 224);
+            this.label5.Location = new System.Drawing.Point(29, 207);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 22);
             this.label5.TabIndex = 7;
@@ -185,7 +197,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 175);
+            this.label6.Location = new System.Drawing.Point(29, 158);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 22);
             this.label6.TabIndex = 6;
@@ -204,19 +216,19 @@
             // 
             this.textBoxHouse2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxHouse2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBoxHouse2.Location = new System.Drawing.Point(179, 167);
+            this.textBoxHouse2.Location = new System.Drawing.Point(179, 150);
             this.textBoxHouse2.Name = "textBoxHouse2";
             this.textBoxHouse2.Size = new System.Drawing.Size(211, 30);
-            this.textBoxHouse2.TabIndex = 4;
+            this.textBoxHouse2.TabIndex = 7;
             // 
             // textBox6
             // 
             this.textBox6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox6.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox6.Location = new System.Drawing.Point(179, 216);
+            this.textBox6.Location = new System.Drawing.Point(179, 199);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(211, 30);
-            this.textBox6.TabIndex = 3;
+            this.textBox6.TabIndex = 8;
             // 
             // label8
             // 
@@ -234,7 +246,8 @@
             this.textBoxCity2.Location = new System.Drawing.Point(179, 58);
             this.textBoxCity2.Name = "textBoxCity2";
             this.textBoxCity2.Size = new System.Drawing.Size(211, 30);
-            this.textBoxCity2.TabIndex = 1;
+            this.textBoxCity2.TabIndex = 5;
+            this.textBoxCity2.Leave += new System.EventHandler(this.textBoxCity2_Leave);
             // 
             // textBoxStreet2
             // 
@@ -243,7 +256,8 @@
             this.textBoxStreet2.Location = new System.Drawing.Point(179, 107);
             this.textBoxStreet2.Name = "textBoxStreet2";
             this.textBoxStreet2.Size = new System.Drawing.Size(211, 30);
-            this.textBoxStreet2.TabIndex = 0;
+            this.textBoxStreet2.TabIndex = 6;
+            this.textBoxStreet2.Leave += new System.EventHandler(this.textBoxStreet2_Leave);
             // 
             // label9
             // 
@@ -263,10 +277,10 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Наличными",
             "Картой"});
-            this.comboBox1.Location = new System.Drawing.Point(656, 389);
+            this.comboBox1.Location = new System.Drawing.Point(667, 389);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(192, 30);
-            this.comboBox1.TabIndex = 9;
+            this.comboBox1.TabIndex = 17;
             // 
             // label10
             // 
@@ -285,71 +299,148 @@
             this.textBox1.Location = new System.Drawing.Point(742, 458);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(249, 30);
-            this.textBox1.TabIndex = 8;
+            this.textBox1.TabIndex = 18;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.transportationOfPetCheck);
+            this.groupBox1.Controls.Add(this.childSafetySeatCheck);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.transportationOfPetBox);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.childSafetySeatBox);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.costPerKilometerBox);
+            this.groupBox1.Controls.Add(this.costDowntimeBox);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.boardingBox);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(39, 397);
+            this.groupBox1.Location = new System.Drawing.Point(39, 336);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(426, 291);
+            this.groupBox1.Size = new System.Drawing.Size(466, 380);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Тариф";
             // 
+            // transportationOfPetCheck
+            // 
+            this.transportationOfPetCheck.AutoSize = true;
+            this.transportationOfPetCheck.Location = new System.Drawing.Point(215, 329);
+            this.transportationOfPetCheck.Name = "transportationOfPetCheck";
+            this.transportationOfPetCheck.Size = new System.Drawing.Size(226, 26);
+            this.transportationOfPetCheck.TabIndex = 16;
+            this.transportationOfPetCheck.Text = "Включить в стоимость";
+            this.transportationOfPetCheck.UseVisualStyleBackColor = true;
+            // 
+            // childSafetySeatCheck
+            // 
+            this.childSafetySeatCheck.AutoSize = true;
+            this.childSafetySeatCheck.Location = new System.Drawing.Point(215, 251);
+            this.childSafetySeatCheck.Name = "childSafetySeatCheck";
+            this.childSafetySeatCheck.Size = new System.Drawing.Size(226, 26);
+            this.childSafetySeatCheck.TabIndex = 14;
+            this.childSafetySeatCheck.Text = "Включить в стоимость";
+            this.childSafetySeatCheck.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(29, 280);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(281, 22);
+            this.label16.TabIndex = 15;
+            this.label16.Text = "Перевозка домашних животных";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // transportationOfPetBox
+            // 
+            this.transportationOfPetBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.transportationOfPetBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.transportationOfPetBox.Location = new System.Drawing.Point(239, 293);
+            this.transportationOfPetBox.Name = "transportationOfPetBox";
+            this.transportationOfPetBox.Size = new System.Drawing.Size(211, 30);
+            this.transportationOfPetBox.TabIndex = 15;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(29, 223);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(154, 22);
+            this.label15.TabIndex = 13;
+            this.label15.Text = "Детское сидение";
+            // 
+            // childSafetySeatBox
+            // 
+            this.childSafetySeatBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.childSafetySeatBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.childSafetySeatBox.Location = new System.Drawing.Point(239, 215);
+            this.childSafetySeatBox.Name = "childSafetySeatBox";
+            this.childSafetySeatBox.Size = new System.Drawing.Size(211, 30);
+            this.childSafetySeatBox.TabIndex = 13;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Наличными",
+            "Картой"});
+            this.comboBox2.Location = new System.Drawing.Point(239, 53);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(211, 30);
+            this.comboBox2.TabIndex = 9;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(29, 224);
+            this.label11.Location = new System.Drawing.Point(29, 187);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 22);
+            this.label11.Size = new System.Drawing.Size(150, 22);
             this.label11.TabIndex = 7;
-            this.label11.Text = "Подъед";
+            this.label11.Text = "Цена за простой";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(29, 175);
+            this.label12.Location = new System.Drawing.Point(29, 151);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(47, 22);
+            this.label12.Size = new System.Drawing.Size(162, 22);
             this.label12.TabIndex = 6;
-            this.label12.Text = "Дом";
+            this.label12.Text = "Цена за километр";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(29, 110);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(63, 22);
+            this.label13.Size = new System.Drawing.Size(81, 22);
             this.label13.TabIndex = 5;
-            this.label13.Text = "Улица";
+            this.label13.Text = "Посадка";
             // 
-            // textBox2
+            // costPerKilometerBox
             // 
-            this.textBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox2.Location = new System.Drawing.Point(179, 167);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(211, 30);
-            this.textBox2.TabIndex = 4;
+            this.costPerKilometerBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costPerKilometerBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.costPerKilometerBox.Location = new System.Drawing.Point(239, 143);
+            this.costPerKilometerBox.Name = "costPerKilometerBox";
+            this.costPerKilometerBox.Size = new System.Drawing.Size(211, 30);
+            this.costPerKilometerBox.TabIndex = 11;
             // 
-            // textBox3
+            // costDowntimeBox
             // 
-            this.textBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox3.Location = new System.Drawing.Point(179, 216);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(211, 30);
-            this.textBox3.TabIndex = 3;
+            this.costDowntimeBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costDowntimeBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.costDowntimeBox.Location = new System.Drawing.Point(239, 179);
+            this.costDowntimeBox.Name = "costDowntimeBox";
+            this.costDowntimeBox.Size = new System.Drawing.Size(211, 30);
+            this.costDowntimeBox.TabIndex = 12;
             // 
             // label14
             // 
@@ -360,33 +451,67 @@
             this.label14.TabIndex = 2;
             this.label14.Text = "Название";
             // 
-            // textBox7
+            // boardingBox
             // 
-            this.textBox7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox7.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox7.Location = new System.Drawing.Point(179, 107);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(211, 30);
-            this.textBox7.TabIndex = 0;
+            this.boardingBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.boardingBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.boardingBox.Location = new System.Drawing.Point(239, 107);
+            this.boardingBox.Name = "boardingBox";
+            this.boardingBox.Size = new System.Drawing.Size(211, 30);
+            this.boardingBox.TabIndex = 10;
             // 
-            // comboBox2
+            // label17
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Наличными",
-            "Картой"});
-            this.comboBox2.Location = new System.Drawing.Point(179, 53);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(192, 30);
-            this.comboBox2.TabIndex = 11;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Location = new System.Drawing.Point(511, 577);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(256, 22);
+            this.label17.TabIndex = 11;
+            this.label17.Text = "Ориентировочная стоимость";
+            // 
+            // priceBox
+            // 
+            this.priceBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.priceBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.priceBox.Location = new System.Drawing.Point(518, 610);
+            this.priceBox.Name = "priceBox";
+            this.priceBox.ReadOnly = true;
+            this.priceBox.Size = new System.Drawing.Size(159, 30);
+            this.priceBox.TabIndex = 12;
+            // 
+            // estimatedСost
+            // 
+            this.estimatedСost.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.estimatedСost.Location = new System.Drawing.Point(521, 523);
+            this.estimatedСost.Name = "estimatedСost";
+            this.estimatedСost.Size = new System.Drawing.Size(129, 38);
+            this.estimatedСost.TabIndex = 19;
+            this.estimatedСost.Text = "Рассчитать";
+            this.estimatedСost.UseVisualStyleBackColor = true;
+            this.estimatedСost.Click += new System.EventHandler(this.estimatedСost_Click);
+            // 
+            // PlaceOrder
+            // 
+            this.PlaceOrder.Enabled = false;
+            this.PlaceOrder.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PlaceOrder.Location = new System.Drawing.Point(679, 678);
+            this.PlaceOrder.Name = "PlaceOrder";
+            this.PlaceOrder.Size = new System.Drawing.Size(202, 38);
+            this.PlaceOrder.TabIndex = 20;
+            this.PlaceOrder.Text = "Оформить заказ";
+            this.PlaceOrder.UseVisualStyleBackColor = true;
+            this.PlaceOrder.Click += new System.EventHandler(this.button1_Click);
             // 
             // addOrEditOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(999, 747);
+            this.ClientSize = new System.Drawing.Size(999, 756);
+            this.Controls.Add(this.PlaceOrder);
+            this.Controls.Add(this.estimatedСost);
+            this.Controls.Add(this.priceBox);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label10);
@@ -435,10 +560,20 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox costPerKilometerBox;
+        private System.Windows.Forms.TextBox costDowntimeBox;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox boardingBox;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox transportationOfPetBox;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox childSafetySeatBox;
+        private System.Windows.Forms.CheckBox transportationOfPetCheck;
+        private System.Windows.Forms.CheckBox childSafetySeatCheck;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox priceBox;
+        private System.Windows.Forms.Button estimatedСost;
+        private System.Windows.Forms.Button PlaceOrder;
     }
 }
