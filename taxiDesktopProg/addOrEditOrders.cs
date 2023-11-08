@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Entity;
-using System.Drawing;
+using System.Device.Location;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 using System.Windows.Forms;
 
 namespace taxiDesktopProg
@@ -17,21 +14,24 @@ namespace taxiDesktopProg
         public addOrEditOrders()
         {
             InitializeComponent();
+            label16.Text = "Перевозка" + Environment.NewLine + "домашних животных";
             using (Context db = new Context(Form1.connectionString))
             {
                 findAddressCity(textBoxCity1);
-                findAddressStreet(textBoxStreet1);
-                findAddressHouse(textBoxHouse1);
-
                 findAddressCity(textBoxCity2);
-                findAddressStreet(textBoxStreet2);
-                findAddressHouse(textBoxHouse2);
                
                     
-                    List<rate> cp = db.rates.ToList();
+                    List<rate> cp = db.rates.Where(p=>p.availability == true).ToList();
+                
                     comboBox2.DataSource = cp;
                     comboBox2.ValueMember = "id_rate";
                     comboBox2.DisplayMember = "name";
+                boardingBox.ReadOnly = true;
+                costDowntimeBox.ReadOnly = true;
+                costPerKilometerBox.ReadOnly = true;
+                childSafetySeatBox.ReadOnly = true;
+                transportationOfPetBox.ReadOnly = true;
+
                 }
         }
 
@@ -53,13 +53,13 @@ namespace taxiDesktopProg
                 text.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
         }
-        private void findAddressStreet(TextBox text)
+        private void findAddressStreet(TextBox text,string cityText)
         {
             AutoCompleteStringCollection textComplete = new AutoCompleteStringCollection();
 
             using (Context db = new Context(Form1.connectionString))
             {
-                var city = db.addresses;
+                var city = db.addresses.Where(p=>p.city == cityText);
 
                 foreach (address City in city)
                 {
@@ -71,13 +71,13 @@ namespace taxiDesktopProg
                 text.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
         }
-        private void findAddressHouse(TextBox text)
+        private void findAddressHouse(TextBox text,string cityText, string streetText)
         {
             AutoCompleteStringCollection textComplete = new AutoCompleteStringCollection();
 
             using (Context db = new Context(Form1.connectionString))
             {
-                var city = db.addresses;
+                var city = db.addresses.Where(p=> p.city == cityText && p.street == streetText);
 
                 foreach (address City in city)
                 {
@@ -104,6 +104,123 @@ namespace taxiDesktopProg
             {
                 e.Handled = true;
             }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
+            boardingBox.Text = cp.cost_downtime.ToString();
+            costDowntimeBox.Text = cp.cost_downtime.ToString();
+            costPerKilometerBox.Text = cp.cost_per_kilometer.ToString();
+            if (cp.child_safety_seat != null)
+                childSafetySeatBox.Text = cp.child_safety_seat.ToString();
+            else
+                childSafetySeatBox.Text = "Недоступно";
+            if (cp.transportation_of_pet != null)
+                transportationOfPetBox.Text = cp.transportation_of_pet.ToString();
+            else
+                transportationOfPetBox.Text = "Недоступно";
+        }
+
+       
+        //Вычисление координат адреса
+        private double[] Coords(string address, out double[] array)
+        {
+
+            string url = $"https://nominatim.openstreetmap.org/search?format=json&q={WebUtility.UrlEncode(address)}";
+            array = new double[2];
+            using (WebClient httpClient = new WebClient())
+            {
+                string userAgentString = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64; Trident/4.0; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) ; .NET CLR 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; Tablet PC 2.0; .NET4.0C; .NET4.0E)";
+                httpClient.Headers["User-Agent"] = userAgentString;
+                string json = httpClient.DownloadString(url);
+                var data = JArray.Parse(json);
+
+                if (data.Count > 0)
+                {
+                    var lat = data[0]["lat"].ToString();
+                    var lon = data[0]["lon"].ToString();
+                    lat = lat.Replace(".", ",");
+                    lon = lon.Replace(".", ",");
+                    array[0] = Math.Round(double.Parse(lat), 6);
+                    array[1] = Math.Round(double.Parse(lon), 6);
+
+                }
+                else
+                {
+                    MessageBox.Show("Введены некорректные данные");
+                }
+            }
+            return array;
+        }
+        private decimal? priceOrder = 0;
+        private void estimatedСost_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxCity1.Text) ||
+               string.IsNullOrWhiteSpace(textBoxCity2.Text) ||
+               string.IsNullOrWhiteSpace(textBoxStreet1.Text) ||
+               string.IsNullOrWhiteSpace(textBoxStreet2.Text) ||
+               string.IsNullOrWhiteSpace(textBoxHouse1.Text)||
+               string.IsNullOrWhiteSpace(textBoxHouse2.Text))
+            {
+                MessageBox.Show("Заполните все поля", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                double[] array1 = new double[2];
+                Coords($"{textBoxCity1.Text},{textBoxStreet1.Text},{textBoxHouse1.Text}", out array1); //!!!!!
+                double[] array2 = new double[2];
+                Coords($"{textBoxCity2.Text},{textBoxStreet2.Text},{textBoxHouse2.Text}", out array2); //!!!!!
+                var dist1 = new GeoCoordinate(array1[0], array1[1]);
+                var dist2 = new GeoCoordinate(array2[0], array2[1]);
+
+                var distances = (dist1.GetDistanceTo(dist2) / 1000);
+                
+                rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
+               
+                    priceOrder = cp.boarding + cp.cost_per_kilometer * (decimal)distances;
+
+
+                if (childSafetySeatCheck.Checked == true && cp.child_safety_seat != null)
+                    priceOrder += cp.child_safety_seat;
+                if(transportationOfPetCheck.Checked == true && cp.transportation_of_pet!=null)
+                    priceOrder += cp.transportation_of_pet;
+
+                priceBox.Text = Math.Round((double)priceOrder,2).ToString();
+                PlaceOrder.Enabled = true;
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка в вычислениях", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+        //Автозаполнение после смены фокуса с города, улицы для дальнейших полей
+        private void textBoxCity1_Leave(object sender, EventArgs e)
+        {
+            findAddressStreet(textBoxStreet1, textBoxCity1.Text);
+        }
+
+        private void textBoxCity2_Leave(object sender, EventArgs e)
+        {
+
+            findAddressStreet(textBoxStreet2,textBoxCity2.Text);
+        }
+
+        private void textBoxStreet1_Leave(object sender, EventArgs e)
+        {
+            findAddressHouse(textBoxHouse1, textBoxCity1.Text,textBoxStreet1.Text);
+        }
+
+        private void textBoxStreet2_Leave(object sender, EventArgs e)
+        {
+            findAddressHouse(textBoxHouse2, textBoxCity2.Text, textBoxStreet2.Text);
         }
     }
 }
