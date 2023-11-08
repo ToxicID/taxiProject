@@ -371,6 +371,7 @@
             this.addOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.addOrder.TabIndex = 7;
             this.addOrder.TabStop = false;
+            this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
             // 
             // Form_for_Dispatcher
             // 
