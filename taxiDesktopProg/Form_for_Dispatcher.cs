@@ -23,8 +23,8 @@ namespace taxiDesktopProg
             using (Context db = new Context(Form1.connectionString))
             {
                 var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.address.id_address equals ad1.id_address
-                           join ad2 in db.addresses on ord.address1.id_address equals ad2.id_address
+                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
+                           join ad2 in db.addresses on ord.destination equals ad2.id_address
                            join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
                            
                            select new
@@ -68,8 +68,8 @@ namespace taxiDesktopProg
             using (Context db = new Context(Form1.connectionString))
             {
                 var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.address.id_address equals ad1.id_address
-                           join ad2 in db.addresses on ord.address1.id_address equals ad2.id_address
+                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
+                           join ad2 in db.addresses on ord.destination equals ad2.id_address
                            join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
                            join driv in db.drivers on ord.id_driver equals driv.id_driver
                            select new
@@ -112,8 +112,8 @@ namespace taxiDesktopProg
             using (Context db = new Context(Form1.connectionString))
             {
                 var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.address.id_address equals ad1.id_address
-                           join ad2 in db.addresses on ord.address1.id_address equals ad2.id_address
+                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
+                           join ad2 in db.addresses on ord.destination equals ad2.id_address
                            join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
                            select new
                            {
@@ -156,8 +156,8 @@ namespace taxiDesktopProg
             using (Context db = new Context(Form1.connectionString))
             {
                 var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.address.id_address equals ad1.id_address
-                           join ad2 in db.addresses on ord.address1.id_address equals ad2.id_address
+                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
+                           join ad2 in db.addresses on ord.destination equals ad2.id_address
                            join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
                            join driv in db.drivers on ord.id_driver equals driv.id_driver
                            select new
@@ -423,7 +423,10 @@ namespace taxiDesktopProg
         private void addOrder_Click(object sender, EventArgs e)
         {
             addOrEditOrders fm = new addOrEditOrders();
-            fm.Show();
+            fm.ShowDialog();
+            printNewOrders();
+
+
         }
     }
 }
