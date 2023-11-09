@@ -196,9 +196,126 @@ namespace taxiDesktopProg
                 return;
             }
         }
+        private long checkClient()
+        {
+            long idClient;
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var client = db.clients;
+                
+                if (client.Where(p => p.mobile_phone == textBox1.Text).Count() != 1)
+                {
+                    client cl = new client
+                    {
+                        mobile_phone = textBox1.Text,
+                        blacklist = false
+                    };
+                    db.clients.Add(cl);
+                    db.SaveChanges();
+                    idClient = cl.id_client;
+                    return idClient;
+                }
+                else
+                {
+                   var findClient = client.Where(p => p.mobile_phone == textBox1.Text).FirstOrDefault();
+                    idClient = findClient.id_client;
+                    return idClient;
 
+                }
+            }
+        }
+        private long checkAddress(string cityAd, string streetAd,string houseAd,string enranceAd)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var address = db.addresses;
+                long idAddress;
+                if (address.Where(p => p.city == cityAd &&
+                                 p.street == streetAd &&
+                                 p.house == houseAd &&
+                                 p.enrance == enranceAd).Count() != 1)
+                {
+                    address ad = new address
+                    {
+                        city = cityAd,
+                        street = streetAd,
+                        house = houseAd,
+                        enrance = enranceAd
+                    };
+                    db.addresses.Add(ad);
+                    db.SaveChanges();
+                    idAddress = ad.id_address;
+                    return idAddress;
+                }
+                else
+                {
+                    var findAddress = address.Where(p => p.city == cityAd &&
+                                 p.street == streetAd &&
+                                 p.house == houseAd &&
+                                 p.enrance == enranceAd).FirstOrDefault();
+                    idAddress = findAddress.id_address;
+                    return idAddress;
+                    
+                }
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxCity1.Text) ||
+               string.IsNullOrWhiteSpace(textBoxCity2.Text) ||
+               string.IsNullOrWhiteSpace(textBoxStreet1.Text) ||
+               string.IsNullOrWhiteSpace(textBoxStreet2.Text) ||
+               string.IsNullOrWhiteSpace(textBoxHouse1.Text) ||
+               string.IsNullOrWhiteSpace(textBoxHouse2.Text) ||
+               string.IsNullOrWhiteSpace(comboBox1.Text) ||
+               string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Заполните все поля", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var idClient = checkClient();
+                if(idClient == 0)
+                {
+                    MessageBox.Show("ErrorКлиент");
+                    return;
+                }
+                var idAdddress1 = checkAddress(textBoxCity1.Text,textBoxStreet1.Text,textBoxHouse1.Text,textBox4.Text);
+                var idAdddress2 = checkAddress(textBoxCity2.Text, textBoxStreet2.Text, textBoxHouse2.Text, textBox6.Text);
+                if (idAdddress1 == 0)
+                {
+                    MessageBox.Show("ErrorAddress1");
+                    return;
+                }
+                if (idAdddress2 == 0)
+                {
+                    MessageBox.Show("ErrorAddress2");
+                    return;
+                }
+                rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
+                order o = new order
+                {
+                    status = "В ожидании",
+                    place_of_departure = idAdddress1,
+                    destination = idAdddress2,
+                    order_cost = (decimal)priceOrder,
+                    payment_method = comboBox1.Text,
+                    datetime_placing_the_order = DateTime.Now,
+                    order_completion_datetime = null,
+                    id_driver = null,
+                    id_client = idClient,
+                    id_rate = cp.id_rate,
+                    id_dispatcher = Form_for_Dispatcher.id
+
+
+                };
+                db.orders.Add(o);
+                db.SaveChanges();
+                
+            }
+            MessageBox.Show("Заказ оформлен");
+            Close();
 
         }
         //Автозаполнение после смены фокуса с города, улицы для дальнейших полей
