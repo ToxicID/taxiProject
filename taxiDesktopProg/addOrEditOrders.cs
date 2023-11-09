@@ -283,16 +283,7 @@ namespace taxiDesktopProg
                 }
                 var idAdddress1 = checkAddress(textBoxCity1.Text,textBoxStreet1.Text,textBoxHouse1.Text,textBox4.Text);
                 var idAdddress2 = checkAddress(textBoxCity2.Text, textBoxStreet2.Text, textBoxHouse2.Text, textBox6.Text);
-                if (idAdddress1 == 0)
-                {
-                    MessageBox.Show("ErrorAddress1");
-                    return;
-                }
-                if (idAdddress2 == 0)
-                {
-                    MessageBox.Show("ErrorAddress2");
-                    return;
-                }
+            
                 rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
                 order o = new order
                 {
