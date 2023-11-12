@@ -40,6 +40,8 @@
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.performedOrders = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.preliminaryOrders = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -55,14 +57,13 @@
             this.falseOrder = new System.Windows.Forms.PictureBox();
             this.editOrder = new System.Windows.Forms.PictureBox();
             this.addOrder = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.performedOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.preliminaryOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -74,7 +75,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -92,13 +92,13 @@
             // водителиToolStripMenuItem
             // 
             this.водителиToolStripMenuItem.Name = "водителиToolStripMenuItem";
-            this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 26);
+            this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
             this.водителиToolStripMenuItem.Text = "Водители";
             // 
             // клиентыToolStripMenuItem
             // 
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
-            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
+            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
             // 
             // nowTime
@@ -184,6 +184,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(1199, 430);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // performedOrders
             // 
@@ -197,6 +198,29 @@
             this.performedOrders.TabIndex = 1;
             this.performedOrders.Text = "Выполняемые";
             this.performedOrders.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(1298, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 22);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Завершить заказ";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::taxiDesktopProg.Properties.Resources.orderComplete;
+            this.pictureBox1.Location = new System.Drawing.Point(1224, 46);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 51);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // dataGridView2
             // 
@@ -236,6 +260,7 @@
             this.dataGridView3.Size = new System.Drawing.Size(1199, 430);
             this.dataGridView3.TabIndex = 2;
             this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
+            this.dataGridView3.DoubleClick += new System.EventHandler(this.dataGridView3_DoubleClick);
             // 
             // completedOrders
             // 
@@ -365,6 +390,7 @@
             this.editOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.editOrder.TabIndex = 8;
             this.editOrder.TabStop = false;
+            this.editOrder.Click += new System.EventHandler(this.editOrder_Click);
             // 
             // addOrder
             // 
@@ -377,29 +403,6 @@
             this.addOrder.TabIndex = 7;
             this.addOrder.TabStop = false;
             this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::taxiDesktopProg.Properties.Resources.orderComplete;
-            this.pictureBox1.Location = new System.Drawing.Point(1224, 46);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 51);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(1298, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 22);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Завершить заказ";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form_for_Dispatcher
             // 
@@ -431,6 +434,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.performedOrders.ResumeLayout(false);
             this.performedOrders.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.preliminaryOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -442,7 +446,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

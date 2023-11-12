@@ -43,12 +43,12 @@ namespace taxiDesktopProg
                            };
                 DateTime dt = DateTime.Now;
                 DateTime dtd = DateTime.Now.Add(new TimeSpan(-1,0,0));
-                DateTime dh = DateTime.Now.AddHours(1);
+                DateTime dh = DateTime.Now.AddMinutes(5);
 
                 dataGridView1.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing.Year == dt.Year
                                             && p.datetime_placing.Month == dt.Month && p.datetime_placing.Day == dt.Day
-                                            && p.datetime_placing.Hour <= dh.Hour
-                                            && p.datetime_placing.Hour >= dtd.Hour
+                                            && p.datetime_placing <= dh
+                                            && p.datetime_placing >= dtd
                                             ).Distinct().ToList();
               
                 dataGridView1.Columns[0].Visible = false;
@@ -137,10 +137,13 @@ namespace taxiDesktopProg
                                status = ord.status
                            };
 
-                DateTime dt = DateTime.Now.AddDays(3);
-                DateTime dh = DateTime.Now.AddHours(1);
+                DateTime dt = DateTime.Now.AddDays(4);
+                DateTime dh = DateTime.Now.AddMinutes(5);
 
-                dataGridView3.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing>dh && p.datetime_placing <= dt).Distinct().ToList();
+                dataGridView3.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing.Year<=dt.Year && p.datetime_placing.Month<= dt.Month &&
+                                                      p.datetime_placing.Day <= dt.Day&&
+                                                      p.datetime_placing >= dh
+                                                      ).Distinct().ToList();
                 dataGridView3.Columns[0].Visible = false;
                 dataGridView3.Columns[1].HeaderText = "Адрес подачи";
                 dataGridView3.Columns[2].HeaderText = "Адрес назначения";
@@ -467,6 +470,48 @@ namespace taxiDesktopProg
                 printNowTimeOrders();
 
             }
+        }
+        private void editOrders()
+        {
+            if (tabPageIndex == 0 || tabPageIndex == 2)
+            {
+                if (DataGridIndex != null)
+                {
+                    addOrEditOrders fm = new addOrEditOrders(DataGridIndex, tabPageIndex);
+                    fm.ShowDialog();
+
+                    if (tabPageIndex == 0)
+                        printNewOrders();
+                    else if (tabPageIndex == 2)
+                        printPreliminaryOrders();
+                }
+                else
+                {
+                    MessageBox.Show("Выберите заказ, который нужно редактировать, после чего нажмите на кнопку редактировать заказ," +
+                                    " либо дважды нажмите на заказ, который нужно редактировать");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заказ может быть изменён либо во вкладке \"Новые заказы\", либо \"Предварительные\"\n" +
+                    "Чтобы поспользоваться функцией редактирования заказа, перейдите в любую из вышеописанных вкладок и выберите заказ, который нужно редактировать");
+                return;
+            }
+        }
+        private void editOrder_Click(object sender, EventArgs e)
+        {
+            editOrders();
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            editOrders();
+        }
+
+        private void dataGridView3_DoubleClick(object sender, EventArgs e)
+        {
+            editOrders();
         }
     }
 }

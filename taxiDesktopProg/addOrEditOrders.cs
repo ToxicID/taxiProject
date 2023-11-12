@@ -11,6 +11,9 @@ namespace taxiDesktopProg
 {
     public partial class addOrEditOrders : Form
     {
+        //ID для редактирования заказа
+        private long? idOrder = 0;
+        //Конструктор для добавления
         public addOrEditOrders()
         {
             InitializeComponent();
@@ -32,10 +35,67 @@ namespace taxiDesktopProg
                 childSafetySeatBox.ReadOnly = true;
                 transportationOfPetBox.ReadOnly = true;
                 groupBox2.Visible = false;
-
+                buttonEdit.Visible = false;
                 }
         }
+        //Конструктор для редактирования
+        public addOrEditOrders(long? id, int index)
+        {
+            idOrder = id;
+            InitializeComponent();
+            label16.Text = "Перевозка" + Environment.NewLine + "домашних животных";
+            using (Context db = new Context(Form1.connectionString))
+            {
+                List<rate> cp = db.rates.Where(p => p.availability == true).ToList();
 
+                
+                boardingBox.ReadOnly = true;
+                costDowntimeBox.ReadOnly = true;
+                costPerKilometerBox.ReadOnly = true;
+                childSafetySeatBox.ReadOnly = true;
+                transportationOfPetBox.ReadOnly = true;
+                groupBox2.Visible = false;
+                textBoxCity1.ReadOnly = true;
+                textBoxCity2.ReadOnly = true;
+                textBoxStreet1.ReadOnly = true;
+                textBoxStreet2.ReadOnly = true;
+                textBoxHouse1.ReadOnly = true;
+                textBoxHouse2.ReadOnly = true;
+                textBox4.ReadOnly = true;
+                textBox6.ReadOnly = true;
+                PlaceOrder.Visible = false;
+                buttonEdit.Enabled = false;
+
+                var order = db.orders.Where(p => p.id_order == idOrder).FirstOrDefault();
+                textBoxCity1.Text = order.address1.city;
+                textBoxStreet1.Text = order.address1.street;
+                textBoxHouse1.Text = order.address1.house;
+                textBox4.Text = order.address1.enrance;
+
+                textBoxCity2.Text = order.address.city;
+                textBoxStreet2.Text = order.address.street;
+                textBoxHouse2.Text = order.address.house;
+                textBox6.Text = order.address.enrance;
+
+                comboBox2.DataSource = cp;
+                comboBox2.ValueMember = "id_rate";
+                comboBox2.DisplayMember = "name";
+
+                comboBox2.SelectedIndex = (int)order.id_rate-1;
+                textBox1.Text = order.client.mobile_phone;
+                comboBox1.Text = order.payment_method;
+                priceBox.Text = order.order_cost.ToString();
+                if (index == 2)
+                {
+                        checkBox1.Checked = true;
+                        dateTimePicker1.Value = order.datetime_placing_the_order;
+                        dateTimePicker2.Value = order.datetime_placing_the_order;
+                    
+                }
+
+            }
+        }
+        //следующие три метода осуществляют автозаполнение Города, Улицы и Дома адреса
         private void findAddressCity(TextBox text)
         {
             AutoCompleteStringCollection textComplete = new AutoCompleteStringCollection();
@@ -97,7 +157,7 @@ namespace taxiDesktopProg
         {
            
         }
-        
+        //Ограничение на ввод номера телефона клиента
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             textBox1.MaxLength = 11;
@@ -108,7 +168,7 @@ namespace taxiDesktopProg
                 e.Handled = true;
             }
         }
-
+        //Вывод тарифа с ценами
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
@@ -157,6 +217,7 @@ namespace taxiDesktopProg
             return array;
         }
         private decimal? priceOrder = 0;
+        //Рассчёт цены 
         private void estimatedСost_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxCity1.Text) ||
@@ -192,6 +253,7 @@ namespace taxiDesktopProg
 
                 priceBox.Text = Math.Round((double)priceOrder,2).ToString();
                 PlaceOrder.Enabled = true;
+                buttonEdit.Enabled = true;
             }
             catch
             {
@@ -199,6 +261,7 @@ namespace taxiDesktopProg
                 return;
             }
         }
+        //Проверка клиента, если нет такого в таблице, то добавляется, если есть, просто передаётся id
         private long checkClient()
         {
             long idClient;
@@ -227,6 +290,7 @@ namespace taxiDesktopProg
                 }
             }
         }
+        //Проверка адреса, если нет такого адреса в списках, добавляется, если есть то просто возращает его id
         private long checkAddress(string cityAd, string streetAd,string houseAd,string enranceAd)
         {
             using (Context db = new Context(Form1.connectionString))
@@ -269,36 +333,14 @@ namespace taxiDesktopProg
                 }
             }
         }
+        //Оформление заказа
         private void button1_Click(object sender, EventArgs e)
         {
-           
-            if (string.IsNullOrWhiteSpace(textBoxCity1.Text) ||
-               string.IsNullOrWhiteSpace(textBoxCity2.Text) ||
-               string.IsNullOrWhiteSpace(textBoxStreet1.Text) ||
-               string.IsNullOrWhiteSpace(textBoxStreet2.Text) ||
-               string.IsNullOrWhiteSpace(textBoxHouse1.Text) ||
-               string.IsNullOrWhiteSpace(textBoxHouse2.Text) ||
-               string.IsNullOrWhiteSpace(comboBox1.Text) ||
-               string.IsNullOrWhiteSpace(textBox1.Text))
-            {
-                MessageBox.Show("Заполните все поля", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (textBox1.Text.Length != 11 || textBox1.Text[0] == '0')
-            {
-                MessageBox.Show("Поле номер телефона клиента заполнено некорректно:\n" +
-                                "1. Проверьте, возможно введено не 11 символов\n" +
-                                "2. Проверьте, возможно номер телефона начинатеся с \'0\'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+
+            Check();
             using (Context db = new Context(Form1.connectionString))
             {
                 var idClient = checkClient();
-                if(idClient == 0)
-                {
-                    MessageBox.Show("ErrorКлиент");
-                    return;
-                }
                 var idAdddress1 = checkAddress(textBoxCity1.Text,textBoxStreet1.Text,textBoxHouse1.Text,textBox4.Text);
                 var idAdddress2 = checkAddress(textBoxCity2.Text, textBoxStreet2.Text, textBoxHouse2.Text, textBox6.Text);
             
@@ -344,34 +386,44 @@ namespace taxiDesktopProg
         //Автозаполнение после смены фокуса с города, улицы для дальнейших полей
         private void textBoxCity1_Leave(object sender, EventArgs e)
         {
-            textBoxStreet1.Clear();
-            textBox4.Clear();
-            textBoxHouse1.Clear();
-            findAddressStreet(textBoxStreet1, textBoxCity1.Text);
-            
+            if (idOrder == 0)
+            {
+                textBoxStreet1.Clear();
+                textBox4.Clear();
+                textBoxHouse1.Clear();
+                findAddressStreet(textBoxStreet1, textBoxCity1.Text);
+            }
         }
 
         private void textBoxCity2_Leave(object sender, EventArgs e)
         {
-            textBoxStreet2.Clear();
-            textBox6.Clear();
-            textBoxHouse2.Clear();
-            findAddressStreet(textBoxStreet2,textBoxCity2.Text);
+            if (idOrder == 0)
+            {
+                textBoxStreet2.Clear();
+                textBox6.Clear();
+                textBoxHouse2.Clear();
+                findAddressStreet(textBoxStreet2, textBoxCity2.Text);
+            }
         }
 
         private void textBoxStreet1_Leave(object sender, EventArgs e)
         {
-           
-            textBox4.Clear();
-            textBoxHouse1.Clear();
-            findAddressHouse(textBoxHouse1, textBoxCity1.Text,textBoxStreet1.Text);
+            if (idOrder == 0)
+            {
+                textBox4.Clear();
+                textBoxHouse1.Clear();
+                findAddressHouse(textBoxHouse1, textBoxCity1.Text, textBoxStreet1.Text);
+            }
         }
 
         private void textBoxStreet2_Leave(object sender, EventArgs e)
         {
-            textBox6.Clear();
-            textBoxHouse2.Clear();
-            findAddressHouse(textBoxHouse2, textBoxCity2.Text, textBoxStreet2.Text);
+            if (idOrder == 0)
+            {
+                textBox6.Clear();
+                textBoxHouse2.Clear();
+                findAddressHouse(textBoxHouse2, textBoxCity2.Text, textBoxStreet2.Text);
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -392,6 +444,61 @@ namespace taxiDesktopProg
                 return;
             }
 
+        }
+        private void Check()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxCity1.Text) ||
+               string.IsNullOrWhiteSpace(textBoxCity2.Text) ||
+               string.IsNullOrWhiteSpace(textBoxStreet1.Text) ||
+               string.IsNullOrWhiteSpace(textBoxStreet2.Text) ||
+               string.IsNullOrWhiteSpace(textBoxHouse1.Text) ||
+               string.IsNullOrWhiteSpace(textBoxHouse2.Text) ||
+               string.IsNullOrWhiteSpace(comboBox1.Text) ||
+               string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Заполните все поля", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (textBox1.Text.Length != 11 || textBox1.Text[0] == '0')
+            {
+                MessageBox.Show("Поле номер телефона клиента заполнено некорректно:\n" +
+                                "1. Проверьте, возможно введено не 11 символов\n" +
+                                "2. Проверьте, возможно номер телефона начинатеся с \'0\'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var orderView = db.orders.Where(p => p.id_order == idOrder).FirstOrDefault();
+                Check();
+                rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
+                DateTime dateAndTime = DateTime.Now;
+                if (checkBox1.Checked == true)
+                {
+                    DateTime dateTime = DateTime.Now;
+                    DateTime dt = dateTimePicker2.Value.Date + dateTimePicker1.Value.TimeOfDay;
+                    if (dateTime < dt)
+                        dateAndTime = dt;
+                    else
+                    {
+                        MessageBox.Show("Исправьте дату и время для предзаказа");
+                        return;
+                    }
+                }
+
+                var idClient = checkClient();
+
+                orderView.id_client = idClient;
+                orderView.order_cost = (decimal)priceOrder;
+                orderView.payment_method = comboBox1.Text;
+                orderView.datetime_placing_the_order = dateAndTime;
+                orderView.id_rate = cp.id_rate;
+                db.SaveChanges();
+                MessageBox.Show("Заказ изменён");
+                Close();
+            }
         }
     }
 }

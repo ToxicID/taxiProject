@@ -75,6 +75,7 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.buttonEdit = new System.Windows.Forms.Button();
             this.place_of_departureBox.SuspendLayout();
             this.destinationBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -576,11 +577,24 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Enabled = false;
+            this.buttonEdit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonEdit.Location = new System.Drawing.Point(626, 678);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(202, 38);
+            this.buttonEdit.TabIndex = 21;
+            this.buttonEdit.Text = "Изменить заказ";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
             // addOrEditOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1075, 743);
+            this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.PlaceOrder);
@@ -658,5 +672,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button buttonEdit;
     }
 }
