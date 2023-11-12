@@ -319,7 +319,7 @@ namespace taxiDesktopProg
         //Вывод свободных водителей
         private void assignDriver_Click(object sender, EventArgs e)
         {
-            if (tabPageIndex == 0 || tabPageIndex == 1)
+            if (tabPageIndex == 0)
             {
                 label1.Text = "Назначить водителя";
                 dataGridView6.Visible = true;
@@ -349,7 +349,7 @@ namespace taxiDesktopProg
             }
             else
             {
-                MessageBox.Show("Автомобиль уже назначен, выполнить данную функцию нельзя");
+                MessageBox.Show("Назначить автомобиль можно во вкладке \"Новые заказы\", чтобы выполнить эту функцию перейдите в соответствующую вкладку");
                 return;
             }
         }
