@@ -134,6 +134,7 @@
     <Content Include="imgFile\false.png" />
     <Content Include="imgFile\naznDriver.png" />
     <Content Include="imgFile\Okey.png" />
+    <None Include="imgFile\orderComplete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

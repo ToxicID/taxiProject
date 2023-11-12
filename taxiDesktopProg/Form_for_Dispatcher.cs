@@ -17,6 +17,7 @@ namespace taxiDesktopProg
         public static long id;
         private long? DataGridIndex = null;
         Form1 po;
+        
         //Метод вывода в dataGrid
         public void printNewOrders()
         {
@@ -40,8 +41,16 @@ namespace taxiDesktopProg
                                id_rate = ord.rate.name,
                                status = ord.status
                            };
-                
-                dataGridView1.DataSource = list.Where(p=>p.status == "В ожидании").Distinct().ToList();
+                DateTime dt = DateTime.Now;
+                DateTime dtd = DateTime.Now.Add(new TimeSpan(-1,0,0));
+                DateTime dh = DateTime.Now.AddHours(1);
+
+                dataGridView1.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing.Year == dt.Year
+                                            && p.datetime_placing.Month == dt.Month && p.datetime_placing.Day == dt.Day
+                                            && p.datetime_placing.Hour <= dh.Hour
+                                            && p.datetime_placing.Hour >= dtd.Hour
+                                            ).Distinct().ToList();
+              
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[1].HeaderText = "Адрес подачи";
                 dataGridView1.Columns[2].HeaderText = "Адрес назначения";
@@ -238,19 +247,24 @@ namespace taxiDesktopProg
             {
                 case 0:
                     printNewOrders();
+                    DataGridIndex = null;
                     break;
                 case 1:
                     printNowTimeOrders();
+                    DataGridIndex = null;
                     break;
                 case 2:
                     printPreliminaryOrders();
+                    DataGridIndex = null;
                     break;
                 case 3:
                     printOrders("Завершён", dataGridView4);
+                    DataGridIndex = null;
                     break;
                 case 4:
                     printOrders("Ложный",dataGridView5);
-                    
+                    DataGridIndex = null;
+
                     break;
                       
 
@@ -426,7 +440,33 @@ namespace taxiDesktopProg
             fm.ShowDialog();
             printNewOrders();
 
+        }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                if (DataGridIndex != null)
+                {
+                    DialogResult result = MessageBox.Show("Завершить выбранный заказа?", "Завершение",
+                                                                                       MessageBoxButtons.YesNo,
+                                                                                       MessageBoxIcon.Information);
+                    if (result == DialogResult.No) return;
+                    var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+
+
+
+                    order.status = "Завершён";
+                    var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
+                    driver.status = "Свободен";
+                    db.SaveChanges();
+                    MessageBox.Show($"Заказ был завершён");
+
+                }
+                DataGridIndex = null;
+                printNowTimeOrders();
+
+            }
         }
     }
 }

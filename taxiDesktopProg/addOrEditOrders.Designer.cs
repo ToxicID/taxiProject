@@ -69,9 +69,16 @@
             this.priceBox = new System.Windows.Forms.TextBox();
             this.estimatedСost = new System.Windows.Forms.Button();
             this.PlaceOrder = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.place_of_departureBox.SuspendLayout();
             this.destinationBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxStreet1
@@ -178,7 +185,7 @@
             this.destinationBox.Controls.Add(this.textBoxCity2);
             this.destinationBox.Controls.Add(this.textBoxStreet2);
             this.destinationBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.destinationBox.Location = new System.Drawing.Point(515, 66);
+            this.destinationBox.Location = new System.Drawing.Point(565, 66);
             this.destinationBox.Name = "destinationBox";
             this.destinationBox.Size = new System.Drawing.Size(426, 264);
             this.destinationBox.TabIndex = 8;
@@ -263,7 +270,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(511, 397);
+            this.label9.Location = new System.Drawing.Point(597, 349);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(139, 22);
             this.label9.TabIndex = 8;
@@ -277,7 +284,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Наличными",
             "Картой"});
-            this.comboBox1.Location = new System.Drawing.Point(667, 389);
+            this.comboBox1.Location = new System.Drawing.Point(753, 341);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(192, 30);
             this.comboBox1.TabIndex = 17;
@@ -286,7 +293,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(511, 466);
+            this.label10.Location = new System.Drawing.Point(511, 405);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(225, 22);
             this.label10.TabIndex = 10;
@@ -296,7 +303,7 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox1.Location = new System.Drawing.Point(742, 458);
+            this.textBox1.Location = new System.Drawing.Point(742, 397);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(249, 30);
             this.textBox1.TabIndex = 18;
@@ -464,7 +471,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(511, 577);
+            this.label17.Location = new System.Drawing.Point(511, 509);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(256, 22);
             this.label17.TabIndex = 11;
@@ -474,7 +481,7 @@
             // 
             this.priceBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.priceBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.priceBox.Location = new System.Drawing.Point(518, 610);
+            this.priceBox.Location = new System.Drawing.Point(518, 542);
             this.priceBox.Name = "priceBox";
             this.priceBox.ReadOnly = true;
             this.priceBox.Size = new System.Drawing.Size(159, 30);
@@ -483,7 +490,7 @@
             // estimatedСost
             // 
             this.estimatedСost.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.estimatedСost.Location = new System.Drawing.Point(521, 523);
+            this.estimatedСost.Location = new System.Drawing.Point(521, 455);
             this.estimatedСost.Name = "estimatedСost";
             this.estimatedСost.Size = new System.Drawing.Size(129, 38);
             this.estimatedСost.TabIndex = 19;
@@ -495,7 +502,7 @@
             // 
             this.PlaceOrder.Enabled = false;
             this.PlaceOrder.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PlaceOrder.Location = new System.Drawing.Point(679, 678);
+            this.PlaceOrder.Location = new System.Drawing.Point(626, 678);
             this.PlaceOrder.Name = "PlaceOrder";
             this.PlaceOrder.Size = new System.Drawing.Size(202, 38);
             this.PlaceOrder.TabIndex = 20;
@@ -503,11 +510,79 @@
             this.PlaceOrder.UseVisualStyleBackColor = true;
             this.PlaceOrder.Click += new System.EventHandler(this.button1_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.dateTimePicker2);
+            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox2.Location = new System.Drawing.Point(788, 455);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(275, 189);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Предзаказ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(15, 104);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(64, 22);
+            this.label19.TabIndex = 28;
+            this.label19.Text = "Время";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(18, 39);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(50, 22);
+            this.label18.TabIndex = 27;
+            this.label18.Text = "Дата";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(22, 64);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 30);
+            this.dateTimePicker2.TabIndex = 26;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker1.Location = new System.Drawing.Point(25, 129);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.ShowUpDown = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 30);
+            this.dateTimePicker1.TabIndex = 25;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox1.Location = new System.Drawing.Point(521, 616);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(219, 26);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.Text = "Оформить предсзаказ";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // addOrEditOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(999, 756);
+            this.ClientSize = new System.Drawing.Size(1075, 743);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.PlaceOrder);
             this.Controls.Add(this.estimatedСost);
             this.Controls.Add(this.priceBox);
@@ -527,6 +602,8 @@
             this.destinationBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -575,5 +652,11 @@
         private System.Windows.Forms.TextBox priceBox;
         private System.Windows.Forms.Button estimatedСost;
         private System.Windows.Forms.Button PlaceOrder;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

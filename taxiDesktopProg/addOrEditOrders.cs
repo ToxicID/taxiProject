@@ -31,6 +31,7 @@ namespace taxiDesktopProg
                 costPerKilometerBox.ReadOnly = true;
                 childSafetySeatBox.ReadOnly = true;
                 transportationOfPetBox.ReadOnly = true;
+                groupBox2.Visible = false;
 
                 }
         }
@@ -51,6 +52,7 @@ namespace taxiDesktopProg
                 text.AutoCompleteCustomSource = textComplete;
                 text.AutoCompleteMode = AutoCompleteMode.Suggest;
                 text.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                
             }
         }
         private void findAddressStreet(TextBox text,string cityText)
@@ -87,6 +89,7 @@ namespace taxiDesktopProg
                 text.AutoCompleteCustomSource = textComplete;
                 text.AutoCompleteMode = AutoCompleteMode.Suggest;
                 text.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                
             }
         }
 
@@ -230,17 +233,24 @@ namespace taxiDesktopProg
             {
                 var address = db.addresses;
                 long idAddress;
+                string newEnranced = "";
+                if (string.IsNullOrWhiteSpace(enranceAd))
+                    newEnranced = "";
+                else
+                    newEnranced = $"П{enranceAd}";
+
                 if (address.Where(p => p.city == cityAd &&
                                  p.street == streetAd &&
                                  p.house == houseAd &&
-                                 p.enrance == enranceAd).Count() != 1)
+                                 p.enrance == newEnranced).Count() != 1)
                 {
+                   
                     address ad = new address
                     {
                         city = cityAd,
                         street = streetAd,
                         house = houseAd,
-                        enrance = enranceAd
+                        enrance = newEnranced
                     };
                     db.addresses.Add(ad);
                     db.SaveChanges();
@@ -252,7 +262,7 @@ namespace taxiDesktopProg
                     var findAddress = address.Where(p => p.city == cityAd &&
                                  p.street == streetAd &&
                                  p.house == houseAd &&
-                                 p.enrance == enranceAd).FirstOrDefault();
+                                 p.enrance == newEnranced).FirstOrDefault();
                     idAddress = findAddress.id_address;
                     return idAddress;
                     
@@ -261,6 +271,7 @@ namespace taxiDesktopProg
         }
         private void button1_Click(object sender, EventArgs e)
         {
+           
             if (string.IsNullOrWhiteSpace(textBoxCity1.Text) ||
                string.IsNullOrWhiteSpace(textBoxCity2.Text) ||
                string.IsNullOrWhiteSpace(textBoxStreet1.Text) ||
@@ -271,6 +282,13 @@ namespace taxiDesktopProg
                string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 MessageBox.Show("Заполните все поля", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (textBox1.Text.Length != 11 || textBox1.Text[0] == '0')
+            {
+                MessageBox.Show("Поле номер телефона клиента заполнено некорректно:\n" +
+                                "1. Проверьте, возможно введено не 11 символов\n" +
+                                "2. Проверьте, возможно номер телефона начинатеся с \'0\'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             using (Context db = new Context(Form1.connectionString))
@@ -285,6 +303,19 @@ namespace taxiDesktopProg
                 var idAdddress2 = checkAddress(textBoxCity2.Text, textBoxStreet2.Text, textBoxHouse2.Text, textBox6.Text);
             
                 rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
+                DateTime dateAndTime = DateTime.Now ;
+                if(checkBox1.Checked == true)
+                {
+                    DateTime dateTime = DateTime.Now;
+                    DateTime dt = dateTimePicker2.Value.Date + dateTimePicker1.Value.TimeOfDay;
+                    if (dateTime < dt)
+                        dateAndTime = dt;
+                    else
+                    {
+                        MessageBox.Show("Исправьте дату и время для предзаказа");
+                        return;
+                    }
+                }
                 order o = new order
                 {
                     status = "В ожидании",
@@ -292,7 +323,7 @@ namespace taxiDesktopProg
                     destination = idAdddress2,
                     order_cost = (decimal)priceOrder,
                     payment_method = comboBox1.Text,
-                    datetime_placing_the_order = DateTime.Now,
+                    datetime_placing_the_order = dateAndTime,
                     order_completion_datetime = null,
                     id_driver = null,
                     id_client = idClient,
@@ -305,6 +336,7 @@ namespace taxiDesktopProg
                 db.SaveChanges();
                 
             }
+            
             MessageBox.Show("Заказ оформлен");
             Close();
 
@@ -312,23 +344,54 @@ namespace taxiDesktopProg
         //Автозаполнение после смены фокуса с города, улицы для дальнейших полей
         private void textBoxCity1_Leave(object sender, EventArgs e)
         {
+            textBoxStreet1.Clear();
+            textBox4.Clear();
+            textBoxHouse1.Clear();
             findAddressStreet(textBoxStreet1, textBoxCity1.Text);
+            
         }
 
         private void textBoxCity2_Leave(object sender, EventArgs e)
         {
-
+            textBoxStreet2.Clear();
+            textBox6.Clear();
+            textBoxHouse2.Clear();
             findAddressStreet(textBoxStreet2,textBoxCity2.Text);
         }
 
         private void textBoxStreet1_Leave(object sender, EventArgs e)
         {
+           
+            textBox4.Clear();
+            textBoxHouse1.Clear();
             findAddressHouse(textBoxHouse1, textBoxCity1.Text,textBoxStreet1.Text);
         }
 
         private void textBoxStreet2_Leave(object sender, EventArgs e)
         {
+            textBox6.Clear();
+            textBoxHouse2.Clear();
             findAddressHouse(textBoxHouse2, textBoxCity2.Text, textBoxStreet2.Text);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+                groupBox2.Visible = true;
+            else
+                groupBox2.Visible = false;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dt = DateTime.Now.AddDays(3);
+            if (!(dateTimePicker2.Value.Date <= dt.Date && dateTimePicker2.Value.Date >= DateTime.Now.Date))
+            {
+                MessageBox.Show("Выбранная дата не может являться предзаказом");
+                dateTimePicker2.Value = DateTime.Now;
+                return;
+            }
+
         }
     }
 }
