@@ -22,9 +22,9 @@ namespace taxiDesktopProg
             {
                 findAddressCity(textBoxCity1);
                 findAddressCity(textBoxCity2);
-               
-                    
-                    List<rate> cp = db.rates.Where(p=>p.availability == true).ToList();
+                findClientMobile(textBox1);
+
+                List<rate> cp = db.rates.Where(p=>p.availability == true).ToList();
                 
                     comboBox2.DataSource = cp;
                     comboBox2.ValueMember = "id_rate";
@@ -92,6 +92,26 @@ namespace taxiDesktopProg
                         dateTimePicker2.Value = order.datetime_placing_the_order;
                     
                 }
+
+            }
+        }
+        
+            private void findClientMobile(TextBox text)
+        {
+            AutoCompleteStringCollection textComplete = new AutoCompleteStringCollection();
+
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var Client = db.clients;
+
+                foreach (client cl in Client)
+                {
+                    textComplete.Add(cl.mobile_phone);
+                }
+
+                text.AutoCompleteCustomSource = textComplete;
+                text.AutoCompleteMode = AutoCompleteMode.Suggest;
+                text.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             }
         }
