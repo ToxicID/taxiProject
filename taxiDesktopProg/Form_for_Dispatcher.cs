@@ -478,7 +478,9 @@ namespace taxiDesktopProg
                 var minTime = int.Parse(str[0]);
                 var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
                 order.status = "Завершён";
-                order.order_cost += order.rate.cost_downtime * minTime;
+                minTime -= 10;
+                    if(minTime>0)
+                    order.order_cost += order.rate.cost_downtime * minTime;
                 var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
                 driver.status = "Свободен";
                 db.SaveChanges();
