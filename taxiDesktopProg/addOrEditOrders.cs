@@ -36,6 +36,7 @@ namespace taxiDesktopProg
                 transportationOfPetBox.ReadOnly = true;
                 groupBox2.Visible = false;
                 buttonEdit.Visible = false;
+             
                 }
         }
         //Конструктор для редактирования
@@ -92,6 +93,7 @@ namespace taxiDesktopProg
                         dateTimePicker2.Value = order.datetime_placing_the_order;
                     
                 }
+              
 
             }
         }

@@ -227,6 +227,10 @@ namespace taxiDesktopProg
             directDriverLabel.Text = "Назначить" + Environment.NewLine + "водителя";
             label1.Text = "";
             dataGridView6.Visible = false;
+            label3.Visible = false;
+            maskedTextBox1.Visible = false;
+            button1.Visible = false;
+
 
         }
 
@@ -254,6 +258,9 @@ namespace taxiDesktopProg
                     break;
                 case 1:
                     printNowTimeOrders();
+                    label3.Visible = false;
+                    maskedTextBox1.Visible = false;
+                    button1.Visible = false;
                     DataGridIndex = null;
                     break;
                 case 2:
@@ -444,7 +451,41 @@ namespace taxiDesktopProg
             printNewOrders();
 
         }
-
+        private void orderComplete()
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+                order.status = "Завершён";
+                var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
+                driver.status = "Свободен";
+                db.SaveChanges();
+                MessageBox.Show($"Заказ был завершён");
+            }
+        }
+        private void orderComplete(string stringTime)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var str = stringTime.Split(':');
+                if (string.IsNullOrWhiteSpace(str[0]) || string.IsNullOrWhiteSpace(str[1]))
+                {
+                    MessageBox.Show("Заполните поле","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+               
+                
+                var minTime = int.Parse(str[0]);
+                var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+                order.status = "Завершён";
+                order.order_cost += order.rate.cost_downtime * minTime;
+                var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
+                driver.status = "Свободен";
+                db.SaveChanges();
+                MessageBox.Show($"Заказ был завершён\n" +
+                                $"Итоговая стоимость заказа >> {order.order_cost}");
+            }
+        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             using (Context db = new Context(Form1.connectionString))
@@ -455,20 +496,24 @@ namespace taxiDesktopProg
                                                                                        MessageBoxButtons.YesNo,
                                                                                        MessageBoxIcon.Information);
                     if (result == DialogResult.No) return;
-                    var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
-
-
-
-                    order.status = "Завершён";
-                    var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
-                    driver.status = "Свободен";
-                    db.SaveChanges();
-                    MessageBox.Show($"Заказ был завершён");
-
+                   
+                    DialogResult res = MessageBox.Show("Водитель ждал клиента?", "Подсчёт",
+                                                                                  MessageBoxButtons.YesNo,
+                                                                                  MessageBoxIcon.Information);
+                    if (res == DialogResult.No)
+                    {
+                        orderComplete();
+                        DataGridIndex = null;
+                        printNowTimeOrders();
+                    }
+                    else
+                    {
+                        label3.Visible = true;
+                        maskedTextBox1.Visible = true;
+                        button1.Visible= true;
+                    }
+                    
                 }
-                DataGridIndex = null;
-                printNowTimeOrders();
-
             }
         }
         private void editOrders()
@@ -512,6 +557,27 @@ namespace taxiDesktopProg
         private void dataGridView3_DoubleClick(object sender, EventArgs e)
         {
             editOrders();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (DataGridIndex != null)
+            {
+                DialogResult result = MessageBox.Show("Завершить выбранный заказа?", "Завершение",
+                                                                                   MessageBoxButtons.YesNo,
+                                                                                   MessageBoxIcon.Information);
+                if (result == DialogResult.No) return;
+                orderComplete(maskedTextBox1.Text);
+                DataGridIndex = null;
+                printNowTimeOrders();
+            
+                label3.Visible = false;
+                maskedTextBox1.Visible = false;
+                button1.Visible = false;
+                maskedTextBox1.Clear();
+            }
+            else MessageBox.Show("Выбирите заказ, который нужно завершить");
+            
         }
     }
 }
