@@ -40,6 +40,9 @@
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.performedOrders = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -57,9 +60,11 @@
             this.falseOrder = new System.Windows.Forms.PictureBox();
             this.editOrder = new System.Windows.Forms.PictureBox();
             this.addOrder = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.тарифToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добававитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьЦенуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьДоступностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
@@ -85,23 +90,24 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.водителиToolStripMenuItem,
-            this.клиентыToolStripMenuItem});
+            this.клиентыToolStripMenuItem,
+            this.тарифToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1687, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1687, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // водителиToolStripMenuItem
             // 
             this.водителиToolStripMenuItem.Name = "водителиToolStripMenuItem";
-            this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 26);
+            this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
             this.водителиToolStripMenuItem.Text = "Водители";
             // 
             // клиентыToolStripMenuItem
             // 
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
-            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
+            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
             // 
             // nowTime
@@ -204,6 +210,36 @@
             this.performedOrders.TabIndex = 1;
             this.performedOrders.Text = "Выполняемые";
             this.performedOrders.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(1235, 188);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 34);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Рассчитать";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maskedTextBox1.Location = new System.Drawing.Point(1380, 124);
+            this.maskedTextBox1.Mask = "00:00";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 30);
+            this.maskedTextBox1.TabIndex = 13;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(1220, 132);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(154, 22);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Время ожидания";
             // 
             // label2
             // 
@@ -410,35 +446,40 @@
             this.addOrder.TabStop = false;
             this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
             // 
-            // label3
+            // тарифToolStripMenuItem
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(1220, 132);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 22);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Время ожидания";
+            this.тарифToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.списокToolStripMenuItem,
+            this.добававитьToolStripMenuItem,
+            this.изменитьЦенуToolStripMenuItem,
+            this.изменитьДоступностьToolStripMenuItem});
+            this.тарифToolStripMenuItem.Name = "тарифToolStripMenuItem";
+            this.тарифToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.тарифToolStripMenuItem.Text = "Тариф";
             // 
-            // maskedTextBox1
+            // списокToolStripMenuItem
             // 
-            this.maskedTextBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(1380, 124);
-            this.maskedTextBox1.Mask = "00:00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 30);
-            this.maskedTextBox1.TabIndex = 13;
+            this.списокToolStripMenuItem.Name = "списокToolStripMenuItem";
+            this.списокToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.списокToolStripMenuItem.Text = "Список";
             // 
-            // button1
+            // добававитьToolStripMenuItem
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(1235, 188);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 34);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Рассчитать";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.добававитьToolStripMenuItem.Name = "добававитьToolStripMenuItem";
+            this.добававитьToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.добававитьToolStripMenuItem.Text = "Добававить";
+            // 
+            // изменитьЦенуToolStripMenuItem
+            // 
+            this.изменитьЦенуToolStripMenuItem.Name = "изменитьЦенуToolStripMenuItem";
+            this.изменитьЦенуToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.изменитьЦенуToolStripMenuItem.Text = "Изменить цену";
+            // 
+            // изменитьДоступностьToolStripMenuItem
+            // 
+            this.изменитьДоступностьToolStripMenuItem.Name = "изменитьДоступностьToolStripMenuItem";
+            this.изменитьДоступностьToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.изменитьДоступностьToolStripMenuItem.Text = "Изменить доступность";
             // 
             // Form_for_Dispatcher
             // 
@@ -520,5 +561,10 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem тарифToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem добававитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem изменитьЦенуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem изменитьДоступностьToolStripMenuItem;
     }
 }
