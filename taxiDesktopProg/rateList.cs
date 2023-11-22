@@ -15,7 +15,9 @@ namespace taxiDesktopProg
         public long indexRate;
         public rateList()
         {
+            
             InitializeComponent();
+            comboBox1.Visible = false;
             using (Context db = new Context(Form1.connectionString))
             {
                 indexRate = db.rates.Where(p => p.availability == true).FirstOrDefault().id_rate;
