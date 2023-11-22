@@ -32,6 +32,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.водителиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.тарифToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добававитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьЦенуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьДоступностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nowTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -52,19 +57,10 @@
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.falseOrders = new System.Windows.Forms.TabPage();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.newOrderLabel = new System.Windows.Forms.Label();
-            this.editOrderLabel = new System.Windows.Forms.Label();
-            this.failOrderLabel = new System.Windows.Forms.Label();
-            this.directDriverLabel = new System.Windows.Forms.Label();
             this.assignDriver = new System.Windows.Forms.PictureBox();
             this.falseOrder = new System.Windows.Forms.PictureBox();
             this.editOrder = new System.Windows.Forms.PictureBox();
             this.addOrder = new System.Windows.Forms.PictureBox();
-            this.тарифToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.списокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добававитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменитьЦенуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменитьДоступностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
@@ -109,6 +105,42 @@
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
             this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
+            // 
+            // тарифToolStripMenuItem
+            // 
+            this.тарифToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.списокToolStripMenuItem,
+            this.добававитьToolStripMenuItem,
+            this.изменитьЦенуToolStripMenuItem,
+            this.изменитьДоступностьToolStripMenuItem});
+            this.тарифToolStripMenuItem.Name = "тарифToolStripMenuItem";
+            this.тарифToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.тарифToolStripMenuItem.Text = "Тариф";
+            // 
+            // списокToolStripMenuItem
+            // 
+            this.списокToolStripMenuItem.Name = "списокToolStripMenuItem";
+            this.списокToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.списокToolStripMenuItem.Text = "Список";
+            this.списокToolStripMenuItem.Click += new System.EventHandler(this.списокToolStripMenuItem_Click);
+            // 
+            // добававитьToolStripMenuItem
+            // 
+            this.добававитьToolStripMenuItem.Name = "добававитьToolStripMenuItem";
+            this.добававитьToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.добававитьToolStripMenuItem.Text = "Добававить";
+            // 
+            // изменитьЦенуToolStripMenuItem
+            // 
+            this.изменитьЦенуToolStripMenuItem.Name = "изменитьЦенуToolStripMenuItem";
+            this.изменитьЦенуToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.изменитьЦенуToolStripMenuItem.Text = "Изменить цену";
+            // 
+            // изменитьДоступностьToolStripMenuItem
+            // 
+            this.изменитьДоступностьToolStripMenuItem.Name = "изменитьДоступностьToolStripMenuItem";
+            this.изменитьДоступностьToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.изменитьДоступностьToolStripMenuItem.Text = "Изменить доступность";
             // 
             // nowTime
             // 
@@ -354,57 +386,13 @@
             this.dataGridView5.TabIndex = 4;
             this.dataGridView5.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellClick);
             // 
-            // newOrderLabel
-            // 
-            this.newOrderLabel.AutoSize = true;
-            this.newOrderLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.newOrderLabel.Location = new System.Drawing.Point(246, 61);
-            this.newOrderLabel.Name = "newOrderLabel";
-            this.newOrderLabel.Size = new System.Drawing.Size(116, 22);
-            this.newOrderLabel.TabIndex = 3;
-            this.newOrderLabel.Text = "Новый заказ";
-            this.newOrderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // editOrderLabel
-            // 
-            this.editOrderLabel.AutoSize = true;
-            this.editOrderLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.editOrderLabel.Location = new System.Drawing.Point(473, 46);
-            this.editOrderLabel.Name = "editOrderLabel";
-            this.editOrderLabel.Size = new System.Drawing.Size(183, 22);
-            this.editOrderLabel.TabIndex = 4;
-            this.editOrderLabel.Text = "Редактировать заказ";
-            this.editOrderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // failOrderLabel
-            // 
-            this.failOrderLabel.AutoSize = true;
-            this.failOrderLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.failOrderLabel.Location = new System.Drawing.Point(773, 46);
-            this.failOrderLabel.Name = "failOrderLabel";
-            this.failOrderLabel.Size = new System.Drawing.Size(183, 22);
-            this.failOrderLabel.TabIndex = 5;
-            this.failOrderLabel.Text = "Редактировать заказ";
-            this.failOrderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // directDriverLabel
-            // 
-            this.directDriverLabel.AutoSize = true;
-            this.directDriverLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.directDriverLabel.Location = new System.Drawing.Point(1052, 46);
-            this.directDriverLabel.Name = "directDriverLabel";
-            this.directDriverLabel.Size = new System.Drawing.Size(183, 22);
-            this.directDriverLabel.TabIndex = 6;
-            this.directDriverLabel.Text = "Редактировать заказ";
-            this.directDriverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // assignDriver
             // 
             this.assignDriver.Cursor = System.Windows.Forms.Cursors.Hand;
             this.assignDriver.Image = global::taxiDesktopProg.Properties.Resources.naznDriver;
-            this.assignDriver.Location = new System.Drawing.Point(992, 55);
+            this.assignDriver.Location = new System.Drawing.Point(580, 50);
             this.assignDriver.Name = "assignDriver";
-            this.assignDriver.Size = new System.Drawing.Size(54, 37);
+            this.assignDriver.Size = new System.Drawing.Size(83, 52);
             this.assignDriver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.assignDriver.TabIndex = 10;
             this.assignDriver.TabStop = false;
@@ -414,9 +402,9 @@
             // 
             this.falseOrder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.falseOrder.Image = global::taxiDesktopProg.Properties.Resources._false;
-            this.falseOrder.Location = new System.Drawing.Point(713, 55);
+            this.falseOrder.Location = new System.Drawing.Point(456, 50);
             this.falseOrder.Name = "falseOrder";
-            this.falseOrder.Size = new System.Drawing.Size(54, 37);
+            this.falseOrder.Size = new System.Drawing.Size(83, 52);
             this.falseOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.falseOrder.TabIndex = 9;
             this.falseOrder.TabStop = false;
@@ -426,9 +414,9 @@
             // 
             this.editOrder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.editOrder.Image = global::taxiDesktopProg.Properties.Resources.edit;
-            this.editOrder.Location = new System.Drawing.Point(413, 55);
+            this.editOrder.Location = new System.Drawing.Point(335, 50);
             this.editOrder.Name = "editOrder";
-            this.editOrder.Size = new System.Drawing.Size(54, 37);
+            this.editOrder.Size = new System.Drawing.Size(83, 52);
             this.editOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.editOrder.TabIndex = 8;
             this.editOrder.TabStop = false;
@@ -438,48 +426,13 @@
             // 
             this.addOrder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addOrder.Image = global::taxiDesktopProg.Properties.Resources.add;
-            this.addOrder.Location = new System.Drawing.Point(186, 55);
+            this.addOrder.Location = new System.Drawing.Point(209, 50);
             this.addOrder.Name = "addOrder";
-            this.addOrder.Size = new System.Drawing.Size(54, 37);
+            this.addOrder.Size = new System.Drawing.Size(83, 52);
             this.addOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.addOrder.TabIndex = 7;
             this.addOrder.TabStop = false;
             this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
-            // 
-            // тарифToolStripMenuItem
-            // 
-            this.тарифToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.списокToolStripMenuItem,
-            this.добававитьToolStripMenuItem,
-            this.изменитьЦенуToolStripMenuItem,
-            this.изменитьДоступностьToolStripMenuItem});
-            this.тарифToolStripMenuItem.Name = "тарифToolStripMenuItem";
-            this.тарифToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
-            this.тарифToolStripMenuItem.Text = "Тариф";
-            // 
-            // списокToolStripMenuItem
-            // 
-            this.списокToolStripMenuItem.Name = "списокToolStripMenuItem";
-            this.списокToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.списокToolStripMenuItem.Text = "Список";
-            // 
-            // добававитьToolStripMenuItem
-            // 
-            this.добававитьToolStripMenuItem.Name = "добававитьToolStripMenuItem";
-            this.добававитьToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.добававитьToolStripMenuItem.Text = "Добававить";
-            // 
-            // изменитьЦенуToolStripMenuItem
-            // 
-            this.изменитьЦенуToolStripMenuItem.Name = "изменитьЦенуToolStripMenuItem";
-            this.изменитьЦенуToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.изменитьЦенуToolStripMenuItem.Text = "Изменить цену";
-            // 
-            // изменитьДоступностьToolStripMenuItem
-            // 
-            this.изменитьДоступностьToolStripMenuItem.Name = "изменитьДоступностьToolStripMenuItem";
-            this.изменитьДоступностьToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.изменитьДоступностьToolStripMenuItem.Text = "Изменить доступность";
             // 
             // Form_for_Dispatcher
             // 
@@ -490,10 +443,6 @@
             this.Controls.Add(this.falseOrder);
             this.Controls.Add(this.editOrder);
             this.Controls.Add(this.addOrder);
-            this.Controls.Add(this.directDriverLabel);
-            this.Controls.Add(this.failOrderLabel);
-            this.Controls.Add(this.editOrderLabel);
-            this.Controls.Add(this.newOrderLabel);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.nowTime);
             this.Controls.Add(this.menuStrip1);
@@ -546,10 +495,6 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridView dataGridView5;
-        private System.Windows.Forms.Label newOrderLabel;
-        private System.Windows.Forms.Label editOrderLabel;
-        private System.Windows.Forms.Label failOrderLabel;
-        private System.Windows.Forms.Label directDriverLabel;
         private System.Windows.Forms.PictureBox addOrder;
         private System.Windows.Forms.PictureBox editOrder;
         private System.Windows.Forms.PictureBox falseOrder;

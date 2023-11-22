@@ -220,11 +220,7 @@ namespace taxiDesktopProg
             }
             timer1.Enabled = true;
             printNewOrders();
-            //Запись лейблов
-            newOrderLabel.Text = "Новый заказ";
-            editOrderLabel.Text = "Редактировать" + Environment.NewLine + "Заказ";
-            failOrderLabel.Text = "Отправить в" + Environment.NewLine + "ложные";
-            directDriverLabel.Text = "Назначить" + Environment.NewLine + "водителя";
+            
             label1.Text = "";
             dataGridView6.Visible = false;
             label3.Visible = false;
@@ -580,6 +576,12 @@ namespace taxiDesktopProg
             }
             else MessageBox.Show("Выбирите заказ, который нужно завершить");
             
+        }
+
+        private void списокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rateList fm = new rateList();
+            fm.Show();
         }
     }
 }

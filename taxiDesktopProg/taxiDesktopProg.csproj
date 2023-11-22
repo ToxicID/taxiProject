@@ -93,6 +93,12 @@
     <Compile Include="Class\rate.cs" />
     <Compile Include="Class\violation.cs" />
     <Compile Include="Class\work_schedule.cs" />
+    <Compile Include="rateList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rateList.Designer.cs">
+      <DependentUpon>rateList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="addOrEditOrders.resx">
       <DependentUpon>addOrEditOrders.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +118,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rateList.resx">
+      <DependentUpon>rateList.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
