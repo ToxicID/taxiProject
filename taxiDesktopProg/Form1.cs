@@ -24,7 +24,7 @@ namespace taxiDesktopProg
             {
                 DataSource = $"DESKTOP-HV3NQ7V",
                 InitialCatalog = "Taxi",
-                IntegratedSecurity = false,
+                IntegratedSecurity = false, 
                 MultipleActiveResultSets = true,
                 ApplicationName = "EntityFramework",
                 UserID = login,

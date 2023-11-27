@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -120,10 +121,13 @@ namespace taxiDesktopProg
         {
             using (Context db = new Context(Form1.connectionString))
             {
+            
+                
                 var list = from ord in db.orders
                            join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
                            join ad2 in db.addresses on ord.destination equals ad2.id_address
                            join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
+                           
                            select new
                            {
                                id_order = ord.id_order,
@@ -137,12 +141,10 @@ namespace taxiDesktopProg
                                status = ord.status
                            };
 
-                DateTime dt = DateTime.Now.AddDays(4);
-                DateTime dh = DateTime.Now.AddMinutes(5);
+               
+                DateTime dh = DateTime.Now.AddMinutes(5.0);
 
-                dataGridView3.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing.Year<=dt.Year && p.datetime_placing.Month<= dt.Month &&
-                                                      p.datetime_placing.Day <= dt.Day&&
-                                                      p.datetime_placing >= dh
+                dataGridView3.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing.CompareTo(DateTime.Now) > 0 && p.datetime_placing >= dh
                                                       ).Distinct().ToList();
                 dataGridView3.Columns[0].Visible = false;
                 dataGridView3.Columns[1].HeaderText = "Адрес подачи";
@@ -270,7 +272,6 @@ namespace taxiDesktopProg
                 case 4:
                     printOrders("Ложный",dataGridView5);
                     DataGridIndex = null;
-
                     break;
                       
 
