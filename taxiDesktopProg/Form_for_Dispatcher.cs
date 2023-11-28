@@ -357,12 +357,11 @@ namespace taxiDesktopProg
                 return;
             }
         }
-        //Направление автомобиля на заказ
-        private void dataGridView6_DoubleClick(object sender, EventArgs e)
+        private void directDriver()
         {
             using (Context db = new Context(Form1.connectionString))
             {
-                if(DataGridIndex != null && DataGrid6Index != null)
+                if (DataGridIndex != null && DataGrid6Index != null)
                 {
                     DialogResult result = MessageBox.Show("Назначить этого водителя на выбранный заказ?", "Назначение",
                                                                                        MessageBoxButtons.YesNo,
@@ -370,7 +369,7 @@ namespace taxiDesktopProg
                     if (result == DialogResult.No) return;
                     var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
                     var driver = db.drivers.Where(p => p.id_driver == DataGrid6Index).FirstOrDefault();
-                   
+
 
                     order.id_driver = driver.id_driver;
                     driver.status = "Занят";
@@ -387,6 +386,12 @@ namespace taxiDesktopProg
                 if (tabPageIndex == 1) printNowTimeOrders();
 
             }
+
+        }
+        //Направление автомобиля на заказ
+        private void dataGridView6_DoubleClick(object sender, EventArgs e)
+        {
+            directDriver();
         }
         //Получение id у водителя
         private long? DataGrid6Index = null;

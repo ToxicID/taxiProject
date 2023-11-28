@@ -239,14 +239,13 @@ namespace taxiDesktopProg
             return array;
         }
         private decimal? priceOrder = 0;
-        //Рассчёт цены 
-        private void estimatedСost_Click(object sender, EventArgs e)
+        private void calculatingPrice()
         {
             if (string.IsNullOrWhiteSpace(textBoxCity1.Text) ||
                string.IsNullOrWhiteSpace(textBoxCity2.Text) ||
                string.IsNullOrWhiteSpace(textBoxStreet1.Text) ||
                string.IsNullOrWhiteSpace(textBoxStreet2.Text) ||
-               string.IsNullOrWhiteSpace(textBoxHouse1.Text)||
+               string.IsNullOrWhiteSpace(textBoxHouse1.Text) ||
                string.IsNullOrWhiteSpace(textBoxHouse2.Text))
             {
                 MessageBox.Show("Заполните все поля", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -262,18 +261,18 @@ namespace taxiDesktopProg
                 var dist2 = new GeoCoordinate(array2[0], array2[1]);
 
                 var distances = (dist1.GetDistanceTo(dist2) / 1000);
-                
+
                 rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
-               
-                    priceOrder = cp.boarding + cp.cost_per_kilometer * (decimal)distances;
+
+                priceOrder = cp.boarding + cp.cost_per_kilometer * (decimal)distances;
 
 
                 if (childSafetySeatCheck.Checked == true && cp.child_safety_seat != null)
                     priceOrder += cp.child_safety_seat;
-                if(transportationOfPetCheck.Checked == true && cp.transportation_of_pet!=null)
+                if (transportationOfPetCheck.Checked == true && cp.transportation_of_pet != null)
                     priceOrder += cp.transportation_of_pet;
 
-                priceBox.Text = Math.Round((double)priceOrder,2).ToString();
+                priceBox.Text = Math.Round((double)priceOrder, 2).ToString();
                 PlaceOrder.Enabled = true;
                 buttonEdit.Enabled = true;
             }
@@ -282,6 +281,11 @@ namespace taxiDesktopProg
                 MessageBox.Show("Произошла ошибка в вычислениях", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+        //Рассчёт цены 
+        private void estimatedСost_Click(object sender, EventArgs e)
+        {
+            calculatingPrice();
         }
         //Проверка клиента, если нет такого в таблице, то добавляется, если есть, просто передаётся id
         private long checkClient()
@@ -356,19 +360,18 @@ namespace taxiDesktopProg
             }
         }
         //Оформление заказа
-        private void button1_Click(object sender, EventArgs e)
+        private void addOrder()
         {
-
             Check();
             using (Context db = new Context(Form1.connectionString))
             {
                 var idClient = checkClient();
-                var idAdddress1 = checkAddress(textBoxCity1.Text,textBoxStreet1.Text,textBoxHouse1.Text,textBox4.Text);
+                var idAdddress1 = checkAddress(textBoxCity1.Text, textBoxStreet1.Text, textBoxHouse1.Text, textBox4.Text);
                 var idAdddress2 = checkAddress(textBoxCity2.Text, textBoxStreet2.Text, textBoxHouse2.Text, textBox6.Text);
-            
+
                 rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
-                DateTime dateAndTime = DateTime.Now ;
-                if(checkBox1.Checked == true)
+                DateTime dateAndTime = DateTime.Now;
+                if (checkBox1.Checked == true)
                 {
                     DateTime dateTime = DateTime.Now;
                     DateTime dt = dateTimePicker2.Value.Date + dateTimePicker1.Value.TimeOfDay;
@@ -398,11 +401,16 @@ namespace taxiDesktopProg
                 };
                 db.orders.Add(o);
                 db.SaveChanges();
-                
+
             }
-            
+
             MessageBox.Show("Заказ оформлен");
             Close();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            addOrder();
 
         }
         //Автозаполнение после смены фокуса с города, улицы для дальнейших полей
@@ -489,7 +497,7 @@ namespace taxiDesktopProg
                 return;
             }
         }
-        private void buttonEdit_Click(object sender, EventArgs e)
+        private void editOrder(long? idOrder)
         {
             using (Context db = new Context(Form1.connectionString))
             {
@@ -521,6 +529,10 @@ namespace taxiDesktopProg
                 MessageBox.Show("Заказ изменён");
                 Close();
             }
+        }
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            editOrder(idOrder);
         }
     }
 }
