@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Device.Location;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
@@ -194,15 +196,15 @@ namespace taxiDesktopProg
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
-            boardingBox.Text = cp.cost_downtime.ToString();
-            costDowntimeBox.Text = cp.cost_downtime.ToString();
-            costPerKilometerBox.Text = cp.cost_per_kilometer.ToString();
+            boardingBox.Text = Math.Round(cp.cost_downtime).ToString();
+            costDowntimeBox.Text = Math.Round(cp.cost_downtime).ToString();
+            costPerKilometerBox.Text = Math.Round(cp.cost_per_kilometer).ToString();
             if (cp.child_safety_seat != null)
-                childSafetySeatBox.Text = cp.child_safety_seat.ToString();
+                childSafetySeatBox.Text = Math.Round((decimal)cp.child_safety_seat).ToString();
             else
                 childSafetySeatBox.Text = "Недоступно";
             if (cp.transportation_of_pet != null)
-                transportationOfPetBox.Text = cp.transportation_of_pet.ToString();
+                transportationOfPetBox.Text = Math.Round((decimal)cp.transportation_of_pet).ToString();
             else
                 transportationOfPetBox.Text = "Недоступно";
         }
@@ -238,6 +240,36 @@ namespace taxiDesktopProg
             }
             return array;
         }
+        //Расчёт дистанции с помощью Bing Maps API
+       private string BingMapsApiKey = "vSu0ER5x3HHYD5rGxVaB~YuU-4x1i_kyBbcC_YW2ipA~AvEK6xCobjGDdWvUXvsi8MDhiuaduWxeSveNhLTBOVTP9B7lgi1vT_DYA4CGvIuD";
+        private double Distance(double lat1, double lon1, double lat2, double lon2)
+        {
+            string originCoordinates = $"{lat1},{lon1}";
+            string destinationCoordinates = $"{lat2},{lon2}";
+            // Encode the coordinates for use in the Bing Maps API request.
+            string encodedOriginCoordinates = Uri.EscapeDataString(originCoordinates);
+            string encodedDestinationCoordinates = Uri.EscapeDataString(destinationCoordinates);
+
+            // Construct the Bing Maps API request URL.
+            string requestUrl = string.Format("http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0={0}&wp.1={1}&key={2}", encodedOriginCoordinates, encodedDestinationCoordinates, BingMapsApiKey);
+
+            // Send the request to the Bing Maps API and get the response.
+            WebRequest request = WebRequest.Create(requestUrl);
+            WebResponse response = request.GetResponse();
+
+            // Read the response stream and parse the JSON result.
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            string responseString = reader.ReadToEnd();
+
+            dynamic result = JsonConvert.DeserializeObject(responseString);
+
+            // Extract the distance information from the result.
+            double distanceInMiles = result.resourceSets[0].resources[0].travelDistance;
+
+            // Display the distance to the user.
+            MessageBox.Show(distanceInMiles.ToString());
+            return distanceInMiles;
+        }
         private decimal? priceOrder = 0;
         private void calculatingPrice()
         {
@@ -259,9 +291,9 @@ namespace taxiDesktopProg
                 Coords($"{textBoxCity2.Text},{textBoxStreet2.Text},{textBoxHouse2.Text}", out array2); //!!!!!
                 var dist1 = new GeoCoordinate(array1[0], array1[1]);
                 var dist2 = new GeoCoordinate(array2[0], array2[1]);
-
-                var distances = (dist1.GetDistanceTo(dist2) / 1000);
-
+                MessageBox.Show(dist1.Latitude + " " + dist1.Longitude + "\n" + dist2.Latitude + " " + dist2.Longitude);
+                var distances = Distance(dist1.Latitude,dist1.Longitude,dist2.Latitude,dist2.Longitude);
+                MessageBox.Show(distances.ToString());
                 rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
 
                 priceOrder = cp.boarding + cp.cost_per_kilometer * (decimal)distances;

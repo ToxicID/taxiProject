@@ -503,7 +503,7 @@
             // 
             this.PlaceOrder.Enabled = false;
             this.PlaceOrder.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PlaceOrder.Location = new System.Drawing.Point(626, 678);
+            this.PlaceOrder.Location = new System.Drawing.Point(534, 678);
             this.PlaceOrder.Name = "PlaceOrder";
             this.PlaceOrder.Size = new System.Drawing.Size(202, 38);
             this.PlaceOrder.TabIndex = 20;
@@ -581,7 +581,7 @@
             // 
             this.buttonEdit.Enabled = false;
             this.buttonEdit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEdit.Location = new System.Drawing.Point(626, 678);
+            this.buttonEdit.Location = new System.Drawing.Point(534, 678);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(202, 38);
             this.buttonEdit.TabIndex = 21;
