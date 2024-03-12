@@ -291,9 +291,7 @@ namespace taxiDesktopProg
                 Coords($"{textBoxCity2.Text},{textBoxStreet2.Text},{textBoxHouse2.Text}", out array2); //!!!!!
                 var dist1 = new GeoCoordinate(array1[0], array1[1]);
                 var dist2 = new GeoCoordinate(array2[0], array2[1]);
-                MessageBox.Show(dist1.Latitude + " " + dist1.Longitude + "\n" + dist2.Latitude + " " + dist2.Longitude);
                 var distances = Distance(dist1.Latitude,dist1.Longitude,dist2.Latitude,dist2.Longitude);
-                MessageBox.Show(distances.ToString());
                 rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
 
                 priceOrder = cp.boarding + cp.cost_per_kilometer * (decimal)distances;

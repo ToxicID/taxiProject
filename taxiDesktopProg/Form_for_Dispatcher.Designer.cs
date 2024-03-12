@@ -61,6 +61,8 @@
             this.falseOrder = new System.Windows.Forms.PictureBox();
             this.editOrder = new System.Windows.Forms.PictureBox();
             this.addOrder = new System.Windows.Forms.PictureBox();
+            this.списокToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.чёрныйСписокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
@@ -102,6 +104,9 @@
             // 
             // клиентыToolStripMenuItem
             // 
+            this.клиентыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.списокToolStripMenuItem1,
+            this.чёрныйСписокToolStripMenuItem});
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
             this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
@@ -129,6 +134,7 @@
             this.добававитьToolStripMenuItem.Name = "добававитьToolStripMenuItem";
             this.добававитьToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.добававитьToolStripMenuItem.Text = "Добававить";
+            this.добававитьToolStripMenuItem.Click += new System.EventHandler(this.добававитьToolStripMenuItem_Click);
             // 
             // изменитьЦенуToolStripMenuItem
             // 
@@ -434,6 +440,18 @@
             this.addOrder.TabStop = false;
             this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
             // 
+            // списокToolStripMenuItem1
+            // 
+            this.списокToolStripMenuItem1.Name = "списокToolStripMenuItem1";
+            this.списокToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.списокToolStripMenuItem1.Text = "Список";
+            // 
+            // чёрныйСписокToolStripMenuItem
+            // 
+            this.чёрныйСписокToolStripMenuItem.Name = "чёрныйСписокToolStripMenuItem";
+            this.чёрныйСписокToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.чёрныйСписокToolStripMenuItem.Text = "Чёрный список";
+            // 
             // Form_for_Dispatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -511,5 +529,7 @@
         private System.Windows.Forms.ToolStripMenuItem добававитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изменитьЦенуToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изменитьДоступностьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem чёрныйСписокToolStripMenuItem;
     }
 }

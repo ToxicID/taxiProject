@@ -586,7 +586,13 @@ namespace taxiDesktopProg
 
         private void списокToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            rateList fm = new rateList();
+            rateList fm = new rateList(0);
+            fm.Show();
+        }
+
+        private void добававитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rateList fm = new rateList(1);
             fm.Show();
         }
     }
