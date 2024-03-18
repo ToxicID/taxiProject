@@ -49,6 +49,8 @@
             this.Down = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +59,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.Names);
             this.panel1.Controls.Add(this.comboBox1);
@@ -74,13 +77,13 @@
             this.panel1.Controls.Add(this.MinCost);
             this.panel1.Location = new System.Drawing.Point(93, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(688, 527);
+            this.panel1.Size = new System.Drawing.Size(649, 527);
             this.panel1.TabIndex = 13;
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(257, 488);
+            this.button3.Location = new System.Drawing.Point(287, 488);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(120, 36);
             this.button3.TabIndex = 22;
@@ -91,7 +94,7 @@
             // Names
             // 
             this.Names.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Names.Location = new System.Drawing.Point(379, 43);
+            this.Names.Location = new System.Drawing.Point(312, 43);
             this.Names.Name = "Names";
             this.Names.Size = new System.Drawing.Size(298, 30);
             this.Names.TabIndex = 19;
@@ -101,7 +104,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Segoe Print", 12F);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(379, 43);
+            this.comboBox1.Location = new System.Drawing.Point(312, 43);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(298, 43);
             this.comboBox1.TabIndex = 18;
@@ -114,7 +117,7 @@
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(253, 334);
+            this.label8.Location = new System.Drawing.Point(253, 332);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(169, 22);
             this.label8.TabIndex = 13;
@@ -198,7 +201,7 @@
             // Perevos
             // 
             this.Perevos.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Perevos.Location = new System.Drawing.Point(364, 439);
+            this.Perevos.Location = new System.Drawing.Point(321, 440);
             this.Perevos.Name = "Perevos";
             this.Perevos.Size = new System.Drawing.Size(298, 30);
             this.Perevos.TabIndex = 10;
@@ -222,7 +225,7 @@
             // ChildKres
             // 
             this.ChildKres.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ChildKres.Location = new System.Drawing.Point(364, 382);
+            this.ChildKres.Location = new System.Drawing.Point(321, 383);
             this.ChildKres.Name = "ChildKres";
             this.ChildKres.Size = new System.Drawing.Size(298, 30);
             this.ChildKres.TabIndex = 7;
@@ -231,7 +234,7 @@
             // costDowntime
             // 
             this.costDowntime.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.costDowntime.Location = new System.Drawing.Point(379, 269);
+            this.costDowntime.Location = new System.Drawing.Point(312, 269);
             this.costDowntime.Name = "costDowntime";
             this.costDowntime.Size = new System.Drawing.Size(298, 30);
             this.costDowntime.TabIndex = 6;
@@ -240,7 +243,7 @@
             // transPoGor
             // 
             this.transPoGor.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.transPoGor.Location = new System.Drawing.Point(379, 203);
+            this.transPoGor.Location = new System.Drawing.Point(312, 203);
             this.transPoGor.Name = "transPoGor";
             this.transPoGor.Size = new System.Drawing.Size(298, 30);
             this.transPoGor.TabIndex = 5;
@@ -249,7 +252,7 @@
             // MinCost
             // 
             this.MinCost.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MinCost.Location = new System.Drawing.Point(379, 127);
+            this.MinCost.Location = new System.Drawing.Point(312, 127);
             this.MinCost.Name = "MinCost";
             this.MinCost.Size = new System.Drawing.Size(298, 30);
             this.MinCost.TabIndex = 4;
@@ -262,7 +265,7 @@
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(400, 35);
+            this.label2.Location = new System.Drawing.Point(296, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 26);
             this.label2.TabIndex = 14;
@@ -292,7 +295,7 @@
             this.Down.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Down.Font = new System.Drawing.Font("Segoe Print", 12F);
             this.Down.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Down.Location = new System.Drawing.Point(797, 317);
+            this.Down.Location = new System.Drawing.Point(742, 317);
             this.Down.Name = "Down";
             this.Down.Size = new System.Drawing.Size(75, 47);
             this.Down.TabIndex = 16;
@@ -303,7 +306,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(797, 446);
+            this.button2.Location = new System.Drawing.Point(742, 446);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(48, 36);
             this.button2.TabIndex = 20;
@@ -314,7 +317,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(797, 500);
+            this.button1.Location = new System.Drawing.Point(742, 500);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(48, 36);
             this.button1.TabIndex = 21;
@@ -322,11 +325,39 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button4.Location = new System.Drawing.Point(287, 488);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(120, 36);
+            this.button4.TabIndex = 23;
+            this.button4.Text = "Изменить";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label9.Location = new System.Drawing.Point(7, 587);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(139, 26);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Доступность";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
             // rateList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 622);
+            this.ClientSize = new System.Drawing.Size(807, 622);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Up);
@@ -365,5 +396,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label9;
     }
 }

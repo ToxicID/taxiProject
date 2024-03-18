@@ -595,5 +595,11 @@ namespace taxiDesktopProg
             rateList fm = new rateList(1);
             fm.Show();
         }
+
+        private void изменитьПоказателиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rateList fm = new rateList(2);
+            fm.Show();
+        }
     }
 }
