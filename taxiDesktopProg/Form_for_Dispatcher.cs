@@ -601,5 +601,11 @@ namespace taxiDesktopProg
             rateList fm = new rateList(2);
             fm.Show();
         }
+
+        private void списокToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            listClient fm = new listClient();
+            fm.Show();
+        }
     }
 }

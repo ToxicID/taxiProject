@@ -228,7 +228,19 @@
     <Compile Include="Form_for_Dispatcher.Designer.cs">
       <DependentUpon>Form_for_Dispatcher.cs</DependentUpon>
     </Compile>
+    <Compile Include="listClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listClient.Designer.cs">
+      <DependentUpon>listClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Microsoft\VisualBasic\Interaction.cs" />
+    <Compile Include="OrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderList.Designer.cs">
+      <DependentUpon>OrderList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\rate.cs" />
@@ -249,6 +261,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_for_Dispatcher.resx">
       <DependentUpon>Form_for_Dispatcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listClient.resx">
+      <DependentUpon>listClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderList.resx">
+      <DependentUpon>OrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

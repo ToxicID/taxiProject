@@ -33,10 +33,10 @@
             this.водителиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.чёрныйСписокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тарифToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добававитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьПоказателиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nowTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -49,7 +49,6 @@
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.preliminaryOrders = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -61,14 +60,14 @@
             this.falseOrder = new System.Windows.Forms.PictureBox();
             this.editOrder = new System.Windows.Forms.PictureBox();
             this.addOrder = new System.Windows.Forms.PictureBox();
-            this.изменитьПоказателиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.автомобилиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.performedOrders.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.preliminaryOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -80,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -88,7 +88,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.водителиToolStripMenuItem,
             this.клиентыToolStripMenuItem,
-            this.тарифToolStripMenuItem});
+            this.тарифToolStripMenuItem,
+            this.автомобилиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1687, 28);
@@ -104,8 +105,7 @@
             // клиентыToolStripMenuItem
             // 
             this.клиентыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.списокToolStripMenuItem1,
-            this.чёрныйСписокToolStripMenuItem});
+            this.списокToolStripMenuItem1});
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
             this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
@@ -113,14 +113,9 @@
             // списокToolStripMenuItem1
             // 
             this.списокToolStripMenuItem1.Name = "списокToolStripMenuItem1";
-            this.списокToolStripMenuItem1.Size = new System.Drawing.Size(200, 26);
+            this.списокToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.списокToolStripMenuItem1.Text = "Список";
-            // 
-            // чёрныйСписокToolStripMenuItem
-            // 
-            this.чёрныйСписокToolStripMenuItem.Name = "чёрныйСписокToolStripMenuItem";
-            this.чёрныйСписокToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
-            this.чёрныйСписокToolStripMenuItem.Text = "Чёрный список";
+            this.списокToolStripMenuItem1.Click += new System.EventHandler(this.списокToolStripMenuItem1_Click);
             // 
             // тарифToolStripMenuItem
             // 
@@ -145,6 +140,13 @@
             this.добававитьToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
             this.добававитьToolStripMenuItem.Text = "Добававить";
             this.добававитьToolStripMenuItem.Click += new System.EventHandler(this.добававитьToolStripMenuItem_Click);
+            // 
+            // изменитьПоказателиToolStripMenuItem
+            // 
+            this.изменитьПоказателиToolStripMenuItem.Name = "изменитьПоказателиToolStripMenuItem";
+            this.изменитьПоказателиToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.изменитьПоказателиToolStripMenuItem.Text = "Изменить показатели";
+            this.изменитьПоказателиToolStripMenuItem.Click += new System.EventHandler(this.изменитьПоказателиToolStripMenuItem_Click);
             // 
             // nowTime
             // 
@@ -237,8 +239,8 @@
             this.performedOrders.Controls.Add(this.maskedTextBox1);
             this.performedOrders.Controls.Add(this.label3);
             this.performedOrders.Controls.Add(this.label2);
-            this.performedOrders.Controls.Add(this.pictureBox1);
             this.performedOrders.Controls.Add(this.dataGridView2);
+            this.performedOrders.Controls.Add(this.pictureBox1);
             this.performedOrders.Location = new System.Drawing.Point(4, 25);
             this.performedOrders.Name = "performedOrders";
             this.performedOrders.Padding = new System.Windows.Forms.Padding(3);
@@ -287,18 +289,6 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Завершить заказ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::taxiDesktopProg.Properties.Resources.orderComplete;
-            this.pictureBox1.Location = new System.Drawing.Point(1224, 46);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 51);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // dataGridView2
             // 
@@ -438,12 +428,23 @@
             this.addOrder.TabStop = false;
             this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
             // 
-            // изменитьПоказателиToolStripMenuItem
+            // pictureBox1
             // 
-            this.изменитьПоказателиToolStripMenuItem.Name = "изменитьПоказателиToolStripMenuItem";
-            this.изменитьПоказателиToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
-            this.изменитьПоказателиToolStripMenuItem.Text = "Изменить показатели";
-            this.изменитьПоказателиToolStripMenuItem.Click += new System.EventHandler(this.изменитьПоказателиToolStripMenuItem_Click);
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::taxiDesktopProg.Properties.Resources.orderComplete;
+            this.pictureBox1.Location = new System.Drawing.Point(1224, 46);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 51);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // автомобилиToolStripMenuItem
+            // 
+            this.автомобилиToolStripMenuItem.Name = "автомобилиToolStripMenuItem";
+            this.автомобилиToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.автомобилиToolStripMenuItem.Text = "Автомобили";
             // 
             // Form_for_Dispatcher
             // 
@@ -471,7 +472,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.performedOrders.ResumeLayout(false);
             this.performedOrders.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.preliminaryOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -483,6 +483,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,7 +522,7 @@
         private System.Windows.Forms.ToolStripMenuItem списокToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem добававитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem чёрныйСписокToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изменитьПоказателиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem автомобилиToolStripMenuItem;
     }
 }
