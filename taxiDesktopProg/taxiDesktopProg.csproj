@@ -228,6 +228,12 @@
     <Compile Include="Form_for_Dispatcher.Designer.cs">
       <DependentUpon>Form_for_Dispatcher.cs</DependentUpon>
     </Compile>
+    <Compile Include="listCars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listCars.Designer.cs">
+      <DependentUpon>listCars.cs</DependentUpon>
+    </Compile>
     <Compile Include="listClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_for_Dispatcher.resx">
       <DependentUpon>Form_for_Dispatcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listCars.resx">
+      <DependentUpon>listCars.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="listClient.resx">
       <DependentUpon>listClient.cs</DependentUpon>

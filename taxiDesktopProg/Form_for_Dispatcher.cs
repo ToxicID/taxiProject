@@ -607,5 +607,11 @@ namespace taxiDesktopProg
             listClient fm = new listClient();
             fm.Show();
         }
+
+        private void списокToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            listCars fm = new listCars();
+            fm.Show();
+        }
     }
 }
