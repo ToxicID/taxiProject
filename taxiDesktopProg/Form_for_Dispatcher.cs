@@ -613,5 +613,11 @@ namespace taxiDesktopProg
             listCars fm = new listCars();
             fm.Show();
         }
+
+        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addOrEditCar fm = new addOrEditCar(1);
+            fm.Show();
+        }
     }
 }
