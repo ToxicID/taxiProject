@@ -59,6 +59,7 @@ namespace taxiDesktopProg
             InitializeComponent();
             print(dataGridView1);
             RemoveCar.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -145,7 +146,7 @@ namespace taxiDesktopProg
         //Вызов формы добавления и создание события закрытия формы
         private void AddCarBut_Click(object sender, EventArgs e)
         {
-            addOrEditCar fm = new addOrEditCar(1);
+            addOrEditCar fm = new addOrEditCar();
             fm.FormClosed += new FormClosedEventHandler(addOrEditCar_FormClosed);
             fm.Show();
         }
@@ -160,11 +161,13 @@ namespace taxiDesktopProg
             {
                 DataGridIndex = (long)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
                 RemoveCar.Enabled = true;
+                button2.Enabled = true;
             }
             catch
             {
                 DataGridIndex = null;
                 RemoveCar.Enabled = false;
+                button2.Enabled = false ;
             }
         }
 
@@ -172,6 +175,7 @@ namespace taxiDesktopProg
         {
             DataGridIndex = null;
             RemoveCar.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void RemoveCar_Click(object sender, EventArgs e)
@@ -194,6 +198,23 @@ namespace taxiDesktopProg
                     print(dataGridView1);
                     MessageBox.Show("Автомобиль был удален");
                 }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(DataGridIndex != null)
+            {
+                addOrEditCar fm = new addOrEditCar(DataGridIndex);
+                fm.FormClosed += new FormClosedEventHandler(addOrEditCar_FormClosed);
+                fm.Show();
+                RemoveCar.Enabled = false;
+                button2.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать автомобиль, данные которого нужно изменить","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
             }
         }
     }

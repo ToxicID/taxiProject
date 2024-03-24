@@ -73,6 +73,7 @@
             this.ButIzmen.TabIndex = 18;
             this.ButIzmen.Text = "Изменить";
             this.ButIzmen.UseVisualStyleBackColor = true;
+            this.ButIzmen.Click += new System.EventHandler(this.ButIzmen_Click);
             // 
             // GosNum6
             // 
