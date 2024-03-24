@@ -221,10 +221,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addOrEditCar.cs">
+    <Compile Include="Class\car.cs" />
+    <Compile Include="Car\addOrEditCar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addOrEditCar.Designer.cs">
+    <Compile Include="Car\addOrEditCar.Designer.cs">
       <DependentUpon>addOrEditCar.cs</DependentUpon>
     </Compile>
     <Compile Include="addOrEditOrders.cs">
@@ -234,7 +235,6 @@
       <DependentUpon>addOrEditOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="address.cs" />
-    <Compile Include="Class\car.cs" />
     <Compile Include="Class\car_category.cs" />
     <Compile Include="Class\client.cs" />
     <Compile Include="Class\Context.cs" />
@@ -246,26 +246,26 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class\order.cs" />
     <Compile Include="Form_for_Dispatcher.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_for_Dispatcher.Designer.cs">
       <DependentUpon>Form_for_Dispatcher.cs</DependentUpon>
     </Compile>
-    <Compile Include="listCars.cs">
+    <Compile Include="Car\listCars.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="listCars.Designer.cs">
+    <Compile Include="Car\listCars.Designer.cs">
       <DependentUpon>listCars.cs</DependentUpon>
     </Compile>
-    <Compile Include="listClient.cs">
+    <Compile Include="Client\listClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="listClient.Designer.cs">
+    <Compile Include="Client\listClient.Designer.cs">
       <DependentUpon>listClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Microsoft\VisualBasic\Interaction.cs" />
+    <Compile Include="Class\order.cs" />
     <Compile Include="OrderList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,16 +275,29 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\rate.cs" />
-    <Compile Include="Class\violation.cs" />
-    <Compile Include="Class\work_schedule.cs" />
-    <Compile Include="rateList.cs">
+    <Compile Include="Rate\rateList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="rateList.Designer.cs">
+    <Compile Include="Rate\rateList.Designer.cs">
       <DependentUpon>rateList.cs</DependentUpon>
     </Compile>
     <Compile Include="SimpleJson.cs" />
-    <EmbeddedResource Include="addOrEditCar.resx">
+    <Compile Include="Class\sysdiagram.cs" />
+    <Compile Include="Class\violation.cs" />
+    <Compile Include="violationsTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="violationsTable.Designer.cs">
+      <DependentUpon>violationsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="workDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="workDriver.Designer.cs">
+      <DependentUpon>workDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\work_schedule.cs" />
+    <EmbeddedResource Include="Car\addOrEditCar.resx">
       <DependentUpon>addOrEditCar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addOrEditOrders.resx">
@@ -296,10 +309,10 @@
     <EmbeddedResource Include="Form_for_Dispatcher.resx">
       <DependentUpon>Form_for_Dispatcher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="listCars.resx">
+    <EmbeddedResource Include="Car\listCars.resx">
       <DependentUpon>listCars.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="listClient.resx">
+    <EmbeddedResource Include="Client\listClient.resx">
       <DependentUpon>listClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderList.resx">
@@ -315,8 +328,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="rateList.resx">
+    <EmbeddedResource Include="Rate\rateList.resx">
       <DependentUpon>rateList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="violationsTable.resx">
+      <DependentUpon>violationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="workDriver.resx">
+      <DependentUpon>workDriver.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -354,5 +373,6 @@
     <Content Include="imgFile\Okey.png" />
     <None Include="imgFile\orderComplete.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

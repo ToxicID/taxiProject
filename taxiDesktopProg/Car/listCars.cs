@@ -217,5 +217,22 @@ namespace taxiDesktopProg
                 return;
             }
         }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (DataGridIndex != null)
+            {
+                addOrEditCar fm = new addOrEditCar(DataGridIndex);
+                fm.FormClosed += new FormClosedEventHandler(addOrEditCar_FormClosed);
+                fm.Show();
+                RemoveCar.Enabled = false;
+                button2.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать автомобиль, данные которого нужно изменить", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
     }
 }

@@ -619,5 +619,17 @@ namespace taxiDesktopProg
             addOrEditCar fm = new addOrEditCar();
             fm.Show();
         }
+
+        private void нарушенияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            violationsTable fm = new violationsTable();
+            fm.Show();
+        }
+
+        private void режимРаботыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            workDriver fm = new workDriver();
+            fm.Show();
+        }
     }
 }

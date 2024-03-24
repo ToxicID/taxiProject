@@ -119,16 +119,19 @@ namespace taxiDesktopProg
             }
             if (string.IsNullOrWhiteSpace(ChildKres.Text))
                 ChildKres.Text = "Недоступно";
+
             if (string.IsNullOrWhiteSpace(Perevos.Text))
                 Perevos.Text = "Недоступно";
+
             if (ChildKres.Text == "Недоступно")
                 button2.Text = "✓";
             else
                 button2.Text = "X";
+
             if (Perevos.Text == "Недоступно")
                 button1.Text = "✓";
             else
-                button2.Text = "X";
+                button1.Text = "X";
 
         }
 
@@ -252,20 +255,17 @@ namespace taxiDesktopProg
             if (button2.Text == "X")
             {
                 statusChild = true;
-                childPrice = predvarPrice;
             }
             else if (button2.Text == "✓")
             {
                 statusChild = false;
-                childPrice = null;
             }
-            if (button2.Text == "X")
+
+            if (button1.Text == "X")
             {
                 statusW = true;
-                priceW = predvarPrice1;
-                priceW = null;
             }
-            else if (button2.Text == "✓")
+            else if (button1.Text == "✓")
             {
                 statusW = false;
             }
@@ -276,9 +276,16 @@ namespace taxiDesktopProg
             board = decimal.Parse(MinCost.Text);
             priceKm = decimal.Parse(transPoGor.Text);
             priceOjid = decimal.Parse(costDowntime.Text);
-            childPrice = decimal.Parse(ChildKres.Text);
-            priceW = decimal.Parse(Perevos.Text);
+            if (statusChild)
+                childPrice = decimal.Parse(ChildKres.Text);
+            else
+                childPrice = null;
+            if (statusW)
+                priceW = decimal.Parse(Perevos.Text);
+            else
+                priceW = null;
         }
+        //Добавление
         private void button3_Click(object sender, EventArgs e)
         {
            
@@ -314,6 +321,7 @@ namespace taxiDesktopProg
             ChildKres.ReadOnly = false;
             Perevos.ReadOnly = false;
         }
+        //Изменение
         private void button4_Click(object sender, EventArgs e)
         {
             if (status)
@@ -350,6 +358,8 @@ namespace taxiDesktopProg
                 status = true;
                 button1.Enabled = false;
                 button2.Enabled = false;
+                predvarPrice = 0.0m;
+                predvarPrice1 = 0.0m;
             }
         }
         private bool enOrFalseStatusRate;

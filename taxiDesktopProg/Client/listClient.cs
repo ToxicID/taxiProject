@@ -91,5 +91,30 @@ namespace taxiDesktopProg
                 DataGridIndex = null;
             }
         }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                if (DataGridIndex != null)
+                {
+                    DialogResult result = MessageBox.Show("Посмотреть заказы данного клиента?", "Просмотр",
+                                                                                       MessageBoxButtons.YesNo,
+                                                                                       MessageBoxIcon.Information);
+                    if (result == DialogResult.No) return;
+                    OrderList fm = new OrderList(DataGridIndex);
+                    fm.Show();
+                    DataGridIndex = null;
+
+                }
+                else
+                {
+                    MessageBox.Show("Чтобы посмотреть заказы, необходимо выбрать клиента клиента", "Ошибка", MessageBoxButtons.OK,
+                                                                                                  MessageBoxIcon.Information);
+                    return;
+                }
+
+            }
+        }
     }
 }

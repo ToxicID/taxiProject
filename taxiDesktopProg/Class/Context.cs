@@ -7,8 +7,8 @@ namespace taxiDesktopProg
 {
     public partial class Context : DbContext
     {
-        public Context(string connectiongString)
-            : base(connectiongString)
+        public Context(string connectionString)
+            : base(connectionString)
         {
         }
 
@@ -20,6 +20,7 @@ namespace taxiDesktopProg
         public virtual DbSet<driver> drivers { get; set; }
         public virtual DbSet<order> orders { get; set; }
         public virtual DbSet<rate> rates { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<violation> violations { get; set; }
         public virtual DbSet<work_schedule> work_schedule { get; set; }
 
@@ -77,11 +78,6 @@ namespace taxiDesktopProg
             modelBuilder.Entity<car>()
                 .Property(e => e.technical_condition_car)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<car>()
-                .HasMany(e => e.drivers)
-                .WithOptional(e => e.car)
-                .WillCascadeOnDelete();
 
             modelBuilder.Entity<car_category>()
                 .Property(e => e.name)
@@ -145,6 +141,11 @@ namespace taxiDesktopProg
                 .Property(e => e.mobile_phone)
                 .IsFixedLength()
                 .IsUnicode(false);
+
+            modelBuilder.Entity<driver>()
+                .HasMany(e => e.orders)
+                .WithOptional(e => e.driver)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<order>()
                 .Property(e => e.status)
