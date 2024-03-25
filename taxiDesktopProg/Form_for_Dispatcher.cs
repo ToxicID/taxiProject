@@ -409,7 +409,7 @@ namespace taxiDesktopProg
         //Добавление заказа в ложный
         private void falseOrder_Click(object sender, EventArgs e)
         {
-            if (tabPageIndex == 0 || tabPageIndex == 1)
+            if (tabPageIndex == 1)
             {
                 using (Context db = new Context(Form1.connectionString))
                 {
@@ -420,12 +420,17 @@ namespace taxiDesktopProg
                                                                                            MessageBoxIcon.Information);
                         if (result == DialogResult.No) return;
                         var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
-
-
+                       
 
                         order.status = "Ложный";
                         if (order.order_completion_datetime == null)
                             order.order_completion_datetime = DateTime.Now;
+
+                        if(db.orders.Where(p=>p.id_client == order.id_client).Count() >= 2)
+                        {
+                            var cl = db.clients.Where(p => p.id_client == order.id_client).FirstOrDefault();
+                            cl.blacklist = true;
+                        }
                         db.SaveChanges();
                         dataGridView6.Visible = false;
                         label1.Text = "";

@@ -106,7 +106,7 @@ namespace taxiDesktopProg
 
             using (Context db = new Context(Form1.connectionString))
             {
-                var Client = db.clients;
+                var Client = db.clients.Where(p=>p.blacklist != true);
 
                 foreach (client cl in Client)
                 {
@@ -262,10 +262,11 @@ namespace taxiDesktopProg
             string responseString = reader.ReadToEnd();
 
             dynamic result = JsonConvert.DeserializeObject(responseString);
-
+            
             // Extract the distance information from the result.
             double distanceInMiles = result.resourceSets[0].resources[0].travelDistance;
-
+            response.Close();
+            reader.Close();
             // Display the distance to the user.
             MessageBox.Show(distanceInMiles.ToString());
             return distanceInMiles;
