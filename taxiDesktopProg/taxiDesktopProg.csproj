@@ -221,6 +221,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\address.cs" />
     <Compile Include="Class\car.cs" />
     <Compile Include="Car\addOrEditCar.cs">
       <SubType>Form</SubType>
@@ -234,7 +235,6 @@
     <Compile Include="addOrEditOrders.Designer.cs">
       <DependentUpon>addOrEditOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="address.cs" />
     <Compile Include="Class\car_category.cs" />
     <Compile Include="Class\client.cs" />
     <Compile Include="Class\Context.cs" />

@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Device.Location;
 using System.IO;
 using System.Linq;
@@ -368,13 +369,16 @@ namespace taxiDesktopProg
                    
                     address ad = new address
                     {
+                        enrance = textBox4.Text,
                         city = cityAd,
                         street = streetAd,
-                        house = houseAd,
-                        enrance = newEnranced
+                        house = houseAd
                     };
                     db.addresses.Add(ad);
-                    db.SaveChanges();
+                   
+                        db.SaveChanges();
+                   
+
                     idAddress = ad.id_address;
                     return idAddress;
                 }

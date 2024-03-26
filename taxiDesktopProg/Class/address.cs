@@ -31,7 +31,6 @@ namespace taxiDesktopProg
         [StringLength(50)]
         public string house { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string enrance { get; set; }
 

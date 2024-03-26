@@ -426,11 +426,18 @@ namespace taxiDesktopProg
                         if (order.order_completion_datetime == null)
                             order.order_completion_datetime = DateTime.Now;
 
-                        if(db.orders.Where(p=>p.id_client == order.id_client).Count() >= 2)
+                        DateTime dt = DateTime.Now.AddYears(-1);
+
+                        var lastOrderClient = db.orders.Where(p => p.id_client == order.id_client);
+                        if (lastOrderClient.Where(p=>p.status == "Ложный").Count() > 2 &&  lastOrderClient.ToList().LastOrDefault().order_completion_datetime.Value.Year>dt.Year)
                         {
+
+                            
                             var cl = db.clients.Where(p => p.id_client == order.id_client).FirstOrDefault();
                             cl.blacklist = true;
                         }
+                        var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
+                        driver.status = "Свободен";
                         db.SaveChanges();
                         dataGridView6.Visible = false;
                         label1.Text = "";
