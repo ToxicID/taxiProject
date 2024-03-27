@@ -32,6 +32,7 @@ namespace taxiDesktopProg
         [StringLength(200)]
         public string car_model { get; set; }
 
+        [Required]
         [StringLength(6)]
         public string state_number { get; set; }
 

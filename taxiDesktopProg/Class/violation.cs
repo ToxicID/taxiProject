@@ -13,6 +13,8 @@ namespace taxiDesktopProg
 
         public long id_driver { get; set; }
 
+        public DateTime datetime_of_recording_violation { get; set; }
+
         public DateTime datetime_the_violation { get; set; }
 
         [Required]
@@ -23,7 +25,6 @@ namespace taxiDesktopProg
         [StringLength(100)]
         public string violation_status { get; set; }
 
-        [Required]
         [StringLength(150)]
         public string measures_taken { get; set; }
 

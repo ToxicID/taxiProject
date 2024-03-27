@@ -34,23 +34,8 @@ namespace taxiDesktopProg
                               car_categoor = car_cat.name
                           };
 
-                dataName.DataSource = car.ToList();
-                dataName.Columns[0].Visible = false;
-                dataName.Columns[1].HeaderText = "Принадлежность";
-                dataName.Columns[2].HeaderText = "Цвет";
-                dataName.Columns[3].HeaderText = "Бренд";
-                dataName.Columns[4].HeaderText = "Модель";
-                dataName.Columns[5].HeaderText = "Гос. номер";
-                dataName.Columns[6].HeaderText = "Рег. код";
-                dataName.Columns[7].HeaderText = "Тех. состояние";
-                dataName.Columns[8].HeaderText = "Категория автомобиля";
-
-                foreach (DataGridViewColumn data in dataName.Columns)
-                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataName.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataName.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-                dataName.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-                dataName.EnableHeadersVisualStyles = false;
+                dataGridView1.DataSource = car.ToList();
+                fonts();
 
             }
         }
@@ -117,6 +102,9 @@ namespace taxiDesktopProg
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
             dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
             dataGridView1.EnableHeadersVisualStyles = false;
+
+
+
         }
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)

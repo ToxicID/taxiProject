@@ -46,6 +46,7 @@ namespace taxiDesktopProg
         [Column(TypeName = "date")]
         public DateTime date_of_birth { get; set; }
 
+        [Required]
         [StringLength(12)]
         public string drivers_license_number { get; set; }
 

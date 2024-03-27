@@ -48,6 +48,104 @@ namespace taxiDesktopProg
         {
             InitializeComponent();
             listTable();
+            button1.Enabled = false;
+        }
+
+        private void ButIzmen_Click(object sender, EventArgs e)
+        {
+            addOrEditStatusViolations fm = new addOrEditStatusViolations(0);
+            fm.FormClosed += new FormClosedEventHandler(addOrEditStatusViolations_FormClosed);
+           
+            fm.Show();
+        }
+        void addOrEditStatusViolations_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            listTable();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                if (DataGridIndex != null)
+                {
+                    DialogResult result = MessageBox.Show("Изменить нарушение", "Изменение",
+                                                                                       MessageBoxButtons.YesNo,
+                                                                                       MessageBoxIcon.Information);
+                    if (result == DialogResult.No) return;
+                    var vio = db.violations.Where(p => p.id_violations == DataGridIndex).FirstOrDefault();
+                    if (vio.violation_status == "Рассмотрен")
+                    {
+                        MessageBox.Show("Данное нарушение уже рассмотрено", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    addOrEditStatusViolations fm = new addOrEditStatusViolations(DataGridIndex);
+                    fm.FormClosed += new FormClosedEventHandler(addOrEditStatusViolations_FormClosed);
+                    fm.Show();
+                    DataGridIndex = null;
+                    button1.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Произвести изменение, необходимо его выбрать и нажать на кнопку", "Ошибка", MessageBoxButtons.OK,
+                                                                                                  MessageBoxIcon.Information);
+                    return;
+                }
+
+            }
+        }
+        private long? DataGridIndex = null;
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            try
+            {
+                DataGridIndex = (long)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+                button1.Enabled = true;
+            }
+            catch
+            {
+                DataGridIndex = null;
+                button1.Enabled = false;
+            }
+        }
+
+        private void violationsTable_Click(object sender, EventArgs e)
+        {
+            DataGridIndex = null;
+            button1.Enabled = false;
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                if (DataGridIndex != null)
+                {
+                    DialogResult result = MessageBox.Show("Изменить нарушение", "Изменение",
+                                                                                       MessageBoxButtons.YesNo,
+                                                                                       MessageBoxIcon.Information);
+                    if (result == DialogResult.No) return;
+                    var vio = db.violations.Where(p => p.id_violations == DataGridIndex).FirstOrDefault();
+                    if (vio.violation_status == "Рассмотрен")
+                    {
+                        MessageBox.Show("Данное нарушение уже рассмотрено", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    addOrEditStatusViolations fm = new addOrEditStatusViolations(DataGridIndex);
+                    fm.FormClosed += new FormClosedEventHandler(addOrEditStatusViolations_FormClosed);
+                    fm.Show();
+                    DataGridIndex = null;
+                    button1.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Произвести изменение, необходимо выбрать нарушение и нажать на кнопку", "Ошибка", MessageBoxButtons.OK,
+                                                                                                  MessageBoxIcon.Information);
+                    return;
+                }
+
+            }
         }
     }
 }
