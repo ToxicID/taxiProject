@@ -27,6 +27,7 @@ namespace taxiDesktopProg
                            {
                                id_order = ord.id_order,
                                status = ord.status,
+                               reason_cancellation = ord.reason_cancellation,
                                place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
                                place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
                                order_cost = ord.order_cost,
@@ -43,15 +44,16 @@ namespace taxiDesktopProg
                 dataName.DataSource = list.Where(p => p.idClient == id).Distinct().ToList();
                 dataName.Columns[0].Visible = false;
                 dataName.Columns[1].HeaderText = "Статус";
-                dataName.Columns[2].HeaderText = "Адрес подачи";
-                dataName.Columns[3].HeaderText = "Адрес назначения";
-                dataName.Columns[4].HeaderText = "Примерная стоимость";
-                dataName.Columns[5].HeaderText = "Способ оплаты";
-                dataName.Columns[6].HeaderText = "Дата и время оформления заказа";
-                dataName.Columns[7].HeaderText = "Дата и время завершения заказа";
-                dataName.Columns[8].HeaderText = "Позывной";
-                dataName.Columns[9].HeaderText = "Тариф";
-                dataName.Columns[10].Visible = false;
+                dataName.Columns[2].HeaderText = "Причина отмены";
+                dataName.Columns[3].HeaderText = "Адрес подачи";
+                dataName.Columns[4].HeaderText = "Адрес назначения";
+                dataName.Columns[5].HeaderText = "Стоимость";
+                dataName.Columns[6].HeaderText = "Способ оплаты";
+                dataName.Columns[7].HeaderText = "Дата и время оформления заказа";
+                dataName.Columns[8].HeaderText = "Дата и время завершения заказа";
+                dataName.Columns[9].HeaderText = "Позывной";
+                dataName.Columns[10].HeaderText = "Тариф";
+                dataName.Columns[11].Visible = false;
                 foreach (DataGridViewColumn data in dataName.Columns)
                     data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataName.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -75,10 +77,17 @@ namespace taxiDesktopProg
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
                 e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
             }
+            if (e.ColumnIndex == 1)
+                if (e.Value.ToString() == "Ложный" || e.Value.ToString() == "Отменён")
+                    e.CellStyle.ForeColor = Color.Red;
+                else if(e.Value.ToString() == "Завершён")
+                    e.CellStyle.ForeColor = Color.Green;
+                else if (e.Value.ToString() == "Выполнение")
+                    e.CellStyle.ForeColor = Color.Yellow;
         }
     }
 }

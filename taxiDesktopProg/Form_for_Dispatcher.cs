@@ -55,7 +55,7 @@ namespace taxiDesktopProg
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[1].HeaderText = "Адрес подачи";
                 dataGridView1.Columns[2].HeaderText = "Адрес назначения";
-                dataGridView1.Columns[3].HeaderText = "Примерная стоимость";
+                dataGridView1.Columns[3].HeaderText = "Стоимость";
                 dataGridView1.Columns[4].HeaderText = "Способ оплаты";
                 dataGridView1.Columns[5].HeaderText = "Дата и время оформления заказа";
                 dataGridView1.Columns[6].HeaderText = "Телефона";
@@ -100,7 +100,7 @@ namespace taxiDesktopProg
                 dataGridView2.Columns[0].Visible = false;
                 dataGridView2.Columns[1].HeaderText = "Адрес подачи";
                 dataGridView2.Columns[2].HeaderText = "Адрес назначения";
-                dataGridView2.Columns[3].HeaderText = "Примерная стоимость";
+                dataGridView2.Columns[3].HeaderText = "Стоимость";
                 dataGridView2.Columns[4].HeaderText = "Способ оплаты";
                 dataGridView2.Columns[5].HeaderText = "Дата и время оформления заказа";
                 dataGridView2.Columns[6].HeaderText = "Позывной";
@@ -149,7 +149,7 @@ namespace taxiDesktopProg
                 dataGridView3.Columns[0].Visible = false;
                 dataGridView3.Columns[1].HeaderText = "Адрес подачи";
                 dataGridView3.Columns[2].HeaderText = "Адрес назначения";
-                dataGridView3.Columns[3].HeaderText = "Примерная стоимость";
+                dataGridView3.Columns[3].HeaderText = "Стоимость";    
                 dataGridView3.Columns[4].HeaderText = "Способ оплаты";
                 dataGridView3.Columns[5].HeaderText = "Дата и время оформления заказа";
                 dataGridView3.Columns[6].HeaderText = "Телефона";
@@ -193,7 +193,7 @@ namespace taxiDesktopProg
                 dataName.Columns[0].Visible = false;
                 dataName.Columns[1].HeaderText = "Адрес подачи";
                 dataName.Columns[2].HeaderText = "Адрес назначения";
-                dataName.Columns[3].HeaderText = "Примерная стоимость";
+                dataName.Columns[3].HeaderText = "Стоимость";
                 dataName.Columns[4].HeaderText = "Способ оплаты";
                 dataName.Columns[5].HeaderText = "Дата и время оформления заказа";
                 dataName.Columns[6].HeaderText = "Дата и время завершения заказа";
@@ -271,6 +271,10 @@ namespace taxiDesktopProg
                     break;
                 case 4:
                     printOrders("Ложный",dataGridView5);
+                    DataGridIndex = null;
+                    break;
+                case 5:
+                    printCancelOrders();
                     DataGridIndex = null;
                     break;
                       
@@ -680,6 +684,134 @@ namespace taxiDesktopProg
         private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.ColumnIndex == 3)
+            {
+                e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (tabPageIndex == 1)
+            {
+                using (Context db = new Context(Form1.connectionString))
+                {
+                    if (DataGridIndex != null)
+                    {
+                        DialogResult result = MessageBox.Show("Отменить заказ?", "Отмена",
+                                                                                           MessageBoxButtons.YesNo,
+                                                                                           MessageBoxIcon.Information);
+                        if (result == DialogResult.No) return;
+                        var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+
+
+                        order.status = "Отменён";
+
+                        if (order.order_completion_datetime == null)
+                            order.order_completion_datetime = DateTime.Now;
+
+                        DialogResult rs = MessageBox.Show("Заказ отменён по вине клиента?","Отмена", MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+                        if(rs == DialogResult.Yes)
+                        {
+                            order.reason_cancellation = "По причине клиента";
+                            int count = 0;
+                            var lastOrderClient = db.orders.Where(p => p.id_client == order.id_client).ToList();
+                            foreach (var i in lastOrderClient)
+                            {
+                                if (i.status == "Отменён" && i.reason_cancellation == "По причине клиента")
+                                {
+                                    count++;
+                                }
+                                else
+                                    count = 0;
+                                if(count == 3)
+                                {
+                                    var cl = db.clients.Where(p => p.id_client == order.id_client).FirstOrDefault();
+                                    cl.blacklist = true;
+                                    break;
+                                }
+                            }
+                        }
+                        else if(rs== DialogResult.No)
+                        {
+                            order.reason_cancellation = "По причине фирмы";
+                        }
+
+
+                        
+                        var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
+                        driver.status = "Свободен";
+                        db.SaveChanges();
+                        dataGridView6.Visible = false;
+                        label1.Text = "";
+                        MessageBox.Show($"Заказ был перенесён в отменённые");
+
+                    }
+                    DataGrid6Index = null;
+                    DataGridIndex = null;
+                    if (tabPageIndex == 1) printNowTimeOrders();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заказ можно отменить из вкладки \"Выполняемые\"");
+                return;
+            }
+        }
+        public void printCancelOrders()
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var list = from ord in db.orders
+                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
+                           join ad2 in db.addresses on ord.destination equals ad2.id_address
+                           join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
+                           join driv in db.drivers on ord.id_driver equals driv.id_driver
+                           select new
+                           {
+                               id_order = ord.id_order,
+                               reason_cancellation = ord.reason_cancellation,
+                               place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
+                               place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
+                               order_cost = ord.order_cost,
+                               payment_method = ord.payment_method,
+                               datetime_placing = ord.datetime_placing_the_order,
+                               id_driver = driv.call_sign,
+                               id_client = ord.client.mobile_phone,
+                               id_rate = ord.rate.name,
+                               status = ord.status
+                           };
+
+                dataGridView7.DataSource = list.Where(p => p.status == "Отменён").Distinct().ToList();
+                dataGridView7.Columns[0].Visible = false;
+                dataGridView7.Columns[1].HeaderText = "Причина";
+                dataGridView7.Columns[2].HeaderText = "Адрес подачи";
+                dataGridView7.Columns[3].HeaderText = "Адрес назначения";
+                dataGridView7.Columns[4].HeaderText = "Стоимость";
+                dataGridView7.Columns[5].HeaderText = "Способ оплаты";
+                dataGridView7.Columns[6].HeaderText = "Дата и время оформления заказа";
+                dataGridView7.Columns[7].HeaderText = "Позывной";
+                dataGridView7.Columns[8].HeaderText = "Телефона";
+                dataGridView7.Columns[9].HeaderText = "Тариф";
+                dataGridView7.Columns[10].Visible = false;
+                
+                foreach (DataGridViewColumn data in dataGridView7.Columns)
+                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView7.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView7.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                dataGridView7.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                dataGridView7.EnableHeadersVisualStyles = false;
+            }
+        }
+
+        private void dataGridView7_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            getIndexDataGrid(dataGridView1, e);
+        }
+
+        private void dataGridView7_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
             {
                 e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
             }

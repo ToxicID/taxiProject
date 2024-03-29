@@ -58,17 +58,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.preliminaryOrders = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.completedOrders = new System.Windows.Forms.TabPage();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.falseOrders = new System.Windows.Forms.TabPage();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.assignDriver = new System.Windows.Forms.PictureBox();
             this.falseOrder = new System.Windows.Forms.PictureBox();
             this.editOrder = new System.Windows.Forms.PictureBox();
             this.addOrder = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridView7 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
@@ -76,17 +79,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.performedOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.preliminaryOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.completedOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.falseOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assignDriver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -99,7 +105,7 @@
             this.автомобилиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1687, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1500, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -112,7 +118,7 @@
             this.назначитьАвтомобильToolStripMenuItem,
             this.нарушенияToolStripMenuItem});
             this.водителиToolStripMenuItem.Name = "водителиToolStripMenuItem";
-            this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 26);
             this.водителиToolStripMenuItem.Text = "Водители";
             // 
             // добавитьToolStripMenuItem1
@@ -152,7 +158,7 @@
             this.клиентыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.списокToolStripMenuItem1});
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
-            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
             // 
             // списокToolStripMenuItem1
@@ -169,7 +175,7 @@
             this.добававитьToolStripMenuItem,
             this.изменитьПоказателиToolStripMenuItem});
             this.тарифToolStripMenuItem.Name = "тарифToolStripMenuItem";
-            this.тарифToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.тарифToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.тарифToolStripMenuItem.Text = "Тариф";
             // 
             // списокToolStripMenuItem
@@ -199,7 +205,7 @@
             this.списокToolStripMenuItem2,
             this.добавитьToolStripMenuItem});
             this.автомобилиToolStripMenuItem.Name = "автомобилиToolStripMenuItem";
-            this.автомобилиToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.автомобилиToolStripMenuItem.Size = new System.Drawing.Size(111, 26);
             this.автомобилиToolStripMenuItem.Text = "Автомобили";
             // 
             // списокToolStripMenuItem2
@@ -238,11 +244,12 @@
             this.tabControl1.Controls.Add(this.preliminaryOrders);
             this.tabControl1.Controls.Add(this.completedOrders);
             this.tabControl1.Controls.Add(this.falseOrders);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tabControl1.Location = new System.Drawing.Point(0, 125);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1687, 465);
+            this.tabControl1.Size = new System.Drawing.Size(1500, 465);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
@@ -254,7 +261,7 @@
             this.newOrder.Location = new System.Drawing.Point(4, 25);
             this.newOrder.Name = "newOrder";
             this.newOrder.Padding = new System.Windows.Forms.Padding(3);
-            this.newOrder.Size = new System.Drawing.Size(1679, 436);
+            this.newOrder.Size = new System.Drawing.Size(1492, 436);
             this.newOrder.TabIndex = 0;
             this.newOrder.Text = "Новые заказы";
             this.newOrder.UseVisualStyleBackColor = true;
@@ -263,7 +270,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(1332, 3);
+            this.label1.Location = new System.Drawing.Point(1252, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(191, 22);
             this.label1.TabIndex = 11;
@@ -281,7 +288,7 @@
             this.dataGridView6.RowHeadersWidth = 51;
             this.dataGridView6.RowTemplate.Height = 24;
             this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView6.Size = new System.Drawing.Size(474, 380);
+            this.dataGridView6.Size = new System.Drawing.Size(287, 380);
             this.dataGridView6.TabIndex = 1;
             this.dataGridView6.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellClick);
             this.dataGridView6.DoubleClick += new System.EventHandler(this.dataGridView6_DoubleClick);
@@ -313,7 +320,7 @@
             this.performedOrders.Location = new System.Drawing.Point(4, 25);
             this.performedOrders.Name = "performedOrders";
             this.performedOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.performedOrders.Size = new System.Drawing.Size(1679, 436);
+            this.performedOrders.Size = new System.Drawing.Size(1492, 436);
             this.performedOrders.TabIndex = 1;
             this.performedOrders.Text = "Выполняемые";
             this.performedOrders.UseVisualStyleBackColor = true;
@@ -374,25 +381,13 @@
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::taxiDesktopProg.Properties.Resources.orderComplete;
-            this.pictureBox1.Location = new System.Drawing.Point(1224, 46);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 51);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // preliminaryOrders
             // 
             this.preliminaryOrders.Controls.Add(this.dataGridView3);
             this.preliminaryOrders.Location = new System.Drawing.Point(4, 25);
             this.preliminaryOrders.Name = "preliminaryOrders";
             this.preliminaryOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.preliminaryOrders.Size = new System.Drawing.Size(1679, 436);
+            this.preliminaryOrders.Size = new System.Drawing.Size(1492, 436);
             this.preliminaryOrders.TabIndex = 2;
             this.preliminaryOrders.Text = "Предварительные";
             this.preliminaryOrders.UseVisualStyleBackColor = true;
@@ -407,7 +402,7 @@
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(1670, 430);
+            this.dataGridView3.Size = new System.Drawing.Size(1481, 430);
             this.dataGridView3.TabIndex = 2;
             this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
             this.dataGridView3.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView3_CellFormatting);
@@ -419,7 +414,7 @@
             this.completedOrders.Location = new System.Drawing.Point(4, 25);
             this.completedOrders.Name = "completedOrders";
             this.completedOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.completedOrders.Size = new System.Drawing.Size(1679, 436);
+            this.completedOrders.Size = new System.Drawing.Size(1492, 436);
             this.completedOrders.TabIndex = 3;
             this.completedOrders.Text = "Выполненные";
             this.completedOrders.UseVisualStyleBackColor = true;
@@ -434,7 +429,7 @@
             this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView4.Size = new System.Drawing.Size(1668, 430);
+            this.dataGridView4.Size = new System.Drawing.Size(1481, 430);
             this.dataGridView4.TabIndex = 3;
             this.dataGridView4.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellClick);
             this.dataGridView4.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView4_CellFormatting);
@@ -445,7 +440,7 @@
             this.falseOrders.Location = new System.Drawing.Point(4, 25);
             this.falseOrders.Name = "falseOrders";
             this.falseOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.falseOrders.Size = new System.Drawing.Size(1679, 436);
+            this.falseOrders.Size = new System.Drawing.Size(1492, 436);
             this.falseOrders.TabIndex = 4;
             this.falseOrders.Text = "Ложные";
             this.falseOrders.UseVisualStyleBackColor = true;
@@ -460,10 +455,22 @@
             this.dataGridView5.RowHeadersWidth = 51;
             this.dataGridView5.RowTemplate.Height = 24;
             this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView5.Size = new System.Drawing.Size(1318, 430);
+            this.dataGridView5.Size = new System.Drawing.Size(1481, 430);
             this.dataGridView5.TabIndex = 4;
             this.dataGridView5.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellClick);
             this.dataGridView5.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView5_CellFormatting);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Image = global::taxiDesktopProg.Properties.Resources.cancel_svgrepo_com;
+            this.pictureBox2.Location = new System.Drawing.Point(705, 50);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(83, 52);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 11;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // assignDriver
             // 
@@ -513,11 +520,50 @@
             this.addOrder.TabStop = false;
             this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::taxiDesktopProg.Properties.Resources.orderComplete;
+            this.pictureBox1.Location = new System.Drawing.Point(1224, 46);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 51);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridView7);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1492, 436);
+            this.tabPage1.TabIndex = 5;
+            this.tabPage1.Text = "Отменённые";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView7
+            // 
+            this.dataGridView7.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridView7.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView7.Name = "dataGridView7";
+            this.dataGridView7.RowHeadersWidth = 51;
+            this.dataGridView7.RowTemplate.Height = 24;
+            this.dataGridView7.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView7.Size = new System.Drawing.Size(1481, 430);
+            this.dataGridView7.TabIndex = 5;
+            this.dataGridView7.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView7_CellClick);
+            this.dataGridView7.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView7_CellFormatting);
+            // 
             // Form_for_Dispatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1687, 590);
+            this.ClientSize = new System.Drawing.Size(1500, 590);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.assignDriver);
             this.Controls.Add(this.falseOrder);
             this.Controls.Add(this.editOrder);
@@ -540,17 +586,20 @@
             this.performedOrders.ResumeLayout(false);
             this.performedOrders.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.preliminaryOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.completedOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.falseOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assignDriver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,5 +647,8 @@
         private System.Windows.Forms.ToolStripMenuItem режимРаботыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem назначитьАвтомобильToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem нарушенияToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dataGridView7;
     }
 }

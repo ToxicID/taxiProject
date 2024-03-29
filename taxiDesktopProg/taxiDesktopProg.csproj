@@ -374,6 +374,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imgFile\add.png" />
+    <None Include="imgFile\cancel-svgrepo-com.png" />
     <Content Include="imgFile\edit.png" />
     <Content Include="imgFile\eyeOff.png" />
     <Content Include="imgFile\eyeOn.png" />
