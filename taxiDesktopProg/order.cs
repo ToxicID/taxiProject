@@ -16,6 +16,9 @@ namespace taxiDesktopProg
         [StringLength(100)]
         public string status { get; set; }
 
+        [StringLength(100)]
+        public string reason_cancellation { get; set; }
+
         public long place_of_departure { get; set; }
 
         public long destination { get; set; }

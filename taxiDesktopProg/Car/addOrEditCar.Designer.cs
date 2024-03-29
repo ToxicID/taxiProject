@@ -385,7 +385,7 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "Личный",
-            "Арендный"});
+            "Авто фирмы"});
             this.comboBox3.Location = new System.Drawing.Point(266, 54);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(234, 30);

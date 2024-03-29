@@ -52,7 +52,7 @@ namespace taxiDesktopProg
             if (e.ColumnIndex == 1)
                 if (Convert.ToBoolean(this.dataGridView1.Rows[e.RowIndex].Cells[1].Value) == true)
                 {
-                    e.Value = "Арендный";
+                    e.Value = "Авто фирмы";
                 }
             else
                     e.Value = "Личный";
@@ -109,25 +109,15 @@ namespace taxiDesktopProg
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
-            //lists();
-            //fonts();
+            lists();
+            fonts();
 
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView1.RowCount; i++)
-            {
-                dataGridView1.Rows[i].Selected = false;
-                for (int j = 0; j < dataGridView1.ColumnCount; j++)
-                    if (dataGridView1.Rows[i].Cells[j].Value != null)
-                        if (dataGridView1.Rows[i].Cells[j].Value.ToString().Contains(textBox2.Text.ToUpper()))
-                        {
-                            dataGridView1.Rows[i].Selected = true;
-                            break;
-                        }
-            }
+           
 
         }
 

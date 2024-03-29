@@ -72,5 +72,13 @@ namespace taxiDesktopProg
             }
                 printOrders(dataGridView1);
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+                e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+            }
+        }
     }
 }

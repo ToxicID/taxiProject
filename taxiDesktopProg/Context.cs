@@ -7,8 +7,8 @@ namespace taxiDesktopProg
 {
     public partial class Context : DbContext
     {
-        public Context(string connectionString)
-            : base(connectionString)
+        public Context(string connnectionString)
+            : base(connnectionString)
         {
         }
 
@@ -149,6 +149,10 @@ namespace taxiDesktopProg
 
             modelBuilder.Entity<order>()
                 .Property(e => e.status)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order>()
+                .Property(e => e.reason_cancellation)
                 .IsUnicode(false);
 
             modelBuilder.Entity<order>()

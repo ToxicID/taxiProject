@@ -76,7 +76,7 @@ namespace taxiDesktopProg
         
                 comboBox1.SelectedValue = c.car_category.id_car_category;
                 if (c.rented_car)
-                    comboBox3.Text = "Арендный";
+                    comboBox3.Text = "Авто фирмы";
                 else
                     comboBox3.Text = "Личный";
 
@@ -214,7 +214,7 @@ namespace taxiDesktopProg
                         var findCC = cc.Where(p=>p.id_car_category == testId).FirstOrDefault();
                         idCC = findCC.id_car_category;
                     }
-                    bool rentCar = comboBox3.Text == "Арендный" ? true : false;
+                    bool rentCar = comboBox3.Text == "Авто фирмы" ? true : false;
                     car newCar = new car()
                     {
                         rented_car = rentCar,
@@ -310,7 +310,7 @@ namespace taxiDesktopProg
                         var findCC = cc.Where(p => p.id_car_category == testId).FirstOrDefault();
                         idCC = findCC.id_car_category;
                     }
-                    bool rentCar = comboBox3.Text == "Арендный" ? true : false;
+                    bool rentCar = comboBox3.Text == "Авто фирмы" ? true : false;
                    
                         car car = db.cars.Find(idCar);
                         car.rented_car = rentCar;

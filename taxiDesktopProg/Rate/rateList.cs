@@ -97,9 +97,9 @@ namespace taxiDesktopProg
             {
                 var rate = db.rates.Where(p => p.id_rate == indexRate).FirstOrDefault();
                 Names.Text = rate.name.ToString();
-                MinCost.Text = rate.boarding.ToString();
-                transPoGor.Text = rate.cost_per_kilometer.ToString();
-                costDowntime.Text = rate.cost_downtime.ToString();
+                MinCost.Text = Math.Round(rate.boarding,0).ToString();
+                transPoGor.Text = Math.Round(rate.cost_per_kilometer,0).ToString();
+                costDowntime.Text = Math.Round(rate.cost_downtime,0).ToString();
 
                 ChildKres.Text = rate.child_safety_seat.ToString();
                 Perevos.Text = rate.transportation_of_pet.ToString();
@@ -116,14 +116,17 @@ namespace taxiDesktopProg
                     enOrFalseStatusRate = false;
 
                 }
-            }
+            
             if (string.IsNullOrWhiteSpace(ChildKres.Text))
                 ChildKres.Text = "Недоступно";
-
+            else
+                ChildKres.Text = Math.Round((double)rate.child_safety_seat).ToString();
             if (string.IsNullOrWhiteSpace(Perevos.Text))
                 Perevos.Text = "Недоступно";
+            else
+                    Perevos.Text = Math.Round((double)rate.transportation_of_pet).ToString();
 
-            if (ChildKres.Text == "Недоступно")
+                if (ChildKres.Text == "Недоступно")
                 button2.Text = "✓";
             else
                 button2.Text = "X";
@@ -132,7 +135,7 @@ namespace taxiDesktopProg
                 button1.Text = "✓";
             else
                 button1.Text = "X";
-
+            }
         }
 
         private void Up_Click(object sender, EventArgs e)

@@ -429,7 +429,7 @@ namespace taxiDesktopProg
                         DateTime dt = DateTime.Now.AddYears(-1);
 
                         var lastOrderClient = db.orders.Where(p => p.id_client == order.id_client);
-                        if (lastOrderClient.Where(p=>p.status == "Ложный").Count() > 2 &&  lastOrderClient.ToList().LastOrDefault().order_completion_datetime.Value.Year>dt.Year)
+                        if (lastOrderClient.Where(p=>p.status == "Ложный" && p.order_completion_datetime.Value.Year > dt.Year).Count() > 2)
                         {
 
                             
@@ -642,6 +642,47 @@ namespace taxiDesktopProg
         {
             workDriver fm = new workDriver();
             fm.Show();
+        }
+
+        private void dataGridView4_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if(e.ColumnIndex == 3)
+            {
+                e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+            }
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+            }
+        }
+
+        private void dataGridView3_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+            }
+
+        }
+
+        private void dataGridView5_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+            }
+        }
+
+        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+            }
         }
     }
 }
