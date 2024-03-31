@@ -606,12 +606,6 @@ namespace taxiDesktopProg
             fm.Show();
         }
 
-        private void добававитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            rateList fm = new rateList(1);
-            fm.Show();
-        }
-
         private void изменитьПоказателиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rateList fm = new rateList(2);
@@ -636,11 +630,6 @@ namespace taxiDesktopProg
             fm.Show();
         }
 
-        private void нарушенияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            violationsTable fm = new violationsTable();
-            fm.Show();
-        }
 
         private void режимРаботыToolStripMenuItem_Click(object sender, EventArgs e)
         {
