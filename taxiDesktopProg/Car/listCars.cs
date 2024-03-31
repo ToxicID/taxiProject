@@ -31,7 +31,7 @@ namespace taxiDesktopProg
                               state_number = c.state_number,
                               region_code = c.region_code,
                               technical_condition_car = c.technical_condition_car,
-                              car_categoor = car_cat.name
+                              car_categoor = car_cat.name + "_" + car_cat.number_of_passengers
                           };
 
                 dataGridView1.DataSource = car.ToList();
@@ -42,9 +42,12 @@ namespace taxiDesktopProg
         public listCars()
         {
             InitializeComponent();
+            button5.Visible = false;
             print(dataGridView1);
             RemoveCar.Enabled = false;
             button2.Enabled = false;
+            if (Form1.mode == 2)
+                button5.Visible = true;
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -94,7 +97,7 @@ namespace taxiDesktopProg
             dataGridView1.Columns[5].HeaderText = "Гос. номер";
             dataGridView1.Columns[6].HeaderText = "Рег. код";
             dataGridView1.Columns[7].HeaderText = "Тех. состояние";
-            dataGridView1.Columns[8].HeaderText = "Категория автомобиля";
+            dataGridView1.Columns[8].HeaderText = "Категория автомобиля_Кол-во мест";
 
             foreach (DataGridViewColumn data in dataGridView1.Columns)
                 data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -211,6 +214,11 @@ namespace taxiDesktopProg
                 MessageBox.Show("Необходимо выбрать автомобиль, данные которого нужно изменить", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

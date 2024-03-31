@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.RemoveCar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             // 
             this.AddCarBut.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddCarBut.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.AddCarBut.Location = new System.Drawing.Point(1219, 79);
+            this.AddCarBut.Location = new System.Drawing.Point(1219, 107);
             this.AddCarBut.Name = "AddCarBut";
             this.AddCarBut.Size = new System.Drawing.Size(146, 65);
             this.AddCarBut.TabIndex = 18;
@@ -70,7 +71,7 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBox2.Location = new System.Drawing.Point(1055, 43);
+            this.textBox2.Location = new System.Drawing.Point(1055, 71);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(234, 30);
             this.textBox2.TabIndex = 19;
@@ -83,7 +84,7 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(1051, 18);
+            this.label1.Location = new System.Drawing.Point(1051, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(299, 22);
             this.label1.TabIndex = 38;
@@ -93,7 +94,7 @@
             // 
             this.RemoveCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RemoveCar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.RemoveCar.Location = new System.Drawing.Point(1239, 160);
+            this.RemoveCar.Location = new System.Drawing.Point(1239, 188);
             this.RemoveCar.Name = "RemoveCar";
             this.RemoveCar.Size = new System.Drawing.Size(126, 32);
             this.RemoveCar.TabIndex = 40;
@@ -105,7 +106,7 @@
             // 
             this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Location = new System.Drawing.Point(1220, 198);
+            this.button2.Location = new System.Drawing.Point(1220, 226);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(145, 60);
             this.button2.TabIndex = 41;
@@ -113,11 +114,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(1290, 12);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 42;
+            this.button5.Text = "X";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // listCars
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1377, 450);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.RemoveCar);
             this.Controls.Add(this.label1);
@@ -141,5 +153,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RemoveCar;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button5;
     }
 }

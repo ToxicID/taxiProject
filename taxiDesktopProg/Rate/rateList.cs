@@ -19,6 +19,7 @@ namespace taxiDesktopProg
 
             this.index = index;
             InitializeComponent();
+            button5.Visible = false;
             if (index == 1 || index == 2)
             {
                 button1.Visible = true;
@@ -69,7 +70,9 @@ namespace taxiDesktopProg
                     break;
 
             }
-            
+
+            if (Form1.mode == 2)
+                button5.Visible = true;
 
         }
         private void listRate()
@@ -329,13 +332,25 @@ namespace taxiDesktopProg
         {
             if (status)
             {
-                initialState();
-                status = false;
-                button4.Text = "Сохранить";
-                Up.Enabled = false;
-                Down.Enabled = false;
-                button1.Enabled = true;
-                button2.Enabled = true;
+                if (Form1.mode == 2)
+                {
+
+
+                    initialState();
+                    status = false;
+                    button4.Text = "Сохранить";
+                    Up.Enabled = false;
+                    Down.Enabled = false;
+                    button1.Enabled = true;
+                    button2.Enabled = true;
+                }
+                else if (Form1.mode == 1)
+                {
+                    status = false;
+                    button4.Text = "Сохранить";
+                    Up.Enabled = false;
+                    Down.Enabled = false;
+                }
             }
             else
             {
@@ -383,6 +398,11 @@ namespace taxiDesktopProg
                     enOrFalseStatusRate = true;
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

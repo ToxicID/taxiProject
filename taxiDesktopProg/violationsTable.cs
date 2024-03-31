@@ -49,6 +49,9 @@ namespace taxiDesktopProg
             InitializeComponent();
             listTable();
             button1.Enabled = false;
+            button5.Visible = false;
+            if(Form1.mode == 2)
+                button5.Visible = true;
         }
 
         private void ButIzmen_Click(object sender, EventArgs e)
@@ -146,6 +149,11 @@ namespace taxiDesktopProg
                 }
 
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
