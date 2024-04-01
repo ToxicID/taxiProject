@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,13 @@ namespace taxiDesktopProg
                 dataGridView1.Columns[1].HeaderText = "Номер телефона";
                 dataGridView1.Columns[2].Visible = false;
                 dataGridView1.Columns[3].Visible = false;
-               
-           
+
+                foreach (DataGridViewColumn data in dataGridView1.Columns)
+                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                dataGridView1.EnableHeadersVisualStyles = false;
             }
         }
         public listClient()
@@ -98,7 +104,7 @@ namespace taxiDesktopProg
             catch
             {
                 DataGridIndex = null;
-                button3.Enabled = true;
+                button3.Enabled = false;
             }
         }
 

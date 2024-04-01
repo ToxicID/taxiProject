@@ -176,6 +176,7 @@ namespace taxiDesktopProg
                     db.SaveChanges();
                     DataGridIndex = null;
                     RemoveCar.Enabled = false;
+                    button2.Enabled = false;
                     print(dataGridView1);
                     MessageBox.Show("Автомобиль был удален");
                 }
@@ -189,6 +190,7 @@ namespace taxiDesktopProg
                 addOrEditCar fm = new addOrEditCar(DataGridIndex);
                 fm.FormClosed += new FormClosedEventHandler(addOrEditCar_FormClosed);
                 fm.Show();
+                DataGridIndex = null;
                 RemoveCar.Enabled = false;
                 button2.Enabled = false;
             }

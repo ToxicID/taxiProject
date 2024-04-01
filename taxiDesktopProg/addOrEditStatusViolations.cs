@@ -80,11 +80,13 @@ namespace taxiDesktopProg
             checkBox1.Checked = true;
             checkBox1.Visible = false;
             comboBox3.Enabled = false;
+
         }
         private void startView()
         {
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            
             using (Context db = new Context(Form1.connectionString))
             {
 
@@ -116,8 +118,10 @@ namespace taxiDesktopProg
                 richTextBox2.ReadOnly = true;
         }
         private long idDriver;
-        private void checkPol()
+        
+        private void ButAdd_Click(object sender, EventArgs e)
         {
+          
             if (string.IsNullOrWhiteSpace(richTextBox1.Text))
             {
                 MessageBox.Show("Заполните поле \"Тип нарушения\"", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -129,10 +133,7 @@ namespace taxiDesktopProg
                     MessageBox.Show("Заполните поле \"Меры\"", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-        }
-        private void ButAdd_Click(object sender, EventArgs e)
-        {
-            checkPol();
+          
             using (Context db = new Context(Form1.connectionString))
             {
                 try
@@ -166,7 +167,18 @@ namespace taxiDesktopProg
 
         private void ButEdit_Click(object sender, EventArgs e)
         {
-            checkPol();
+            if (string.IsNullOrWhiteSpace(richTextBox1.Text))
+            {
+                MessageBox.Show("Заполните поле \"Тип нарушения\"", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (checkBox1.Checked)
+                if (string.IsNullOrWhiteSpace(richTextBox1.Text))
+                {
+                    MessageBox.Show("Заполните поле \"Меры\"", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+           
             using (Context db = new Context(Form1.connectionString))
             {
                 var vio = db.violations.Where(p => p.id_violations == idVio).FirstOrDefault();
@@ -177,6 +189,16 @@ namespace taxiDesktopProg
                 db.SaveChanges();
                 MessageBox.Show("Нарушение было успешно изменено", "Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePicker1.Value > DateTime.Now)
+            {
+                MessageBox.Show("Нельзя добавить нарушение, которое произойдёт в будующем", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dateTimePicker1.Value = DateTime.Now;
+                return;
             }
         }
     }

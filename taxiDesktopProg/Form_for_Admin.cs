@@ -85,7 +85,7 @@ namespace taxiDesktopProg
             listCars fm = new listCars();
             fm.FormClosed += new FormClosedEventHandler(listCars_FormClosed);
             openChildForm(fm);
-            this.Width = 1289;
+            this.Width = 1249;
             this.Height = 497;
             hidesubMenu();
         }
@@ -101,7 +101,7 @@ namespace taxiDesktopProg
             violationsTable fm = new violationsTable();
             fm.FormClosed += new FormClosedEventHandler(violationsTable_FormClosed);
             openChildForm(fm);
-            this.Width = 1138; 
+            this.Width = 1098; 
             this.Height = 597;
             hidesubMenu();
         }
@@ -116,7 +116,7 @@ namespace taxiDesktopProg
             listClient fm = new listClient();
             fm.FormClosed += new FormClosedEventHandler(listClient_FormClosed);
             openChildForm(fm);
-            this.Width = 636;
+            this.Width = 596;
             this.Height = 397;
             hidesubMenu();
         }
@@ -167,6 +167,35 @@ namespace taxiDesktopProg
         {
             this.Width = startWidth;
             this.Height = startHeight;
+        }
+        void listDriver_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Width = startWidth;
+            this.Height = startHeight;
+        }
+
+        private void driver_List_Click(object sender, EventArgs e)
+        {
+            listDriver fm = new listDriver();
+            fm.FormClosed += new FormClosedEventHandler(listDriver_FormClosed);
+            openChildForm(fm);
+            this.Width = 1245;
+            this.Height = 500;
+            hidesubMenu();
+        }
+        void addNewDriver_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Width = startWidth;
+            this.Height = startHeight;
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            addNewDriver fm = new addNewDriver();
+            fm.FormClosed += new FormClosedEventHandler(addNewDriver_FormClosed);
+            openChildForm(fm);
+            this.Width = 645;
+            this.Height = 470;
+            hidesubMenu();
         }
     }
 }
