@@ -227,6 +227,12 @@
     <Compile Include="addNewDriver.Designer.cs">
       <DependentUpon>addNewDriver.cs</DependentUpon>
     </Compile>
+    <Compile Include="addOrEditDispatcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addOrEditDispatcher.Designer.cs">
+      <DependentUpon>addOrEditDispatcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="addOrEditStatusViolations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,6 +288,12 @@
     <Compile Include="Client\listClient.Designer.cs">
       <DependentUpon>listClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="listDispatcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listDispatcher.Designer.cs">
+      <DependentUpon>listDispatcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="listDriver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +342,9 @@
     <EmbeddedResource Include="addNewDriver.resx">
       <DependentUpon>addNewDriver.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="addOrEditDispatcher.resx">
+      <DependentUpon>addOrEditDispatcher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="addOrEditStatusViolations.resx">
       <DependentUpon>addOrEditStatusViolations.cs</DependentUpon>
     </EmbeddedResource>
@@ -356,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client\OrderList.resx">
       <DependentUpon>OrderList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listDispatcher.resx">
+      <DependentUpon>listDispatcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="listDriver.resx">
       <DependentUpon>listDriver.cs</DependentUpon>

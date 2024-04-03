@@ -38,6 +38,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.panelProfiles = new System.Windows.Forms.Panel();
+            this.driver_List = new System.Windows.Forms.Button();
             this.Profile = new System.Windows.Forms.Button();
             this.driverBut = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
@@ -48,7 +49,6 @@
             this.button9 = new System.Windows.Forms.Button();
             this.buttonRate = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.driver_List = new System.Windows.Forms.Button();
             this.panelDriver.SuspendLayout();
             this.panelGlavWin.SuspendLayout();
             this.panelProfiles.SuspendLayout();
@@ -144,9 +144,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(204, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(194, 26);
+            this.label2.Size = new System.Drawing.Size(244, 26);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Добро пожаловать";
+            this.label2.Text = "Активные пользователи";
             // 
             // button1
             // 
@@ -163,6 +163,7 @@
             this.button1.Text = "Список дистпетчеров";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button4
             // 
@@ -192,6 +193,23 @@
             this.panelProfiles.Name = "panelProfiles";
             this.panelProfiles.Size = new System.Drawing.Size(253, 124);
             this.panelProfiles.TabIndex = 8;
+            // 
+            // driver_List
+            // 
+            this.driver_List.Dock = System.Windows.Forms.DockStyle.Top;
+            this.driver_List.FlatAppearance.BorderSize = 0;
+            this.driver_List.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.driver_List.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.driver_List.ForeColor = System.Drawing.Color.LightGray;
+            this.driver_List.Location = new System.Drawing.Point(0, 78);
+            this.driver_List.Name = "driver_List";
+            this.driver_List.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.driver_List.Size = new System.Drawing.Size(253, 39);
+            this.driver_List.TabIndex = 11;
+            this.driver_List.Text = "Список водителей";
+            this.driver_List.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.driver_List.UseVisualStyleBackColor = true;
+            this.driver_List.Click += new System.EventHandler(this.driver_List_Click);
             // 
             // Profile
             // 
@@ -346,23 +364,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(253, 106);
             this.panel2.TabIndex = 3;
-            // 
-            // driver_List
-            // 
-            this.driver_List.Dock = System.Windows.Forms.DockStyle.Top;
-            this.driver_List.FlatAppearance.BorderSize = 0;
-            this.driver_List.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.driver_List.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.driver_List.ForeColor = System.Drawing.Color.LightGray;
-            this.driver_List.Location = new System.Drawing.Point(0, 78);
-            this.driver_List.Name = "driver_List";
-            this.driver_List.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.driver_List.Size = new System.Drawing.Size(253, 39);
-            this.driver_List.TabIndex = 11;
-            this.driver_List.Text = "Список водителей";
-            this.driver_List.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.driver_List.UseVisualStyleBackColor = true;
-            this.driver_List.Click += new System.EventHandler(this.driver_List_Click);
             // 
             // Form_for_Admin
             // 

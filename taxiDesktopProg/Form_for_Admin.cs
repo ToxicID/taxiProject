@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,22 @@ namespace taxiDesktopProg
         Form1 po;
         private int startWidth;
         private int startHeight;
+     
+        //private void activeSession()
+        //{
+        //    SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT DB_NAME(dbid) as DBName,COUNT(dbid) as NumberOfConnections,loginame as LoginName FROM sys.sysprocesses WHERE dbid =6 GROUP BY dbid, loginame;", Form1.connectionString);
+
+        //    DataSet ds = new DataSet();
+        //    dataAdapter.Fill(ds);
+        //    dataGridView1.DataSource = ds.Tables[0];
+        //    dataGridView1.Columns[2].HeaderText= "Логин пользователя";
+        //    foreach (DataGridViewColumn data in dataGridView1.Columns)
+        //        data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        //    dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+        //    dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+        //    dataGridView1.EnableHeadersVisualStyles = false;
+        //}
         public Form_for_Admin(Form1 po)
         {
             InitializeComponent();
@@ -194,6 +211,20 @@ namespace taxiDesktopProg
             fm.FormClosed += new FormClosedEventHandler(addNewDriver_FormClosed);
             openChildForm(fm);
             this.Width = 645;
+            this.Height = 470;
+            hidesubMenu();
+        }
+        void listDispatcher_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Width = startWidth;
+            this.Height = startHeight;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listDispatcher fm = new listDispatcher();
+            fm.FormClosed += new FormClosedEventHandler(listDispatcher_FormClosed);
+            openChildForm(fm);
+            this.Width = 945;
             this.Height = 470;
             hidesubMenu();
         }

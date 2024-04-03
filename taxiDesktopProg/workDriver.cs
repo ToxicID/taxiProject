@@ -76,7 +76,7 @@ namespace taxiDesktopProg
         {
             startOrEndWorkDriverForm fm = new startOrEndWorkDriverForm();
             fm.FormClosed += new FormClosedEventHandler(startOrEndWorkDriverForm_FormClosed);
-            fm.ShowDialog();
+            fm.Show();
         }
         void startOrEndWorkDriverForm_FormClosed(object sender, FormClosedEventArgs e)
         {
