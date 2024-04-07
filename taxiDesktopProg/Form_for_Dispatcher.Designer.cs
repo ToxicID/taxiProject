@@ -134,7 +134,7 @@
             // 
             this.режимРаботыToolStripMenuItem.Name = "режимРаботыToolStripMenuItem";
             this.режимРаботыToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
-            this.режимРаботыToolStripMenuItem.Text = "Режим работы";
+            this.режимРаботыToolStripMenuItem.Text = "График работы";
             this.режимРаботыToolStripMenuItem.Click += new System.EventHandler(this.режимРаботыToolStripMenuItem_Click);
             // 
             // назначитьАвтомобильToolStripMenuItem
@@ -154,7 +154,7 @@
             // списокToolStripMenuItem1
             // 
             this.списокToolStripMenuItem1.Name = "списокToolStripMenuItem1";
-            this.списокToolStripMenuItem1.Size = new System.Drawing.Size(142, 26);
+            this.списокToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.списокToolStripMenuItem1.Text = "Список";
             this.списокToolStripMenuItem1.Click += new System.EventHandler(this.списокToolStripMenuItem1_Click);
             // 

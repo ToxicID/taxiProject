@@ -184,7 +184,7 @@
             this.ButEdit.Name = "ButEdit";
             this.ButEdit.Size = new System.Drawing.Size(162, 55);
             this.ButEdit.TabIndex = 50;
-            this.ButEdit.Text = "Изменить";
+            this.ButEdit.Text = "Рассмотреть";
             this.ButEdit.UseVisualStyleBackColor = true;
             this.ButEdit.Click += new System.EventHandler(this.ButEdit_Click);
             // 

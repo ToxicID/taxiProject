@@ -571,9 +571,9 @@
             this.checkBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox1.Location = new System.Drawing.Point(517, 587);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(219, 26);
+            this.checkBox1.Size = new System.Drawing.Size(210, 26);
             this.checkBox1.TabIndex = 17;
-            this.checkBox1.Text = "Оформить предсзаказ";
+            this.checkBox1.Text = "Оформить предзаказ";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
