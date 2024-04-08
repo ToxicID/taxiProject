@@ -30,6 +30,9 @@ namespace taxiDesktopProg
                 textBox2.Text = disp.name;
                 textBox3.Text = disp.patronymic;
                 textBoxMobule.Text = disp.mobile_phone;
+                if(textBox3.Text == "Отсутствует" || string.IsNullOrWhiteSpace(textBox3.Text))
+                        checkBox1.Checked = true;
+                    
 
             }
         }
@@ -101,7 +104,10 @@ namespace taxiDesktopProg
                 return;
             }
             if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
                 textBox3.Text = "Отсутствует";
+                checkBox1.Checked = true;
+            }
             using (Context db = new Context(Form1.connectionString))
             {
                 var dispAll = db.dispatchers;
@@ -115,8 +121,10 @@ namespace taxiDesktopProg
                     MessageBox.Show("Диспетчер с таким ФИО уже есть в базе данных", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                idNewDisp = db.Database.SqlQuery<long>("select max(id_dispatcher) + 1 from dispatcher").FirstOrDefault();
                 dispatcher d = new dispatcher()
                 {
+                    id_dispatcher = idNewDisp,
                     surname = textBox1.Text,
                     name = textBox2.Text,
                     patronymic = textBox3.Text,
@@ -124,7 +132,7 @@ namespace taxiDesktopProg
 
                 };
                 db.dispatchers.Add(d);
-                idNewDisp = db.Database.SqlQuery<long>("select max(id_dispatcher) + 1 from dispatcher").FirstOrDefault();
+               
 
 
 
@@ -194,9 +202,12 @@ namespace taxiDesktopProg
                     MessageBox.Show("Неполностью или неправильно заполнено поле \"Номер телефона\"");
                     return;
                 }
-              
+
                 if (string.IsNullOrWhiteSpace(textBox3.Text))
+                {
                     textBox3.Text = "Отсутствует";
+                    checkBox1.Checked = true;
+                }
                 disp.surname = textBox1.Text;
                 disp.name = textBox2.Text;
                 disp.patronymic = textBox3.Text;
@@ -246,6 +257,21 @@ namespace taxiDesktopProg
 
             MessageBox.Show($"Пароль обновлён.\nЛогин: dispatcher_{idDispEdit}\nПароль: {textBoxPas.Text}", "Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
+        }
+        private string preliminaryPatronymic = "";
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                preliminaryPatronymic = textBox3.Text;
+                textBox3.ReadOnly = true;
+                textBox3.Text = "Отсутствует";
+            }
+            else
+            {
+                textBox3.ReadOnly = false;
+                textBox3.Text = preliminaryPatronymic;
+            }
         }
     }
 }

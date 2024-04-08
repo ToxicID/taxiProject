@@ -7,8 +7,8 @@ namespace taxiDesktopProg
 {
     public partial class Context : DbContext
     {
-        public Context(string connnectionString)
-            : base(connnectionString)
+        public Context(string connectiongString)
+            : base(connectiongString)
         {
         }
 

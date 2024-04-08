@@ -324,7 +324,7 @@
     <Compile Include="startOrEndWorkDriverForm.Designer.cs">
       <DependentUpon>startOrEndWorkDriverForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs" />
+    <Compile Include="Class\sysdiagram.cs" />
     <Compile Include="Class\violation.cs" />
     <Compile Include="violationsTable.cs">
       <SubType>Form</SubType>

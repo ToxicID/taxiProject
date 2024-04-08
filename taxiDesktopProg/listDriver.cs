@@ -64,7 +64,15 @@ namespace taxiDesktopProg
             button3.Enabled = false;
             listDriverDataGrid();
         }
-
+        public listDriver(string name)
+        {
+            InitializeComponent();
+            button1.Visible = false;
+            button3.Visible = false;
+            button4.Visible = false;
+            button2.Visible = false;
+            listDriverDataGrid();
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();

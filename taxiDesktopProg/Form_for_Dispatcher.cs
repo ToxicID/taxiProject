@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.EntityClient;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -234,7 +235,7 @@ namespace taxiDesktopProg
 
         private void Form_for_Dispatcher_FormClosed(object sender, FormClosedEventArgs e)
         {
-            po.Show();
+            Application.Restart();
             
         }
         //Таймер
@@ -804,6 +805,12 @@ namespace taxiDesktopProg
             {
                 e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
             }
+        }
+
+        private void списокВодителейToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listDriver fm = new listDriver("s");
+            fm.Show();
         }
     }
 }

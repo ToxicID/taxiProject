@@ -54,10 +54,10 @@ namespace taxiDesktopProg
             {
                 try
                 {
-                   
-                     if (db.Database.SqlQuery<int>("SELECT is_member('dispatcher')").FirstOrDefault() == 1)
+
+                    if (db.Database.SqlQuery<int>("SELECT is_member('dispatcher')").FirstOrDefault() == 1)
                         mode = 1;
-                    else if(db.Database.SqlQuery<int>("SELECT is_member('sysadmin')").FirstOrDefault() == 1)
+                    else if (db.Database.SqlQuery<int>("SELECT is_member('sysadmin')").FirstOrDefault() == 1)
                         mode = 2;
 
                 }
@@ -69,7 +69,7 @@ namespace taxiDesktopProg
                     return;
                 }
 
-
+            }
                 switch (mode)
                 {
                     case 1:
@@ -92,7 +92,7 @@ namespace taxiDesktopProg
                    
                     
                 }
-            }
+            
         }
     }
 }

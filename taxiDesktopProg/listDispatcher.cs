@@ -152,6 +152,7 @@ namespace taxiDesktopProg
             catch
             {
                 MessageBox.Show("Произошла ошибка при удалении", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                list();
                 return;
             }
 

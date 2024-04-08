@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.водителиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.списокВодителейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.режимРаботыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.назначитьАвтомобильToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,7 +109,6 @@
             // водителиToolStripMenuItem
             // 
             this.водителиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьToolStripMenuItem1,
             this.списокВодителейToolStripMenuItem,
             this.режимРаботыToolStripMenuItem,
             this.назначитьАвтомобильToolStripMenuItem});
@@ -118,17 +116,12 @@
             this.водителиToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
             this.водителиToolStripMenuItem.Text = "Водители";
             // 
-            // добавитьToolStripMenuItem1
-            // 
-            this.добавитьToolStripMenuItem1.Name = "добавитьToolStripMenuItem1";
-            this.добавитьToolStripMenuItem1.Size = new System.Drawing.Size(255, 26);
-            this.добавитьToolStripMenuItem1.Text = "Добавить";
-            // 
             // списокВодителейToolStripMenuItem
             // 
             this.списокВодителейToolStripMenuItem.Name = "списокВодителейToolStripMenuItem";
             this.списокВодителейToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.списокВодителейToolStripMenuItem.Text = "Список водителей";
+            this.списокВодителейToolStripMenuItem.Click += new System.EventHandler(this.списокВодителейToolStripMenuItem_Click);
             // 
             // режимРаботыToolStripMenuItem
             // 
@@ -154,7 +147,7 @@
             // списокToolStripMenuItem1
             // 
             this.списокToolStripMenuItem1.Name = "списокToolStripMenuItem1";
-            this.списокToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.списокToolStripMenuItem1.Size = new System.Drawing.Size(142, 26);
             this.списокToolStripMenuItem1.Text = "Список";
             this.списокToolStripMenuItem1.Click += new System.EventHandler(this.списокToolStripMenuItem1_Click);
             // 
@@ -623,7 +616,6 @@
         private System.Windows.Forms.ToolStripMenuItem автомобилиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem списокВодителейToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem режимРаботыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem назначитьАвтомобильToolStripMenuItem;
