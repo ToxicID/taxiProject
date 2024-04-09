@@ -20,14 +20,27 @@ namespace taxiDesktopProg
             {
                 var disp = db.dispatchers.ToList();
                 dataGridView1.DataSource = disp;
-                dataGridView1.Columns[0].HeaderText = "Логин";
-                dataGridView1.Columns[1].HeaderText = "Фамилия";
-                dataGridView1.Columns[2].HeaderText = "Имя";
-                dataGridView1.Columns[3].HeaderText = "Отчество";
-                dataGridView1.Columns[4].HeaderText = "Номер телефона";
-                dataGridView1.Columns[5].Visible = false;
+                fonts();
             }
         }
+        private void fonts()
+        {
+            dataGridView1.Columns[0].HeaderText = "Логин";
+            dataGridView1.Columns[1].HeaderText = "Фамилия";
+            dataGridView1.Columns[2].HeaderText = "Имя";
+            dataGridView1.Columns[3].HeaderText = "Отчество";
+            dataGridView1.Columns[4].HeaderText = "Номер телефона";
+            dataGridView1.Columns[5].Visible = false;
+        }
+        private void search()
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var disp = db.dispatchers.Where(x => x.surname.Contains(textBox2.Text)).ToList();
+                dataGridView1.DataSource = disp;
+            }
+            fonts();
+            }
         private long? DataGridIndex = null;
         public listDispatcher()
         {
@@ -36,6 +49,7 @@ namespace taxiDesktopProg
             button1.Enabled = false;
             button2.Enabled = false;
             button3.Enabled = false;
+            label1.Text = "Поиск диспетчера\nпо фамилии";
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -163,6 +177,12 @@ namespace taxiDesktopProg
             button2.Enabled = false;
             button3.Enabled = false;
 
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            search();
+            
         }
     }
 }

@@ -269,7 +269,7 @@
             this.buttonVio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonVio.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonVio.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.buttonVio.Location = new System.Drawing.Point(0, 572);
+            this.buttonVio.Location = new System.Drawing.Point(0, 566);
             this.buttonVio.Name = "buttonVio";
             this.buttonVio.Size = new System.Drawing.Size(253, 34);
             this.buttonVio.TabIndex = 14;
@@ -287,7 +287,7 @@
             this.panelRate.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelRate.Location = new System.Drawing.Point(0, 463);
             this.panelRate.Name = "panelRate";
-            this.panelRate.Size = new System.Drawing.Size(253, 109);
+            this.panelRate.Size = new System.Drawing.Size(253, 103);
             this.panelRate.TabIndex = 13;
             // 
             // button13
@@ -297,7 +297,7 @@
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button13.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button13.ForeColor = System.Drawing.Color.LightGray;
-            this.button13.Location = new System.Drawing.Point(0, 71);
+            this.button13.Location = new System.Drawing.Point(0, 64);
             this.button13.Name = "button13";
             this.button13.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button13.Size = new System.Drawing.Size(253, 32);
@@ -314,7 +314,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button5.ForeColor = System.Drawing.Color.LightGray;
-            this.button5.Location = new System.Drawing.Point(0, 39);
+            this.button5.Location = new System.Drawing.Point(0, 32);
             this.button5.Name = "button5";
             this.button5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button5.Size = new System.Drawing.Size(253, 32);
@@ -334,7 +334,7 @@
             this.button9.Location = new System.Drawing.Point(0, 0);
             this.button9.Name = "button9";
             this.button9.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button9.Size = new System.Drawing.Size(253, 39);
+            this.button9.Size = new System.Drawing.Size(253, 32);
             this.button9.TabIndex = 9;
             this.button9.Text = "Список тарифов";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

@@ -13,29 +13,41 @@ namespace taxiDesktopProg
 {
     public partial class listClient : Form
     {
-        private void list()
+        private void print()
         {
             using (Context db = new Context(Form1.connectionString))
             {
                 var cl = db.clients.ToList();
                 dataGridView1.DataSource = cl;
-                dataGridView1.Columns[0].Visible = false;
-                dataGridView1.Columns[1].HeaderText = "Номер телефона";
-                dataGridView1.Columns[2].Visible = false;
-                dataGridView1.Columns[3].Visible = false;
-
-                foreach (DataGridViewColumn data in dataGridView1.Columns)
-                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-                dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-                dataGridView1.EnableHeadersVisualStyles = false;
             }
+            font();
+        }
+        private void list()
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var cl = db.clients.Where(x=> x.mobile_phone.Contains(textBox2.Text)).ToList();
+                dataGridView1.DataSource = cl;
+            }
+            font();
+        }
+        private void font()
+        {
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].HeaderText = "Номер телефона";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].Visible = false;
+            foreach (DataGridViewColumn data in dataGridView1.Columns)
+                data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+            dataGridView1.EnableHeadersVisualStyles = false;
         }
         public listClient()
         {
             InitializeComponent();
-            list();
+            print();
             button2.Visible = false;
             button3.Visible = false;
             button3.Enabled = false;
@@ -175,6 +187,11 @@ namespace taxiDesktopProg
                 }
 
             }
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            list();
         }
     }
 }

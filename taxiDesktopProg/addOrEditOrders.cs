@@ -247,29 +247,30 @@ namespace taxiDesktopProg
         {
             string originCoordinates = $"{lat1},{lon1}";
             string destinationCoordinates = $"{lat2},{lon2}";
-            // Encode the coordinates for use in the Bing Maps API request.
+            
             string encodedOriginCoordinates = Uri.EscapeDataString(originCoordinates);
             string encodedDestinationCoordinates = Uri.EscapeDataString(destinationCoordinates);
 
-            // Construct the Bing Maps API request URL.
+            
             string requestUrl = string.Format("http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0={0}&wp.1={1}&key={2}", encodedOriginCoordinates, encodedDestinationCoordinates, BingMapsApiKey);
 
-            // Send the request to the Bing Maps API and get the response.
+            
             WebRequest request = WebRequest.Create(requestUrl);
             WebResponse response = request.GetResponse();
 
-            // Read the response stream and parse the JSON result.
+            
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string responseString = reader.ReadToEnd();
 
             dynamic result = JsonConvert.DeserializeObject(responseString);
             
-            // Extract the distance information from the result.
+            
             double distanceInMiles = result.resourceSets[0].resources[0].travelDistance;
             response.Close();
             reader.Close();
-            // Display the distance to the user.
-            MessageBox.Show(distanceInMiles.ToString());
+            
+            //вывод расстояния
+            //MessageBox.Show(distanceInMiles.ToString());
             return distanceInMiles;
         }
         private decimal? priceOrder = 0;
