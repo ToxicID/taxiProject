@@ -1,13 +1,24 @@
-﻿using Newtonsoft.Json;
+﻿
+using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using GMap.NET.WindowsForms.ToolTips;
+using GMap.NET.WindowsPresentation;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Validation;
 using System.Device.Location;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace taxiDesktopProg
@@ -20,6 +31,8 @@ namespace taxiDesktopProg
         public addOrEditOrders()
         {
             InitializeComponent();
+            this.Width = 820;
+            gmap.Visible = false;
             label16.Text = "Перевозка" + Environment.NewLine + "домашних животных";
             using (Context db = new Context(Form1.connectionString))
             {
@@ -42,7 +55,9 @@ namespace taxiDesktopProg
              
                 }
         }
+        
         //Конструктор для редактирования
+       
         public addOrEditOrders(long? id, int index)
         {
             idOrder = id;
@@ -50,7 +65,7 @@ namespace taxiDesktopProg
             label16.Text = "Перевозка" + Environment.NewLine + "домашних животных";
             using (Context db = new Context(Form1.connectionString))
             {
-                List<rate> cp = db.rates.Where(p => p.availability == true).ToList();
+                var cp = db.rates.Where(p => p.availability == true).ToList();
 
                 
                 boardingBox.ReadOnly = true;
@@ -84,8 +99,8 @@ namespace taxiDesktopProg
                 comboBox2.DataSource = cp;
                 comboBox2.ValueMember = "id_rate";
                 comboBox2.DisplayMember = "name";
-
-                comboBox2.SelectedIndex = (int)order.id_rate-1;
+                var idRate = cp.Where(p => p.name == order.rate.name).FirstOrDefault();
+                comboBox2.SelectedValue = idRate.id_rate;
                 textBox1.Text = order.client.mobile_phone;
                 comboBox1.Text = order.payment_method;
                 priceBox.Text = order.order_cost.ToString();
@@ -94,9 +109,23 @@ namespace taxiDesktopProg
                         checkBox1.Checked = true;
                         dateTimePicker1.Value = order.datetime_placing_the_order;
                         dateTimePicker2.Value = order.datetime_placing_the_order;
-                    
                 }
-              
+                array1 = new double[2];
+                Coords($"{textBoxCity1.Text},{textBoxStreet1.Text},{textBoxHouse1.Text}", out array1); //!!!!!
+                array2 = new double[2];
+                Coords($"{textBoxCity2.Text},{textBoxStreet2.Text},{textBoxHouse2.Text}", out array2); //!!!!!
+                gmap.Visible = true;
+                this.Width = 1350;
+                LoadMap();
+                // Добавление маркеров
+                AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Место отправления", "Место назначения");
+
+                // Построение маршрута
+                DrawRoute(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]));
+
+                // Обновление карты
+                gmap.ZoomAndCenterMarkers("markers");
+
 
             }
         }
@@ -196,21 +225,22 @@ namespace taxiDesktopProg
         //Вывод тарифа с ценами
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
-            boardingBox.Text = Math.Round(cp.cost_downtime).ToString();
-            costDowntimeBox.Text = Math.Round(cp.cost_downtime).ToString();
-            costPerKilometerBox.Text = Math.Round(cp.cost_per_kilometer).ToString();
-            if (cp.child_safety_seat != null)
-                childSafetySeatBox.Text = Math.Round((decimal)cp.child_safety_seat).ToString();
-            else
-                childSafetySeatBox.Text = "Недоступно";
-            if (cp.transportation_of_pet != null)
-                transportationOfPetBox.Text = Math.Round((decimal)cp.transportation_of_pet).ToString();
-            else
-                transportationOfPetBox.Text = "Недоступно";
+                rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
+                boardingBox.Text = Math.Round(cp.cost_downtime).ToString();
+                costDowntimeBox.Text = Math.Round(cp.cost_downtime).ToString();
+                costPerKilometerBox.Text = Math.Round(cp.cost_per_kilometer).ToString();
+                if (cp.child_safety_seat != null)
+                    childSafetySeatBox.Text = Math.Round((decimal)cp.child_safety_seat).ToString();
+                else
+                    childSafetySeatBox.Text = "Недоступно";
+                if (cp.transportation_of_pet != null)
+                    transportationOfPetBox.Text = Math.Round((decimal)cp.transportation_of_pet).ToString();
+                else
+                    transportationOfPetBox.Text = "Недоступно";
+            
         }
 
-       
+
         //Вычисление координат адреса
         private double[] Coords(string address, out double[] array)
         {
@@ -230,8 +260,8 @@ namespace taxiDesktopProg
                     var lon = data[0]["lon"].ToString();
                     lat = lat.Replace(".", ",");
                     lon = lon.Replace(".", ",");
-                    array[0] = Math.Round(double.Parse(lat), 6);
-                    array[1] = Math.Round(double.Parse(lon), 6);
+                    array[0] = double.Parse(lat);
+                    array[1] = double.Parse(lon);
 
                 }
                 else
@@ -239,7 +269,9 @@ namespace taxiDesktopProg
                     MessageBox.Show("Введены некорректные данные");
                 }
             }
+
             return array;
+            
         }
         //Расчёт дистанции с помощью Bing Maps API
        private string BingMapsApiKey = "vSu0ER5x3HHYD5rGxVaB~YuU-4x1i_kyBbcC_YW2ipA~AvEK6xCobjGDdWvUXvsi8MDhiuaduWxeSveNhLTBOVTP9B7lgi1vT_DYA4CGvIuD";
@@ -274,6 +306,8 @@ namespace taxiDesktopProg
             return distanceInMiles;
         }
         private decimal? priceOrder = 0;
+        double[] array1;
+        double[] array2;
         private void calculatingPrice()
         {
             if (string.IsNullOrWhiteSpace(textBoxCity1.Text) ||
@@ -288,9 +322,9 @@ namespace taxiDesktopProg
             }
             try
             {
-                double[] array1 = new double[2];
+                array1 = new double[2];
                 Coords($"{textBoxCity1.Text},{textBoxStreet1.Text},{textBoxHouse1.Text}", out array1); //!!!!!
-                double[] array2 = new double[2];
+                 array2 = new double[2];
                 Coords($"{textBoxCity2.Text},{textBoxStreet2.Text},{textBoxHouse2.Text}", out array2); //!!!!!
                 var dist1 = new GeoCoordinate(array1[0], array1[1]);
                 var dist2 = new GeoCoordinate(array2[0], array2[1]);
@@ -308,6 +342,18 @@ namespace taxiDesktopProg
                 priceBox.Text = Math.Round((double)priceOrder, 2).ToString();
                 PlaceOrder.Enabled = true;
                 buttonEdit.Enabled = true;
+
+                gmap.Visible = true;
+                this.Width = 1350;
+                LoadMap();
+                // Добавление маркеров
+                AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Место отправления", "Место назначения");
+
+                // Построение маршрута
+                DrawRoute(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]));
+
+                // Обновление карты
+                gmap.ZoomAndCenterMarkers("markers");
             }
             catch
             {
@@ -319,6 +365,7 @@ namespace taxiDesktopProg
         private void estimatedСost_Click(object sender, EventArgs e)
         {
             calculatingPrice();
+            
         }
         //Проверка клиента, если нет такого в таблице, то добавляется, если есть, просто передаётся id
         private long checkClient()
@@ -569,6 +616,49 @@ namespace taxiDesktopProg
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             editOrder(idOrder);
+        }
+        private GMapOverlay markersOverlay;
+        private GMapOverlay routesOverlay;
+        private void LoadMap()
+        {
+            BingMapProvider.Instance.ClientKey = BingMapsApiKey;
+            //gmap.MapProvider = BingMapProvider.Instance;
+            gmap.MapProvider = GMapProviders.GoogleMap;
+            GMapProvider.Language = LanguageType.Russian;
+            gmap.PolygonsEnabled = true;
+            gmap.RoutesEnabled = true;
+            GMaps.Instance.Mode = AccessMode.ServerAndCache;
+            gmap.Position = new PointLatLng(array1[0], array1[1]); // Начальные координаты 
+            gmap.MinZoom = 1;
+            gmap.MaxZoom = 18;
+            gmap.Zoom = 10;
+            gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
+            gmap.ShowCenter = false;
+            // Создание оверлеев для маркеров и маршрута
+            markersOverlay = new GMapOverlay("markers");
+            routesOverlay = new GMapOverlay("routes");
+            gmap.Overlays.Add(markersOverlay);
+            gmap.Overlays.Add(routesOverlay);
+        }
+        private void AddMarker(PointLatLng start, PointLatLng end, string label1,string label2)
+        {
+            GMarkerGoogle markerStart = new GMarkerGoogle(start, GMarkerGoogleType.green);
+            markerStart.ToolTip = new GMapRoundedToolTip(markerStart);
+            markerStart.ToolTipText = label1;
+            markersOverlay.Markers.Add(markerStart);
+
+            GMarkerGoogle markerEnd = new GMarkerGoogle(end, GMarkerGoogleType.red);
+            markerEnd.ToolTip = new GMapRoundedToolTip(markerEnd);
+            markerEnd.ToolTipText = label2;
+            markersOverlay.Markers.Add(markerEnd);
+        }
+        
+        private void DrawRoute(PointLatLng start, PointLatLng end)
+        {
+            MapRoute route = GMap.NET.MapProviders.GMapProviders.BingMap.GetRoute(start, end, false, false, 15);
+            GMap.NET.WindowsForms.GMapRoute routeOverlay = new GMap.NET.WindowsForms.GMapRoute(route.Points, "Route");
+            routeOverlay.Stroke = new Pen(System.Drawing.Color.Red, 3);
+            routesOverlay.Routes.Add(routeOverlay);
         }
     }
 }
