@@ -200,9 +200,9 @@ namespace taxiDesktopProg
                     driver.id_car = car.id_car;
                     db.SaveChanges();
                     if(string.IsNullOrWhiteSpace(driver.patronymic) || driver.patronymic == "Отсутствует")
-                        MessageBox.Show($"Автомобиль был назначен водителю:{driver.surname} {driver.name.Substring(0, 1)}.");
+                        MessageBox.Show($"Автомобиль был назначен водителю:{driver.surname} {driver.name.Substring(0, 1)}", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else
-                    MessageBox.Show($"Автомобиль был назначен водителю:{driver.surname} {driver.name.Substring(0,1)}. {driver.patronymic.Substring(0, 1)}.");
+                    MessageBox.Show($"Автомобиль был назначен водителю:{driver.surname} {driver.name.Substring(0,1)}. {driver.patronymic.Substring(0, 1)}.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

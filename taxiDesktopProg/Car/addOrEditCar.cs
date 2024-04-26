@@ -248,7 +248,7 @@ namespace taxiDesktopProg
                         startView();
                         this.Height = 695;
                         enableNaznachDriver();
-                        MessageBox.Show("Добавьте водителя");
+                        MessageBox.Show("Добавьте водителя", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         id_carNewCar = newCar.id_car;
                         AddCarBut.Enabled = false;
                         ButIzmen.Enabled = false;
@@ -454,7 +454,7 @@ namespace taxiDesktopProg
                     var driver = db.drivers.Where(x => x.id_driver == id_driverForAuto).FirstOrDefault();
                     driver.id_car = id_carNewCar;
                     db.SaveChanges();
-                    MessageBox.Show("Автомобиль был назначен");
+                    MessageBox.Show("Автомобиль был назначен", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
             }
