@@ -55,7 +55,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.preliminaryOrders = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.completedOrders = new System.Windows.Forms.TabPage();
@@ -69,6 +68,7 @@
             this.falseOrder = new System.Windows.Forms.PictureBox();
             this.editOrder = new System.Windows.Forms.PictureBox();
             this.addOrder = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.newOrder.SuspendLayout();
@@ -76,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.performedOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.preliminaryOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.completedOrders.SuspendLayout();
@@ -90,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -135,6 +135,7 @@
             this.назначитьАвтомобильToolStripMenuItem.Name = "назначитьАвтомобильToolStripMenuItem";
             this.назначитьАвтомобильToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.назначитьАвтомобильToolStripMenuItem.Text = "Назначить автомобиль";
+            this.назначитьАвтомобильToolStripMenuItem.Click += new System.EventHandler(this.назначитьАвтомобильToolStripMenuItem_Click);
             // 
             // клиентыToolStripMenuItem
             // 
@@ -356,18 +357,6 @@
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::taxiDesktopProg.Properties.Resources.orderComplete;
-            this.pictureBox1.Location = new System.Drawing.Point(1224, 46);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 51);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // preliminaryOrders
             // 
             this.preliminaryOrders.Controls.Add(this.dataGridView3);
@@ -533,6 +522,18 @@
             this.addOrder.TabStop = false;
             this.addOrder.Click += new System.EventHandler(this.addOrder_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::taxiDesktopProg.Properties.Resources.orderComplete;
+            this.pictureBox1.Location = new System.Drawing.Point(1224, 46);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 51);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Form_for_Dispatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -561,7 +562,6 @@
             this.performedOrders.ResumeLayout(false);
             this.performedOrders.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.preliminaryOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.completedOrders.ResumeLayout(false);
@@ -575,6 +575,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.falseOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addOrder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

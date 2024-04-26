@@ -58,6 +58,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -425,11 +432,104 @@
             this.textBox5.Size = new System.Drawing.Size(234, 30);
             this.textBox5.TabIndex = 14;
             // 
+            // comboBox4
+            // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "Исправлено",
+            "Не исправлено"});
+            this.comboBox4.Location = new System.Drawing.Point(266, 627);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(234, 30);
+            this.comboBox4.TabIndex = 53;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.AutoSize = true;
+            this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label12.Location = new System.Drawing.Point(12, 635);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(90, 22);
+            this.label12.TabIndex = 54;
+            this.label12.Text = "Водитель";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label13.AutoSize = true;
+            this.label13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label13.Location = new System.Drawing.Point(12, 679);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(96, 22);
+            this.label13.TabIndex = 55;
+            this.label13.Text = "Позывной";
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.maskedTextBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.maskedTextBox1.Location = new System.Drawing.Point(266, 744);
+            this.maskedTextBox1.Mask = "00 00 000000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(234, 30);
+            this.maskedTextBox1.TabIndex = 71;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label14.AutoSize = true;
+            this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label14.Location = new System.Drawing.Point(12, 719);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(322, 22);
+            this.label14.TabIndex = 72;
+            this.label14.Text = "Номер водительского удостоверения";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.textBox6.Location = new System.Drawing.Point(266, 686);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(234, 30);
+            this.textBox6.TabIndex = 73;
+            // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(533, 732);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(149, 53);
+            this.button1.TabIndex = 74;
+            this.button1.Text = "Назначить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // addOrEditCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 613);
+            this.ClientSize = new System.Drawing.Size(696, 612);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.comboBox3);
@@ -501,5 +601,12 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        public System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label label14;
+        public System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -228,5 +228,20 @@ namespace taxiDesktopProg
             this.Height = 470;
             hidesubMenu();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            carForDriver fm = new carForDriver();
+            fm.FormClosed += new FormClosedEventHandler(carForDriver_FormClosed);
+            openChildForm(fm);
+            this.Width = 1255; 
+            this.Height = 546;
+            hidesubMenu();
+        }
+        void carForDriver_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Width = startWidth;
+            this.Height = startHeight;
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,7 +27,14 @@ namespace taxiDesktopProg
             comboBox2.SelectedIndex = 0;
             comboBox3.SelectedIndex = 0;
             textBox5.Visible = false;
-
+            label12.Visible = false;
+            label13.Visible = false;
+            label14.Visible = false;
+            textBox6.Visible = false;
+            comboBox4.Visible = false;
+            maskedTextBox1.Visible = false;
+            button1.Visible = false;
+           
             using (Context db = new Context(Form1.connectionString))
             {
                 List<car_category> cc = db.car_category.ToList();
@@ -34,11 +42,13 @@ namespace taxiDesktopProg
                 comboBox1.ValueMember = "id_car_category";
                 comboBox1.DisplayMember = "name";
             }
+     
         }
         public addOrEditCar()
         {
             InitializeComponent();
             bazSetting();
+            label14.Text = "Номер \nводительского\nудостоверения";
             ButIzmen.Visible = false;
            AddCarBut.Visible = true;
         }
@@ -132,7 +142,12 @@ namespace taxiDesktopProg
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            indexId = (long)comboBox1.SelectedValue;
+            //indexId = Convert.ToInt64(comboBox1.SelectedValue);
+            if (comboBox1.SelectedItem != null)
+            {
+                car_category selectedCategory = (car_category)comboBox1.SelectedItem;
+                 indexId = selectedCategory.id_car_category;
+            }
             printCarCat();
         }
 
@@ -228,9 +243,21 @@ namespace taxiDesktopProg
                     };
                     db.cars.Add(newCar);
                     db.SaveChanges();
-                    MessageBox.Show("Автомобиль был добавлен", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-
+                    if (newCar.rented_car == false)
+                    {
+                        startView();
+                        this.Height = 695;
+                        enableNaznachDriver();
+                        MessageBox.Show("Добавьте водителя");
+                        id_carNewCar = newCar.id_car;
+                        AddCarBut.Enabled = false;
+                        ButIzmen.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Автомобиль был добавлен", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
             }
                 catch 
                 {
@@ -239,6 +266,71 @@ namespace taxiDesktopProg
                 return;
             }
         }
+        }
+        private void enableNaznachDriver()
+        {
+            label12.Visible = true;
+            label13.Visible = true;
+            label14.Visible = true;
+            textBox6.Visible = true;
+            comboBox4.Visible = true;
+            maskedTextBox1.Visible = true;
+            button1.Visible = true;
+        }
+        long id_carNewCar;
+        public class driverses
+        {
+            public string FullName { get; set; }
+            public long id_driverses { get; set; }
+            public List<driverses> _driverses = new List<driverses>();
+            public void listDriver(List<driver> dr)
+            {
+                foreach (var d in dr)
+                {
+
+                    if (string.IsNullOrWhiteSpace(d.patronymic) || d.patronymic == "Отсутствует")
+                    {
+                        _driverses.Add(new driverses(id_driverses = d.id_driver,
+                        FullName = d.surname + " " + d.name.Substring(0, 1) + ". "));
+                    }
+                    else
+                    {
+                        _driverses.Add(new driverses(id_driverses = d.id_driver,
+                        FullName = d.surname + " " + d.name.Substring(0, 1) + ". " + d.patronymic.Substring(0, 1) + "."));
+                    }
+
+                }
+            }
+            public driverses(long id, string _name)
+            {
+                id_driverses = id;
+                FullName = _name;
+
+            }
+            public driverses()
+            {
+            }
+        }
+        private void startView()
+        {
+           
+
+            using (Context db = new Context(Form1.connectionString))
+            {
+
+                var dr = db.drivers;
+                driverses d = new driverses();
+                d.listDriver(dr.ToList());
+
+                var bindingSource1 = new BindingSource();
+                bindingSource1.DataSource = d._driverses;
+
+                comboBox4.DataSource = bindingSource1.DataSource;
+                comboBox4.DisplayMember = "FullName";
+                comboBox4.ValueMember = "id_driverses";
+                maskedTextBox1.ReadOnly = true;
+                textBox6.ReadOnly = true;
+            }
         }
         private long retIdCC()
         {
@@ -330,6 +422,40 @@ namespace taxiDesktopProg
 
                     MessageBox.Show("Произошла ошибка, проверьте введённые данные", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+                }
+            }
+        }
+        long id_driverForAuto;
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (Context db = new Context(Form1.connectionString)) {
+                long idDriver;
+                if (comboBox4.SelectedItem != null)
+                {
+                    driverses selectedCategory = (driverses)comboBox4.SelectedItem;
+                    idDriver = selectedCategory.id_driverses;
+                
+                var dr = db.drivers.Where(x => x.id_driver == idDriver).FirstOrDefault();
+            
+            textBox6.Text = dr.call_sign;
+            maskedTextBox1.Text = dr.drivers_license_number;
+            id_driverForAuto = dr.id_driver;
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Назначить этого водителя на выбранный автомобиль?","Infromation",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+            if(result == DialogResult.Yes)
+            {
+                using (Context db = new Context(Form1.connectionString))
+                {
+                    var driver = db.drivers.Where(x => x.id_driver == id_driverForAuto).FirstOrDefault();
+                    driver.id_car = id_carNewCar;
+                    db.SaveChanges();
+                    MessageBox.Show("Автомобиль был назначен");
+                    this.Close();
                 }
             }
         }

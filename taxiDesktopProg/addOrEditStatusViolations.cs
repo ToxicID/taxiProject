@@ -25,9 +25,16 @@ namespace taxiDesktopProg
             {
                 foreach (var d in dr)
                 {
-                    _driverses.Add(new driverses(id_driverses = d.id_driver,
+                    if (string.IsNullOrWhiteSpace(d.patronymic) || d.patronymic == "Отсутствует")
+                    {
+                        _driverses.Add(new driverses(id_driverses = d.id_driver,
+                        FullName = d.surname + " " + d.name.Substring(0, 1) + ". "));
+                    }
+                    else
+                    {
+                        _driverses.Add(new driverses(id_driverses = d.id_driver,
                         FullName = d.surname + " " + d.name.Substring(0, 1) + ". " + d.patronymic.Substring(0, 1) + "."));
-
+                    }
                 }
             }
             public driverses(long id, string _name)

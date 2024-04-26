@@ -294,6 +294,12 @@
     <Compile Include="addOrEditStatusViolations.Designer.cs">
       <DependentUpon>addOrEditStatusViolations.cs</DependentUpon>
     </Compile>
+    <Compile Include="carForDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="carForDriver.Designer.cs">
+      <DependentUpon>carForDriver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Class\address.cs" />
     <Compile Include="Class\car.cs" />
     <Compile Include="Car\addOrEditCar.cs">
@@ -402,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="addOrEditStatusViolations.resx">
       <DependentUpon>addOrEditStatusViolations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="carForDriver.resx">
+      <DependentUpon>carForDriver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Car\addOrEditCar.resx">
       <DependentUpon>addOrEditCar.cs</DependentUpon>
