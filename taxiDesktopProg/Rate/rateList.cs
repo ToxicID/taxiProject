@@ -19,6 +19,7 @@ namespace taxiDesktopProg
 
             this.index = index;
             InitializeComponent();
+
             button5.Visible = false;
             if (index == 1 || index == 2)
             {
@@ -140,8 +141,7 @@ namespace taxiDesktopProg
                 button1.Text = "X";
             }
         }
-
-        private void Up_Click(object sender, EventArgs e)
+        private void leftRate()
         {
             try
             {
@@ -157,16 +157,16 @@ namespace taxiDesktopProg
                 return;
             }
         }
-
-        private void Down_Click(object sender, EventArgs e)
+        private void Up_Click(object sender, EventArgs e)
+        {
+            leftRate();
+        }
+        private void rightRate()
         {
             try
             {
-                using (Context db = new Context(Form1.connectionString))
-                {
-                    comboBox1.SelectedIndex += 1;
-                    print();
-                }
+                comboBox1.SelectedIndex += 1;
+                print();
             }
             catch
             {
@@ -174,6 +174,10 @@ namespace taxiDesktopProg
                 MessageBox.Show("Это самый последний тариф, листайте в другую сторон", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+        }
+        private void Down_Click(object sender, EventArgs e)
+        {
+            rightRate();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -343,6 +347,7 @@ namespace taxiDesktopProg
                     Down.Enabled = false;
                     button1.Enabled = true;
                     button2.Enabled = true;
+                    statusEditRate = false;
                 }
                 else if (Form1.mode == 1)
                 {
@@ -350,6 +355,7 @@ namespace taxiDesktopProg
                     button4.Text = "Сохранить";
                     Up.Enabled = false;
                     Down.Enabled = false;
+                    statusEditRate = false;
                 }
             }
             else
@@ -378,6 +384,7 @@ namespace taxiDesktopProg
                 button2.Enabled = false;
                 predvarPrice = 0.0m;
                 predvarPrice1 = 0.0m;
+                statusEditRate = true;
             }
         }
         private bool enOrFalseStatusRate;
@@ -404,5 +411,18 @@ namespace taxiDesktopProg
         {
             this.Close();
         }
+        bool statusEditRate=true;
+        private void rateList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (statusEditRate)
+            {
+                if(e.KeyCode == Keys.Left)
+                    leftRate();
+                else if(e.KeyCode == Keys.Right)
+                    rightRate();
+            }
+        }
+
+      
     }
 }

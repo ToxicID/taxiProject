@@ -348,7 +348,7 @@
             this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label9.Location = new System.Drawing.Point(12, 519);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(139, 26);
+            this.label9.Size = new System.Drawing.Size(140, 26);
             this.label9.TabIndex = 24;
             this.label9.Text = "Доступность";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -376,8 +376,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label9);
+            this.KeyPreview = true;
             this.Name = "rateList";
             this.Text = "rateList";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rateList_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
