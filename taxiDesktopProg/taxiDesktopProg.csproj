@@ -382,6 +382,12 @@
     <Compile Include="Rate\rateList.Designer.cs">
       <DependentUpon>rateList.cs</DependentUpon>
     </Compile>
+    <Compile Include="returnInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="returnInformation.Designer.cs">
+      <DependentUpon>returnInformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimpleJson.cs" />
     <Compile Include="startOrEndWorkDriverForm.cs">
       <SubType>Form</SubType>
@@ -458,6 +464,9 @@
     </Compile>
     <EmbeddedResource Include="Rate\rateList.resx">
       <DependentUpon>rateList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="returnInformation.resx">
+      <DependentUpon>returnInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="startOrEndWorkDriverForm.resx">
       <DependentUpon>startOrEndWorkDriverForm.cs</DependentUpon>

@@ -818,5 +818,11 @@ namespace taxiDesktopProg
             carForDriver fm = new carForDriver();
             fm.Show();
         }
+
+        private void отчётToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            returnInformation fm = new returnInformation();
+            fm.Show();
+        }
     }
 }

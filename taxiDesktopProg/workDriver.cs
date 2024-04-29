@@ -179,7 +179,9 @@ namespace taxiDesktopProg
 
 
                 Excel.Application excelApp = new Excel.Application();
+                //Скрытие окна Excel и окна для подтверждения о перезаписи
                 excelApp.Visible = false;
+                excelApp.DisplayAlerts = false;
                 //Книга
                 Excel.Workbook excelWorkbook = excelApp.Workbooks.Add();
                 //Страница
@@ -210,9 +212,6 @@ namespace taxiDesktopProg
                 excelWorkbook.Close();
                 excelApp.Quit();
             }
-            
-            
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -250,7 +249,7 @@ namespace taxiDesktopProg
                 button2.Visible = false;
                 dateTimePicker1.Visible = false;
                 dateTimePicker2.Visible = false;
-                MessageBox.Show($"Файл был создан по пути {saveFileDialog.FileName}");
+                MessageBox.Show($"Файл был создан по пути: {saveFileDialog.FileName}");
             }
             
         }
