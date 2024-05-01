@@ -16,26 +16,29 @@ namespace taxiDesktopProg
         Form1 po;
         private int startWidth;
         private int startHeight;
-     
-        //private void activeSession()
-        //{
-        //    SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT DB_NAME(dbid) as DBName,COUNT(dbid) as NumberOfConnections,loginame as LoginName FROM sys.sysprocesses WHERE dbid =6 GROUP BY dbid, loginame;", Form1.connectionString);
+        //Доработать !!!!!
+        private void activeSession()
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select loginame, status from sys.sysprocesses where db_name(dbid) = 'Taxi' and program_name = 'EntityFramework'", Form1.connectionString);
 
-        //    DataSet ds = new DataSet();
-        //    dataAdapter.Fill(ds);
-        //    dataGridView1.DataSource = ds.Tables[0];
-        //    dataGridView1.Columns[2].HeaderText= "Логин пользователя";
-        //    foreach (DataGridViewColumn data in dataGridView1.Columns)
-        //        data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        //    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-        //    dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-        //    dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-        //    dataGridView1.EnableHeadersVisualStyles = false;
-        //}
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[0].HeaderText = "Логин пользователя";
+            dataGridView1.Columns[1].HeaderText = "Статус";
+            foreach (DataGridViewColumn data in dataGridView1.Columns)
+                data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+            dataGridView1.EnableHeadersVisualStyles = false;
+        }
         public Form_for_Admin(Form1 po)
         {
             InitializeComponent();
             this.po = po;
+            activeSession();
+            timer1.Interval = 10000;
             customizeDesing();
             startHeight = this.Height;
             startWidth = this.Width;
@@ -78,6 +81,7 @@ namespace taxiDesktopProg
             panelGlavWin.Controls.Add(childForm);
             panelGlavWin.Tag = childForm;
             childForm.BringToFront();
+            dataGridView1.Visible = false;
             childForm.Show();
         }
 
@@ -126,6 +130,7 @@ namespace taxiDesktopProg
         {
             this.Width = startWidth;
             this.Height = startHeight;
+            dataGridView1.Visible = true;
         }
         // открытие формы с клиентами
         private void button4_Click(object sender, EventArgs e)
@@ -141,6 +146,7 @@ namespace taxiDesktopProg
         {
             this.Width = startWidth;
             this.Height = startHeight;
+            dataGridView1.Visible = true;
         }
         // открытие формы с просмотром тарифов
         private void button9_Click(object sender, EventArgs e)
@@ -156,6 +162,7 @@ namespace taxiDesktopProg
         {
             this.Width = startWidth;
             this.Height = startHeight;
+            dataGridView1.Visible = true;
         }
         // открытие формы с добавлением тарифа
         private void button5_Click(object sender, EventArgs e)
@@ -184,11 +191,13 @@ namespace taxiDesktopProg
         {
             this.Width = startWidth;
             this.Height = startHeight;
+            dataGridView1.Visible = true;
         }
         void listDriver_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Width = startWidth;
             this.Height = startHeight;
+            dataGridView1.Visible = true;
         }
 
         private void driver_List_Click(object sender, EventArgs e)
@@ -204,6 +213,7 @@ namespace taxiDesktopProg
         {
             this.Width = startWidth;
             this.Height = startHeight;
+            dataGridView1.Visible = true;
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -218,6 +228,7 @@ namespace taxiDesktopProg
         {
             this.Width = startWidth;
             this.Height = startHeight;
+            dataGridView1.Visible = true;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -242,6 +253,47 @@ namespace taxiDesktopProg
         {
             this.Width = startWidth;
             this.Height = startHeight;
+            dataGridView1.Visible = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            activeSession();
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if(e.ColumnIndex == 0)
+            {
+                if(e.Value != null) { 
+                string s = e.Value.ToString();
+                string o = s.TrimStart(' ');
+                o = o.TrimEnd(' ');
+                e.Value = o;
+                    }
+            }
+            else if(e.ColumnIndex == 1)
+            {
+                if (e.Value != null)
+                {
+                    string s = e.Value.ToString();
+                    string o = s.TrimStart(' ');
+                    o = o.TrimEnd(' ');
+                    e.Value = o;
+                    switch (e.Value.ToString())
+                    {
+                        case "runnable":
+                            e.Value = "Активен";
+                            break;
+                        case "sleeping":
+                            e.Value = "В режиме ожидания";
+                            break;
+                        case "background":
+                            e.Value = "Запущено в фоновом режиме";
+                            break;
+                    }
+                }
+            }
         }
     }
 }

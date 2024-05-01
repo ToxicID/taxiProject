@@ -375,7 +375,7 @@ namespace taxiDesktopProg
             {
                 var client = db.clients;
                 
-                if (client.Where(p => p.mobile_phone == textBox1.Text).Count() != 1)
+                if (client.Where(p => p.mobile_phone == textBox1.Text).Count()!= 1)
                 {
                     client cl = new client
                     {
@@ -417,7 +417,7 @@ namespace taxiDesktopProg
                    
                     address ad = new address
                     {
-                        enrance = textBox4.Text,
+                        enrance = newEnranced,
                         city = cityAd,
                         street = streetAd,
                         house = houseAd

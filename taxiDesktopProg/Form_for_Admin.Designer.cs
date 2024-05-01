@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button3 = new System.Windows.Forms.Button();
             this.buttonCar = new System.Windows.Forms.Button();
             this.panelDriver = new System.Windows.Forms.Panel();
@@ -49,16 +50,19 @@
             this.button9 = new System.Windows.Forms.Button();
             this.buttonRate = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelDriver.SuspendLayout();
             this.panelGlavWin.SuspendLayout();
             this.panelProfiles.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelRate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button3.BackColor = System.Drawing.SystemColors.Highlight;
             this.button3.Dock = System.Windows.Forms.DockStyle.Top;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -93,7 +97,7 @@
             // 
             // panelDriver
             // 
-            this.panelDriver.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panelDriver.BackColor = System.Drawing.SystemColors.Highlight;
             this.panelDriver.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDriver.Controls.Add(this.button6);
             this.panelDriver.Controls.Add(this.button3);
@@ -106,7 +110,7 @@
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button6.BackColor = System.Drawing.SystemColors.Highlight;
             this.button6.Dock = System.Windows.Forms.DockStyle.Top;
             this.button6.FlatAppearance.BorderSize = 0;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -125,6 +129,7 @@
             // panelGlavWin
             // 
             this.panelGlavWin.BackColor = System.Drawing.Color.White;
+            this.panelGlavWin.Controls.Add(this.dataGridView1);
             this.panelGlavWin.Controls.Add(this.label1);
             this.panelGlavWin.Controls.Add(this.label2);
             this.panelGlavWin.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -157,7 +162,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button1.BackColor = System.Drawing.SystemColors.Highlight;
             this.button1.Dock = System.Windows.Forms.DockStyle.Top;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -175,7 +180,7 @@
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button4.BackColor = System.Drawing.SystemColors.Highlight;
             this.button4.Dock = System.Windows.Forms.DockStyle.Top;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -193,7 +198,7 @@
             // 
             // panelProfiles
             // 
-            this.panelProfiles.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panelProfiles.BackColor = System.Drawing.SystemColors.Highlight;
             this.panelProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelProfiles.Controls.Add(this.driver_List);
             this.panelProfiles.Controls.Add(this.button1);
@@ -207,7 +212,7 @@
             // 
             // driver_List
             // 
-            this.driver_List.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.driver_List.BackColor = System.Drawing.SystemColors.Highlight;
             this.driver_List.Dock = System.Windows.Forms.DockStyle.Top;
             this.driver_List.FlatAppearance.BorderSize = 0;
             this.driver_List.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -296,7 +301,7 @@
             // 
             // panelRate
             // 
-            this.panelRate.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panelRate.BackColor = System.Drawing.SystemColors.Highlight;
             this.panelRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelRate.Controls.Add(this.button13);
             this.panelRate.Controls.Add(this.button5);
@@ -310,7 +315,7 @@
             // 
             // button13
             // 
-            this.button13.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button13.BackColor = System.Drawing.SystemColors.Highlight;
             this.button13.Dock = System.Windows.Forms.DockStyle.Top;
             this.button13.FlatAppearance.BorderSize = 0;
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -328,7 +333,7 @@
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button5.BackColor = System.Drawing.SystemColors.Highlight;
             this.button5.Dock = System.Windows.Forms.DockStyle.Top;
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -346,7 +351,7 @@
             // 
             // button9
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button9.BackColor = System.Drawing.SystemColors.Highlight;
             this.button9.Dock = System.Windows.Forms.DockStyle.Top;
             this.button9.FlatAppearance.BorderSize = 0;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -390,6 +395,24 @@
             this.panel2.Size = new System.Drawing.Size(251, 106);
             this.panel2.TabIndex = 3;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 89);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(638, 608);
+            this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form_for_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -406,6 +429,7 @@
             this.panelProfiles.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
             this.panelRate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -432,5 +456,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button driver_List;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
