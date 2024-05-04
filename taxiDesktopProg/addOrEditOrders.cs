@@ -364,6 +364,7 @@ namespace taxiDesktopProg
         //Рассчёт цены 
         private void estimatedСost_Click(object sender, EventArgs e)
         {
+            
             calculatingPrice();
             
         }
@@ -621,6 +622,17 @@ namespace taxiDesktopProg
         private GMapOverlay routesOverlay;
         private void LoadMap()
         {
+            if (gmap.Overlays.Count > 0)
+            {
+                for (int i = 0; i < gmap.Overlays.Count; i++)
+                {
+                    gmap.Overlays.RemoveAt(0);
+                    
+                    gmap.Refresh();
+                }
+                routesOverlay.Clear();
+            }
+           
             BingMapProvider.Instance.ClientKey = BingMapsApiKey;
             //gmap.MapProvider = BingMapProvider.Instance;
             gmap.MapProvider = GMapProviders.GoogleMap;

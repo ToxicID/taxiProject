@@ -125,6 +125,7 @@ namespace taxiDesktopProg
                 dispatcher d = new dispatcher()
                 {
                     id_dispatcher = idNewDisp,
+                    activity = false,
                     surname = textBox1.Text,
                     name = textBox2.Text,
                     patronymic = textBox3.Text,

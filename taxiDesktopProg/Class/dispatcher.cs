@@ -16,8 +16,9 @@ namespace taxiDesktopProg
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long id_dispatcher { get; set; }
+
+        public bool activity { get; set; }
 
         [Required]
         [StringLength(150)]

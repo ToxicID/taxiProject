@@ -26,11 +26,18 @@ namespace taxiDesktopProg
         private void fonts()
         {
             dataGridView1.Columns[0].HeaderText = "Логин";
-            dataGridView1.Columns[1].HeaderText = "Фамилия";
-            dataGridView1.Columns[2].HeaderText = "Имя";
-            dataGridView1.Columns[3].HeaderText = "Отчество";
-            dataGridView1.Columns[4].HeaderText = "Номер телефона";
-            dataGridView1.Columns[5].Visible = false;
+            dataGridView1.Columns[1].Visible = false;
+            dataGridView1.Columns[2].HeaderText = "Фамилия";
+            dataGridView1.Columns[3].HeaderText = "Имя";
+            dataGridView1.Columns[4].HeaderText = "Отчество";
+            dataGridView1.Columns[5].HeaderText = "Номер телефона";
+            dataGridView1.Columns[6].Visible = false;
+            foreach (DataGridViewColumn data in dataGridView1.Columns)
+                data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+            dataGridView1.EnableHeadersVisualStyles = false;
         }
         private void search()
         {

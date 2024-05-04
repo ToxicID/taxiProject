@@ -235,7 +235,13 @@ namespace taxiDesktopProg
 
         private void Form_for_Dispatcher_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Restart();
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var disp = db.dispatchers.Find(id);
+                disp.activity = false;
+                db.SaveChanges();
+            }
+                Application.Restart();
             
         }
         //Таймер
@@ -333,7 +339,7 @@ namespace taxiDesktopProg
                 label1.Text = "Назначить водителя";
                 dataGridView6.Visible = true;
                 using (Context db = new Context(Form1.connectionString)) {
-                    var list = db.drivers.Where(p => p.status == "Свободен" && p.driver_readiness == "Готов").ToList();
+                    var list = db.drivers.Where(p => p.status == "Свободен" && p.driver_readiness == "Готов" && p.id_car != null && p.car.technical_condition_car == "Исправлено").ToList();
                     dataGridView6.DataSource = list;
                     dataGridView6.Columns[0].Visible = false;
                     dataGridView6.Columns[1].Visible = false;
@@ -771,7 +777,7 @@ namespace taxiDesktopProg
                                id_rate = ord.rate.name,
                                status = ord.status
                            };
-
+                
                 dataGridView7.DataSource = list.Where(p => p.status == "Отменён").Distinct().ToList();
                 dataGridView7.Columns[0].Visible = false;
                 dataGridView7.Columns[1].HeaderText = "Причина";

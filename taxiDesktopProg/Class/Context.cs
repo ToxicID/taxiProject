@@ -7,8 +7,8 @@ namespace taxiDesktopProg
 {
     public partial class Context : DbContext
     {
-        public Context(string connectiongString)
-            : base(connectiongString)
+        public Context(string connectionString)
+            : base(connectionString)
         {
         }
 
@@ -19,6 +19,7 @@ namespace taxiDesktopProg
         public virtual DbSet<dispatcher> dispatchers { get; set; }
         public virtual DbSet<driver> drivers { get; set; }
         public virtual DbSet<order> orders { get; set; }
+        public virtual DbSet<order_driver_car> order_driver_car { get; set; }
         public virtual DbSet<rate> rates { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<violation> violations { get; set; }
@@ -161,6 +162,61 @@ namespace taxiDesktopProg
 
             modelBuilder.Entity<order>()
                 .Property(e => e.payment_method)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.call_sign)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.surname)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.patronymic)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.mobile_phone)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.colour)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.car_brand)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.car_model)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.state_number)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.region_code)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.place_of_departure)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.destination)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<order_driver_car>()
+                .Property(e => e.client_mobile_phone)
+                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<rate>()

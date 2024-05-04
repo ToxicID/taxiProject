@@ -25,15 +25,15 @@ namespace taxiDesktopProg
                           {
                               id_car = c.id_car,
                               rented_car = c.rented_car.ToString(),
-                              color = c.colour,
                               car_brand = c.car_brand,
                               model_car = c.car_model,
+                              color = c.colour,
                               state_number = c.state_number,
                               region_code = c.region_code,
                               technical_condition_car = c.technical_condition_car,
                               car_categoor = car_cat.name + "_" + car_cat.number_of_passengers
                           };
-
+        
                 dataGridView1.DataSource = car.ToList();
                 fonts();
 
@@ -75,13 +75,13 @@ namespace taxiDesktopProg
                           {
                               id_car = c.id_car,
                               rented_car = c.rented_car.ToString(),
-                              color = c.colour,
                               car_brand = c.car_brand,
                               model_car = c.car_model,
+                              color = c.colour,
                               state_number = c.state_number,
                               region_code = c.region_code,
                               technical_condition_car = c.technical_condition_car,
-                              car_categoor = car_cat.name
+                              car_categoor = car_cat.name + "_" + car_cat.number_of_passengers
                           };
                 var carNew = car.Where(x => x.state_number.Contains(textBox2.Text)).ToList();
                 dataGridView1.DataSource = carNew;
@@ -90,14 +90,14 @@ namespace taxiDesktopProg
         private void fonts()
         {
             dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Columns[1].HeaderText = "Принадлежность";
-            dataGridView1.Columns[2].HeaderText = "Цвет";
-            dataGridView1.Columns[3].HeaderText = "Бренд";
-            dataGridView1.Columns[4].HeaderText = "Модель";
-            dataGridView1.Columns[5].HeaderText = "Гос. номер";
-            dataGridView1.Columns[6].HeaderText = "Рег. код";
-            dataGridView1.Columns[7].HeaderText = "Тех. состояние";
-            dataGridView1.Columns[8].HeaderText = "Категория автомобиля_Кол-во мест";
+            dataGridView1.Columns[0].HeaderText = "Принадлежность";
+            dataGridView1.Columns[1].HeaderText = "Бренд";
+            dataGridView1.Columns[2].HeaderText = "Модель";
+            dataGridView1.Columns[3].HeaderText = "Цвет";
+            dataGridView1.Columns[4].HeaderText = "Гос. номер";
+            dataGridView1.Columns[5].HeaderText = "Рег. код";
+            dataGridView1.Columns[6].HeaderText = "Тех. состояние";
+            dataGridView1.Columns[7].HeaderText = "Категория автомобиля_Кол-во мест";
 
             foreach (DataGridViewColumn data in dataGridView1.Columns)
                 data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;

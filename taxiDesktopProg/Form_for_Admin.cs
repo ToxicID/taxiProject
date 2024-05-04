@@ -19,26 +19,30 @@ namespace taxiDesktopProg
         //Доработать !!!!!
         private void activeSession()
         {
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select loginame, status from sys.sysprocesses where db_name(dbid) = 'Taxi' and program_name = 'EntityFramework'", Form1.connectionString);
-
-            DataSet ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[0].HeaderText = "Логин пользователя";
-            dataGridView1.Columns[1].HeaderText = "Статус";
-            foreach (DataGridViewColumn data in dataGridView1.Columns)
-                data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-            dataGridView1.EnableHeadersVisualStyles = false;
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var disp = db.dispatchers.Select(x=> new {x.id_dispatcher, V = x.activity.ToString(), x.surname,x.name,x.patronymic,x.mobile_phone}) ;
+                dataGridView1.DataSource = disp.ToList();
+                dataGridView1.Columns[0].HeaderText = "Логин";
+                dataGridView1.Columns[1].HeaderText = "Активность";
+                dataGridView1.Columns[2].HeaderText = "Фамилия";
+                dataGridView1.Columns[3].HeaderText = "Имя";
+                dataGridView1.Columns[4].HeaderText = "Отчество";
+                dataGridView1.Columns[5].HeaderText = "Номер телефона";
+                foreach (DataGridViewColumn data in dataGridView1.Columns)
+                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                dataGridView1.EnableHeadersVisualStyles = false;
+            }
         }
         public Form_for_Admin(Form1 po)
         {
             InitializeComponent();
             this.po = po;
             activeSession();
-            timer1.Interval = 10000;
+            timer1.Enabled = true;
             customizeDesing();
             startHeight = this.Height;
             startWidth = this.Width;
@@ -256,44 +260,36 @@ namespace taxiDesktopProg
             dataGridView1.Visible = true;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            activeSession();
-        }
+    
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if(e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0)
             {
-                if(e.Value != null) { 
-                string s = e.Value.ToString();
-                string o = s.TrimStart(' ');
-                o = o.TrimEnd(' ');
-                e.Value = o;
-                    }
+                e.Value = $"dispatcher_{e.Value}";
             }
-            else if(e.ColumnIndex == 1)
+            if (e.ColumnIndex == 1)
             {
-                if (e.Value != null)
+                if(e.Value != null)
                 {
-                    string s = e.Value.ToString();
-                    string o = s.TrimStart(' ');
-                    o = o.TrimEnd(' ');
-                    e.Value = o;
-                    switch (e.Value.ToString())
+                    if ( Convert.ToBoolean(this.dataGridView1.Rows[e.RowIndex].Cells[1].Value) == true)
                     {
-                        case "runnable":
-                            e.Value = "Активен";
-                            break;
-                        case "sleeping":
-                            e.Value = "В режиме ожидания";
-                            break;
-                        case "background":
-                            e.Value = "Запущено в фоновом режиме";
-                            break;
+                        e.Value = "Актив";
+                        e.CellStyle.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        e.Value = "Неактивный";
+                        e.CellStyle.ForeColor = Color.Red;
                     }
                 }
             }
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            activeSession();
+
         }
     }
 }

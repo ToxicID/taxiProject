@@ -77,9 +77,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label4.Location = new System.Drawing.Point(662, 114);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 22);
+            this.label4.Size = new System.Drawing.Size(31, 22);
             this.label4.TabIndex = 90;
-            this.label4.Text = "По";
+            this.label4.Text = "по";
             // 
             // label3
             // 
@@ -90,9 +90,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(671, 63);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 22);
+            this.label3.Size = new System.Drawing.Size(19, 22);
             this.label3.TabIndex = 89;
-            this.label3.Text = "С";
+            this.label3.Text = "с";
             // 
             // label1
             // 
@@ -124,7 +124,7 @@
             this.comboBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "1. Заказы водителя определённого водителя за промежуток времени",
+            "1. История заказов водителей за определённый промежуток времени",
             "2. Вывод тарифов",
             "3. Вывод автомобилей",
             "4. Вывод заказов за промежуток времени"});
@@ -219,6 +219,7 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(1085, 291);
             this.dataGridView2.TabIndex = 99;
+            this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
             // 
             // returnInformation
             // 

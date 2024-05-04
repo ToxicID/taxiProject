@@ -69,13 +69,17 @@ namespace taxiDesktopProg
                     return;
                 }
 
-            }
+
                 switch (mode)
                 {
                     case 1:
                         string[] id_dis = LoginTextBox.Text.Split('_');
                         long id_dispatcher = long.Parse(id_dis[1]);
                         Form fm1 = new Form_for_Dispatcher(id_dispatcher, this);
+                        var disp = db.dispatchers.Find(id_dispatcher);
+                        disp.activity = true;
+                        db.SaveChanges();
+
                         fm1.Show();
                         this.Hide();
                         LoginTextBox.Text = "";
@@ -89,9 +93,10 @@ namespace taxiDesktopProg
                         LoginTextBox.Text = "";
                         PassTextBox.Text = "";
                         break;
-                   
-                    
+
+
                 }
+            }
             
         }
     }

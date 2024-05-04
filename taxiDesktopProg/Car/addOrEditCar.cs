@@ -248,10 +248,12 @@ namespace taxiDesktopProg
                         startView();
                         this.Height = 695;
                         enableNaznachDriver();
-                        MessageBox.Show("Добавьте водителя", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Назначьте водителя", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         id_carNewCar = newCar.id_car;
                         AddCarBut.Enabled = false;
                         ButIzmen.Enabled = false;
+                        comboBox2.Enabled = false;
+                        checkBox1.Enabled = false;
                     }
                     else
                     {

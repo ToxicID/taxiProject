@@ -90,31 +90,59 @@ namespace taxiDesktopProg
             long dr = Convert.ToInt64(comboBox1.SelectedValue);
             using (Context db = new Context(Form1.connectionString))
             {
-                var drInOrder = from ord in db.orders
-                                join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
-                                join ad2 in db.addresses on ord.destination equals ad2.id_address
-                                join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
-                                join driv in db.drivers on ord.id_driver equals driv.id_driver
-                                where driv.id_driver == dr
-                                select new
-                                {
-                                    call_sign = driv.call_sign,
-                                    surname = driv.surname,
-                                    name = driv.name,
-                                    patronymic = driv.patronymic,
-                                    place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
-                                    place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
-                                    order_completion_datetime = ord.order_completion_datetime
-                                };
-
-                dataGridView2.DataSource = drInOrder.Distinct().ToList();
+                //var drInOrder = from ord in db.orders
+                //                join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
+                //                join ad2 in db.addresses on ord.destination equals ad2.id_address
+                //                join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
+                //                join driv in db.drivers on ord.id_driver equals driv.id_driver
+                //                where driv.id_driver == dr
+                //                select new
+                //                {
+                //                    call_sign = driv.call_sign,
+                //                    surname = driv.surname,
+                //                    name = driv.name,
+                //                    patronymic = driv.patronymic,
+                //                    place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
+                //                    place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
+                //                    datetime_placing_the_order = ord.datetime_placing_the_order,
+                //                    order_completion_datetime = ord.order_completion_datetime
+                //                };
+                var drInOrder = db.order_driver_car.Where(x => x.id_driver == dr).Select(x => new
+                {
+                    x.call_sign,
+                    x.surname,
+                    x.name,
+                    x.patronymic,
+                    x.mobile_phone,
+                    V = x.rented_car.ToString(),
+                    x.car_brand,
+                    x.car_model,
+                    x.colour,
+                    x.state_number,
+                    x.region_code,
+                    x.place_of_departure,
+                    x.destination,
+                    x.datetime_placing_the_order,
+                    x.order_completion_datetime,
+                    x.client_mobile_phone
+                });
+                dataGridView2.DataSource = drInOrder.ToList();
                 dataGridView2.Columns[0].HeaderText = "Позывной";
                 dataGridView2.Columns[1].HeaderText = "Фамилия водителя";
                 dataGridView2.Columns[2].HeaderText = "Имя водителя";
                 dataGridView2.Columns[3].HeaderText = "Отчество водителя";
-                dataGridView2.Columns[4].HeaderText = "Адрес подачи";
-                dataGridView2.Columns[5].HeaderText = "Адрес назначения";
-                dataGridView2.Columns[6].HeaderText = "Дата завершения заказа";
+                dataGridView2.Columns[4].HeaderText = "Мобильный телефон клиента";
+                dataGridView2.Columns[5].HeaderText = "Принадлежность";
+                dataGridView2.Columns[6].HeaderText = "Бренд";
+                dataGridView2.Columns[7].HeaderText = "Модель";
+                dataGridView2.Columns[8].HeaderText = "Цвет";
+                dataGridView2.Columns[9].HeaderText = "Гос. номер";
+                dataGridView2.Columns[10].HeaderText = "Рег. код";
+                dataGridView2.Columns[11].HeaderText = "Адрес подачи";
+                dataGridView2.Columns[12].HeaderText = "Адрес назначения";
+                dataGridView2.Columns[13].HeaderText = "Дата и время оформления заказа";
+                dataGridView2.Columns[14].HeaderText = "Дата и время завершения заказа";
+                dataGridView2.Columns[15].HeaderText = "Мобильный телефон клиента";
                 foreach (DataGridViewColumn data in dataGridView2.Columns)
                     data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -128,31 +156,43 @@ namespace taxiDesktopProg
             long dr = Convert.ToInt64(comboBox1.SelectedValue);
             using (Context db = new Context(Form1.connectionString))
             {
-                var drInOrder = from ord in db.orders
-                                join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
-                                join ad2 in db.addresses on ord.destination equals ad2.id_address
-                                join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
-                                join driv in db.drivers on ord.id_driver equals driv.id_driver
-                                where driv.id_driver == dr
-                                select new
-                                {
-                                    call_sign = driv.call_sign,
-                                    surname = driv.surname,
-                                    name = driv.name,
-                                    patronymic = driv.patronymic,
-                                    place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
-                                    place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
-                                    order_completion_datetime = ord.datetime_placing_the_order
-                                };
+                var drInOrder = db.order_driver_car.Where(x => x.id_driver == dr).Select(x => new
+                {
+                    x.call_sign,
+                    x.surname,
+                    x.name,
+                    x.patronymic,
+                    x.mobile_phone,
+                    V = x.rented_car.ToString(),
+                    x.car_brand,
+                    x.car_model,
+                    x.colour,
+                    x.state_number,
+                    x.region_code,
+                    x.place_of_departure,
+                    x.destination,
+                    x.datetime_placing_the_order,
+                    x.order_completion_datetime,
+                    x.client_mobile_phone
+                });
 
-                dataGridView2.DataSource = drInOrder.Where(x => x.order_completion_datetime >= dateTimePicker2.Value && x.order_completion_datetime <= dateTimePicker1.Value).Distinct().ToList();
+                dataGridView2.DataSource = drInOrder.Where(x => x.datetime_placing_the_order >= dateTimePicker2.Value && x.datetime_placing_the_order <= dateTimePicker1.Value).Distinct().ToList();
                 dataGridView2.Columns[0].HeaderText = "Позывной";
                 dataGridView2.Columns[1].HeaderText = "Фамилия водителя";
                 dataGridView2.Columns[2].HeaderText = "Имя водителя";
                 dataGridView2.Columns[3].HeaderText = "Отчество водителя";
-                dataGridView2.Columns[4].HeaderText = "Адрес подачи";
-                dataGridView2.Columns[5].HeaderText = "Адрес назначения";
-                dataGridView2.Columns[6].HeaderText = "Дата завершения заказа";
+                dataGridView2.Columns[4].HeaderText = "Мобильный телефон клиента";
+                dataGridView2.Columns[5].HeaderText = "Принадлежность";
+                dataGridView2.Columns[6].HeaderText = "Бренд";
+                dataGridView2.Columns[7].HeaderText = "Модель";
+                dataGridView2.Columns[8].HeaderText = "Цвет";
+                dataGridView2.Columns[9].HeaderText = "Гос. номер";
+                dataGridView2.Columns[10].HeaderText = "Рег. код";
+                dataGridView2.Columns[11].HeaderText = "Адрес подачи";
+                dataGridView2.Columns[12].HeaderText = "Адрес назначения";
+                dataGridView2.Columns[13].HeaderText = "Дата и время оформления заказа";
+                dataGridView2.Columns[14].HeaderText = "Дата и время завершения заказа";
+                dataGridView2.Columns[15].HeaderText = "Мобильный телефон клиента";
                 foreach (DataGridViewColumn data in dataGridView2.Columns)
                     data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -192,9 +232,9 @@ namespace taxiDesktopProg
                           select new
                           {
                               rented_car = c.rented_car.ToString(),
-                              color = c.colour,
                               car_brand = c.car_brand,
                               model_car = c.car_model,
+                              color = c.colour,
                               state_number = c.state_number,
                               region_code = c.region_code,
                               technical_condition_car = c.technical_condition_car,
@@ -203,9 +243,9 @@ namespace taxiDesktopProg
 
                 dataGridView1.DataSource = car.ToList();
                 dataGridView1.Columns[0].HeaderText = "Принадлежность";
-                dataGridView1.Columns[1].HeaderText = "Цвет";
-                dataGridView1.Columns[2].HeaderText = "Бренд";
-                dataGridView1.Columns[3].HeaderText = "Модель";
+                dataGridView1.Columns[1].HeaderText = "Бренд";
+                dataGridView1.Columns[2].HeaderText = "Модель";
+                dataGridView1.Columns[3].HeaderText = "Цвет";
                 dataGridView1.Columns[4].HeaderText = "Гос. номер";
                 dataGridView1.Columns[5].HeaderText = "Рег. код";
                 dataGridView1.Columns[6].HeaderText = "Тех. состояние";
@@ -428,18 +468,18 @@ namespace taxiDesktopProg
                 //Страница
                 Excel.Worksheet excelWorksheet = excelWorkbook.Sheets[1];
 
-                // Заполняем заголовки столбцов
+                // Заполняем заголовки столбцов (начиная с A2)
                 for (int i = 0; i < dataGridView.Columns.Count; i++)
                 {
-                    excelWorksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
+                    excelWorksheet.Cells[2, i + 1] = dataGridView.Columns[i].HeaderText;
                 }
 
-                // Заполняем ячейки данными из DataGridView
+                // Заполняем ячейки данными из DataGridView (начиная с A3)
                 for (int i = 0; i < dataGridView.Rows.Count; i++)
                 {
                     for (int j = 0; j < dataGridView.Columns.Count; j++)
                     {
-                        excelWorksheet.Cells[i + 2, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
+                        excelWorksheet.Cells[i + 3, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
                     }
                 }
 
@@ -447,17 +487,74 @@ namespace taxiDesktopProg
                 excelWorksheet.Cells[1, 1].CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous; //границы
                 //добавление полужирного шрифта для заголовков таблицы
                 excelWorksheet.Rows[1].Font.Bold = true;
+                excelWorksheet.Rows[2].Font.Bold = true;
                 //автоматическое расстояние столбцов
                 excelWorksheet.Range["A:Z"].EntireColumn.AutoFit();
+
                 if (comboBox2.SelectedIndex == 1)
                 {
                     excelWorkbook.Worksheets[1].Cells.Replace("ЛОЖЬ", "Недоступен");
                     excelWorkbook.Worksheets[1].Cells.Replace("ИСТИНА", "Доступен");
+                    //Название в клетке
+                    excelWorksheet.Cells[1, "A"] = "Список тарифов";
+                    //Выбор диапазона
+                    var range3 = excelWorksheet.get_Range("A1", "G1");
+                    //Объединение клеток в 1
+                    range3.Merge(Type.Missing);
+                    //выравнивание
+                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    //размер текста
+                    range3.Cells.Font.Size = 14;
                 }
                 else if(comboBox2.SelectedIndex == 2)
                 {
                     excelWorkbook.Worksheets[1].Cells.Replace("ЛОЖЬ", "Личный");
                     excelWorkbook.Worksheets[1].Cells.Replace("ИСТИНА", "Авто фирмы");
+
+                    //Название в клетке
+                    excelWorksheet.Cells[1, "A"] = "Список автомобилей";
+                    //Выбор диапазона
+                    var range3 = excelWorksheet.get_Range("A1", "H1");
+                    //Объединение клеток в 1
+                    range3.Merge(Type.Missing);
+                    //выравнивание
+                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    //размер текста
+                    range3.Cells.Font.Size = 14;
+                }
+                else if (comboBox2.SelectedIndex== 0)
+                {
+                    //Название в клетке
+                    excelWorksheet.Cells[1, "A"] = "История заказов водителей за определённый промежуток времени";
+                    //Выбор диапазона
+                    var range3 = excelWorksheet.get_Range("A1", "P1");
+                    //Объединение клеток в 1
+                    range3.Merge(Type.Missing);
+                    //выравнивание
+                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    //размер текста
+                    range3.Cells.Font.Size = 14;
+
+                    var range4 = excelWorksheet.get_Range("F3", "F500");
+                    range4.Cells.Replace("ЛОЖЬ", "Личный");
+                    range4.Cells.Replace("ИСТИНА", "Авто фирмы");
+                }
+                else if (comboBox2.SelectedIndex == 3)
+                {
+                    //Название в клетке
+                    excelWorksheet.Cells[1, "A"] = "Заказы за промежуток времени";
+                    //Выбор диапазона
+                    var range3 = excelWorksheet.get_Range("A1", "K1");
+                    //Объединение клеток в 1
+                    range3.Merge(Type.Missing);
+                    //выравнивание
+                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    //размер текста
+                    range3.Cells.Font.Size = 14;
                 }
                 // Сохраняем файл Excel и закрываем приложение
                 excelWorkbook.SaveAs(saveFileDialog.FileName);
@@ -497,22 +594,56 @@ namespace taxiDesktopProg
         {
             if (comboBox2.SelectedIndex == 1)
             {
-                if (e.ColumnIndex == 0)
+               
+                switch (e.ColumnIndex)
                 {
-                    if (Convert.ToBoolean(this.dataGridView1.Rows[e.RowIndex].Cells[0].Value) == true)
-                    {
-                        e.Value = "Доступен";
-                    }
-                    else
-                    {
-                        e.Value = "Недоступен";
-                    }
+                    case 0:
+                        if (Convert.ToBoolean(this.dataGridView1.Rows[e.RowIndex].Cells[0].Value) == true)
+                        {
+                            e.Value = "Доступен";
+                        }
+                        else
+                        {
+                            e.Value = "Недоступен";
+                        }
+                        break;
+                    case 2: case 3: case 4:case 5:case 6:
+                        if(e.Value != null)
+                        {
+                            e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+                        }
+                        break;
+                  
                 }
             }
             else if (comboBox2.SelectedIndex == 2)
             {
                 if (e.ColumnIndex == 0)
                     if (Convert.ToBoolean(this.dataGridView1.Rows[e.RowIndex].Cells[0].Value) == true)
+                    {
+                        e.Value = "Авто фирмы";
+                    }
+                    else
+                        e.Value = "Личный";
+            }
+        }
+
+        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if(comboBox2.SelectedIndex == 3)
+            {
+                if(e.ColumnIndex == 4)
+                {
+                    if (e.Value != null)
+                    {
+                        e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
+                    }
+                }
+            }
+            else if(comboBox2.SelectedIndex == 0)
+            {
+                if (e.ColumnIndex == 5)
+                    if (Convert.ToBoolean(this.dataGridView2.Rows[e.RowIndex].Cells[5].Value) == true)
                     {
                         e.Value = "Авто фирмы";
                     }

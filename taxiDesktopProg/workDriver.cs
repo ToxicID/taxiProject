@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -65,6 +66,9 @@ namespace taxiDesktopProg
         {
             InitializeComponent();
             listWorkDriver();
+            dateTimePicker1.CustomFormat = "dd.MM.yyyy";
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -187,26 +191,46 @@ namespace taxiDesktopProg
                 //Страница
                 Excel.Worksheet excelWorksheet = excelWorkbook.Sheets[1];
 
-                // Заполняем заголовки столбцов
+                // Заполняем заголовки столбцов (начиная с A2)
                 for (int i = 0; i < dataGridView.Columns.Count; i++)
                 {
-                    excelWorksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
+                    excelWorksheet.Cells[2, i + 1] = dataGridView.Columns[i].HeaderText;
                 }
 
-                // Заполняем ячейки данными из DataGridView
+                // Заполняем ячейки данными из DataGridView (начиная с A3)
                 for (int i = 0; i < dataGridView.Rows.Count; i++)
                 {
                     for (int j = 0; j < dataGridView.Columns.Count; j++)
                     {
-                        excelWorksheet.Cells[i + 2, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
+                        excelWorksheet.Cells[i + 3, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
                     }
                 }
+
                 //Добавление границ
                 excelWorksheet.Cells[1, 1].CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous; //границы
                 //добавление полужирного шрифта для заголовков таблицы
                 excelWorksheet.Rows[1].Font.Bold = true;
+                excelWorksheet.Rows[2].Font.Bold = true;
                 //автоматическое расстояние столбцов
-                excelWorksheet.Range["A:H"].EntireColumn.AutoFit();
+                excelWorksheet.Range["A:Z"].EntireColumn.AutoFit();
+                //Название в клетке
+                excelWorksheet.Cells[1, "A"] = "График смены водителей";
+                //Выбор диапазона
+                var range3 = excelWorksheet.get_Range("A1", "G1");
+                //Объединение клеток в 1
+                range3.Merge(Type.Missing);
+                //выравнивание
+                range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                //размер текста
+                range3.Cells.Font.Size = 14;
+                //Убираем время из поля с датой
+                var range = excelWorksheet.get_Range("D3","D500");
+                range.Cells.Replace("0:00:00", "");
+
+                var range1 = excelWorksheet.get_Range("E3", "E500");
+                range1.Cells.Replace("0:00:00", "");
+
                 // Сохраняем файл Excel и закрываем приложение
                 excelWorkbook.SaveAs(saveFileDialog.FileName);
                 excelWorkbook.Close();
@@ -231,7 +255,9 @@ namespace taxiDesktopProg
                                beforeWorkTime = work.work_schedule_before
 
                            };
-                var print = list.Where(x => x.dateWorkFrom >= dateTimePicker2.Value && x.dateWorkBefore <= dateTimePicker1.Value);
+                var print = list.Where(x => x.dateWorkFrom >= dateTimePicker2.Value && x.dateWorkBefore <= dateTimePicker1.Value).Select(x =>
+                 new { x.surname, x.Name, x.patronymic, V = x.dateWorkFrom, x.dateWorkBefore, x.fromWorkTime, x.beforeWorkTime 
+                });
                 
                 dgv.DataSource = print.ToList();
                 dgv.Columns[0].HeaderText = "Фамилия водителя";
@@ -241,6 +267,12 @@ namespace taxiDesktopProg
                 dgv.Columns[4].HeaderText = "Дата окончания работы";
                 dgv.Columns[5].HeaderText = "Время начала работы";
                 dgv.Columns[6].HeaderText = "Время окончания работы";
+                foreach (DataGridViewColumn data in dgv.Columns)
+                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+                dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
+                dgv.EnableHeadersVisualStyles = false;
 
                 Export(dgv);
                 label1.Visible = false ;
