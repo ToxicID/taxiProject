@@ -353,6 +353,12 @@
     <Compile Include="Client\listClient.Designer.cs">
       <DependentUpon>listClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="historyDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="historyDriver.Designer.cs">
+      <DependentUpon>historyDriver.cs</DependentUpon>
+    </Compile>
     <Compile Include="listDispatcher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,6 +388,12 @@
     </Compile>
     <Compile Include="Rate\rateList.Designer.cs">
       <DependentUpon>rateList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="returnFromDirector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="returnFromDirector.Designer.cs">
+      <DependentUpon>returnFromDirector.cs</DependentUpon>
     </Compile>
     <Compile Include="returnInformation.cs">
       <SubType>Form</SubType>
@@ -447,6 +459,9 @@
     <EmbeddedResource Include="Client\OrderList.resx">
       <DependentUpon>OrderList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="historyDriver.resx">
+      <DependentUpon>historyDriver.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="listDispatcher.resx">
       <DependentUpon>listDispatcher.cs</DependentUpon>
     </EmbeddedResource>
@@ -465,6 +480,9 @@
     </Compile>
     <EmbeddedResource Include="Rate\rateList.resx">
       <DependentUpon>rateList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="returnFromDirector.resx">
+      <DependentUpon>returnFromDirector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="returnInformation.resx">
       <DependentUpon>returnInformation.cs</DependentUpon>

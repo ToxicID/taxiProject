@@ -291,5 +291,37 @@ namespace taxiDesktopProg
             activeSession();
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            historyDriver fm = new historyDriver(true);
+            fm.FormClosed += new FormClosedEventHandler(historyDriver_FormClosed);
+            openChildForm(fm);
+            this.Width = 1195;
+            this.Height = 546;
+            hidesubMenu();
+        }
+        void historyDriver_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Width = startWidth;
+            this.Height = startHeight;
+            dataGridView1.Visible = true;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            returnFromDirector fm = new returnFromDirector();
+            fm.FormClosed += new FormClosedEventHandler(returnFromDirector_FormClosed);
+            openChildForm(fm);
+            this.Width = 1020;
+            this.Height = 410;
+            hidesubMenu();
+        }
+        void returnFromDirector_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Width = startWidth;
+            this.Height = startHeight;
+            dataGridView1.Visible = true;
+        }
     }
 }

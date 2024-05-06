@@ -211,8 +211,6 @@ namespace taxiDesktopProg
                 //добавление полужирного шрифта для заголовков таблицы
                 excelWorksheet.Rows[1].Font.Bold = true;
                 excelWorksheet.Rows[2].Font.Bold = true;
-                //автоматическое расстояние столбцов
-                excelWorksheet.Range["A:Z"].EntireColumn.AutoFit();
                 //Название в клетке
                 excelWorksheet.Cells[1, "A"] = "График смены водителей";
                 //Выбор диапазона
@@ -230,7 +228,8 @@ namespace taxiDesktopProg
 
                 var range1 = excelWorksheet.get_Range("E3", "E500");
                 range1.Cells.Replace("0:00:00", "");
-
+                //автоматическое расстояние столбцов
+                excelWorksheet.Range["A:Z"].EntireColumn.AutoFit();
                 // Сохраняем файл Excel и закрываем приложение
                 excelWorkbook.SaveAs(saveFileDialog.FileName);
                 excelWorkbook.Close();

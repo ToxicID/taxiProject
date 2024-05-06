@@ -830,5 +830,11 @@ namespace taxiDesktopProg
             returnInformation fm = new returnInformation();
             fm.Show();
         }
+
+        private void историяЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            historyDriver fm = new historyDriver();
+            fm.Show();
+        }
     }
 }

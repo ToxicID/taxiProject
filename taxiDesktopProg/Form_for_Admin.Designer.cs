@@ -32,7 +32,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.buttonCar = new System.Windows.Forms.Button();
             this.panelDriver = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
             this.panelGlavWin = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,6 +51,9 @@
             this.buttonRate = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button6 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.panelDriver.SuspendLayout();
             this.panelGlavWin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -86,7 +88,7 @@
             this.buttonCar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonCar.Location = new System.Drawing.Point(0, 385);
+            this.buttonCar.Location = new System.Drawing.Point(0, 423);
             this.buttonCar.Name = "buttonCar";
             this.buttonCar.Size = new System.Drawing.Size(251, 39);
             this.buttonCar.TabIndex = 10;
@@ -99,32 +101,15 @@
             // 
             this.panelDriver.BackColor = System.Drawing.SystemColors.Highlight;
             this.panelDriver.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDriver.Controls.Add(this.button2);
             this.panelDriver.Controls.Add(this.button6);
             this.panelDriver.Controls.Add(this.button3);
             this.panelDriver.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelDriver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panelDriver.Location = new System.Drawing.Point(0, 145);
             this.panelDriver.Name = "panelDriver";
-            this.panelDriver.Size = new System.Drawing.Size(251, 77);
+            this.panelDriver.Size = new System.Drawing.Size(251, 115);
             this.panelDriver.TabIndex = 5;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button6.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button6.Location = new System.Drawing.Point(0, 40);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(249, 36);
-            this.button6.TabIndex = 11;
-            this.button6.Text = "Назначить водителя";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // panelGlavWin
             // 
@@ -135,7 +120,7 @@
             this.panelGlavWin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGlavWin.Location = new System.Drawing.Point(253, 0);
             this.panelGlavWin.Name = "panelGlavWin";
-            this.panelGlavWin.Size = new System.Drawing.Size(638, 697);
+            this.panelGlavWin.Size = new System.Drawing.Size(749, 697);
             this.panelGlavWin.TabIndex = 10;
             // 
             // dataGridView1
@@ -148,7 +133,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(638, 608);
+            this.dataGridView1.Size = new System.Drawing.Size(749, 608);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
@@ -219,7 +204,7 @@
             this.panelProfiles.Controls.Add(this.button4);
             this.panelProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelProfiles.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panelProfiles.Location = new System.Drawing.Point(0, 261);
+            this.panelProfiles.Location = new System.Drawing.Point(0, 299);
             this.panelProfiles.Name = "panelProfiles";
             this.panelProfiles.Size = new System.Drawing.Size(251, 124);
             this.panelProfiles.TabIndex = 8;
@@ -250,7 +235,7 @@
             this.Profile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Profile.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Profile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Profile.Location = new System.Drawing.Point(0, 222);
+            this.Profile.Location = new System.Drawing.Point(0, 260);
             this.Profile.Name = "Profile";
             this.Profile.Size = new System.Drawing.Size(251, 39);
             this.Profile.TabIndex = 6;
@@ -281,6 +266,7 @@
             this.panelMenu.AutoScroll = true;
             this.panelMenu.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMenu.Controls.Add(this.button7);
             this.panelMenu.Controls.Add(this.buttonVio);
             this.panelMenu.Controls.Add(this.panelRate);
             this.panelMenu.Controls.Add(this.buttonRate);
@@ -304,7 +290,7 @@
             this.buttonVio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonVio.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonVio.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonVio.Location = new System.Drawing.Point(0, 566);
+            this.buttonVio.Location = new System.Drawing.Point(0, 604);
             this.buttonVio.Name = "buttonVio";
             this.buttonVio.Size = new System.Drawing.Size(251, 34);
             this.buttonVio.TabIndex = 14;
@@ -322,7 +308,7 @@
             this.panelRate.Controls.Add(this.button9);
             this.panelRate.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelRate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panelRate.Location = new System.Drawing.Point(0, 463);
+            this.panelRate.Location = new System.Drawing.Point(0, 501);
             this.panelRate.Name = "panelRate";
             this.panelRate.Size = new System.Drawing.Size(251, 103);
             this.panelRate.TabIndex = 13;
@@ -389,7 +375,7 @@
             this.buttonRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonRate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonRate.Location = new System.Drawing.Point(0, 424);
+            this.buttonRate.Location = new System.Drawing.Point(0, 462);
             this.buttonRate.Name = "buttonRate";
             this.buttonRate.Size = new System.Drawing.Size(251, 39);
             this.buttonRate.TabIndex = 12;
@@ -414,11 +400,64 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button6.Location = new System.Drawing.Point(0, 40);
+            this.button6.Name = "button6";
+            this.button6.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.button6.Size = new System.Drawing.Size(249, 36);
+            this.button6.TabIndex = 11;
+            this.button6.Text = "Назначить водителя";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button2.Location = new System.Drawing.Point(0, 76);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(249, 36);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "История поездок";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button7.Location = new System.Drawing.Point(0, 638);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(251, 34);
+            this.button7.TabIndex = 15;
+            this.button7.Text = "Отчётность";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form_for_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 697);
+            this.ClientSize = new System.Drawing.Size(1002, 697);
             this.Controls.Add(this.panelGlavWin);
             this.Controls.Add(this.panelMenu);
             this.Name = "Form_for_Admin";
@@ -439,7 +478,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button buttonCar;
         private System.Windows.Forms.Panel panelDriver;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel panelGlavWin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -459,5 +497,8 @@
         private System.Windows.Forms.Button driver_List;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }

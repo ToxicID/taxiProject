@@ -90,23 +90,7 @@ namespace taxiDesktopProg
             long dr = Convert.ToInt64(comboBox1.SelectedValue);
             using (Context db = new Context(Form1.connectionString))
             {
-                //var drInOrder = from ord in db.orders
-                //                join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
-                //                join ad2 in db.addresses on ord.destination equals ad2.id_address
-                //                join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
-                //                join driv in db.drivers on ord.id_driver equals driv.id_driver
-                //                where driv.id_driver == dr
-                //                select new
-                //                {
-                //                    call_sign = driv.call_sign,
-                //                    surname = driv.surname,
-                //                    name = driv.name,
-                //                    patronymic = driv.patronymic,
-                //                    place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
-                //                    place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
-                //                    datetime_placing_the_order = ord.datetime_placing_the_order,
-                //                    order_completion_datetime = ord.order_completion_datetime
-                //                };
+                
                 var drInOrder = db.order_driver_car.Where(x => x.id_driver == dr).Select(x => new
                 {
                     x.call_sign,
@@ -176,7 +160,12 @@ namespace taxiDesktopProg
                     x.client_mobile_phone
                 });
 
-                dataGridView2.DataSource = drInOrder.Where(x => x.datetime_placing_the_order >= dateTimePicker2.Value && x.datetime_placing_the_order <= dateTimePicker1.Value).Distinct().ToList();
+                dataGridView2.DataSource = drInOrder.Where(x => x.datetime_placing_the_order.Year >= dateTimePicker2.Value.Year &&
+                x.datetime_placing_the_order.Month >= dateTimePicker2.Value.Month &&
+                x.datetime_placing_the_order.Day >= dateTimePicker2.Value.Day && 
+                x.datetime_placing_the_order.Year <= dateTimePicker1.Value.Year &&
+                x.datetime_placing_the_order.Month <= dateTimePicker1.Value.Month &&
+                x.datetime_placing_the_order.Day <= dateTimePicker1.Value.Day).Distinct().ToList();
                 dataGridView2.Columns[0].HeaderText = "Позывной";
                 dataGridView2.Columns[1].HeaderText = "Фамилия водителя";
                 dataGridView2.Columns[2].HeaderText = "Имя водителя";
@@ -327,7 +316,13 @@ namespace taxiDesktopProg
                                id_rate = ord.rate.name,
 
                            };
-                dataGridView2.DataSource = list.Where(x => x.datetime_placing >= dateTimePicker2.Value && x.datetime_placing <= dateTimePicker1.Value).Distinct().ToList();
+                dataGridView2.DataSource = list.Where(x => 
+                x.datetime_placing.Year >= dateTimePicker2.Value.Year &&
+                x.datetime_placing.Month >= dateTimePicker2.Value.Month &&
+                x.datetime_placing.Day >= dateTimePicker2.Value.Day &&
+                x.datetime_placing.Year <= dateTimePicker1.Value.Year &&
+                x.datetime_placing.Month <= dateTimePicker1.Value.Month &&
+                x.datetime_placing.Day <= dateTimePicker1.Value.Day).Distinct().ToList();
                 dataGridView2.Columns[0].HeaderText = "Статус";
                 dataGridView2.Columns[1].HeaderText = "Причина отмены";
                 dataGridView2.Columns[2].HeaderText = "Адрес подачи";
@@ -488,8 +483,7 @@ namespace taxiDesktopProg
                 //добавление полужирного шрифта для заголовков таблицы
                 excelWorksheet.Rows[1].Font.Bold = true;
                 excelWorksheet.Rows[2].Font.Bold = true;
-                //автоматическое расстояние столбцов
-                excelWorksheet.Range["A:Z"].EntireColumn.AutoFit();
+                
 
                 if (comboBox2.SelectedIndex == 1)
                 {
@@ -556,6 +550,8 @@ namespace taxiDesktopProg
                     //размер текста
                     range3.Cells.Font.Size = 14;
                 }
+                //автоматическое расстояние столбцов
+                excelWorksheet.Range["A:Z"].EntireColumn.AutoFit();
                 // Сохраняем файл Excel и закрываем приложение
                 excelWorkbook.SaveAs(saveFileDialog.FileName);
                 excelWorkbook.Close();
