@@ -821,7 +821,7 @@ namespace taxiDesktopProg
 
         private void назначитьАвтомобильToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            carForDriver fm = new carForDriver();
+            carForDriver fm = new carForDriver(1);
             fm.Show();
         }
 

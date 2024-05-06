@@ -102,25 +102,49 @@ namespace taxiDesktopProg
 
         private void button1_Click(object sender, EventArgs e)
         {
-            addOrEditDispatcher fm = new addOrEditDispatcher(DataGridIndex, "data");
-            fm.FormClosed += new FormClosedEventHandler(addOrEditDispatcher_FormClosed);
-            fm.Height = 329;
-            DataGridIndex = null;
-            button1.Enabled = false;
-            button2.Enabled = false;
-            button3.Enabled = false;
-            fm.Show();
+            if (DataGridIndex != null)
+            {
+                DialogResult result = MessageBox.Show("Изменить данные диспетчера?", "Изменение",
+                                                                                           MessageBoxButtons.YesNo,
+                                                                                           MessageBoxIcon.Information);
+                if (result == DialogResult.No) return;
+                addOrEditDispatcher fm = new addOrEditDispatcher(DataGridIndex, "data");
+                fm.FormClosed += new FormClosedEventHandler(addOrEditDispatcher_FormClosed);
+                fm.Height = 329;
+                DataGridIndex = null;
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button3.Enabled = false;
+                fm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать диспетчера","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            addOrEditDispatcher fm = new addOrEditDispatcher(DataGridIndex, "pass");
+            if (DataGridIndex != null)
+            {
+                DialogResult result = MessageBox.Show("Изменить данные диспетчера?", "Изменение",
+                                                                                           MessageBoxButtons.YesNo,
+                                                                                           MessageBoxIcon.Information);
+                if (result == DialogResult.No) return;
+                addOrEditDispatcher fm = new addOrEditDispatcher(DataGridIndex, "pass");
             fm.FormClosed += new FormClosedEventHandler(addOrEditDispatcher_FormClosed);
             DataGridIndex = null;
             button1.Enabled = false;
             button2.Enabled = false;
             button3.Enabled = false;
             fm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать диспетчера", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -190,6 +214,30 @@ namespace taxiDesktopProg
         {
             search();
             
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (DataGridIndex != null)
+            {
+                DialogResult result = MessageBox.Show("Изменить данные диспетчера?", "Изменение",
+                                                                                           MessageBoxButtons.YesNo,
+                                                                                           MessageBoxIcon.Information);
+                if (result == DialogResult.No) return;
+                addOrEditDispatcher fm = new addOrEditDispatcher(DataGridIndex, "data");
+                fm.FormClosed += new FormClosedEventHandler(addOrEditDispatcher_FormClosed);
+                fm.Height = 329;
+                DataGridIndex = null;
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button3.Enabled = false;
+                fm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать диспетчера", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
     }
 }

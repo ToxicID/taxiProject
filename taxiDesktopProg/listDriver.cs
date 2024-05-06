@@ -62,6 +62,7 @@ namespace taxiDesktopProg
             InitializeComponent();
             button1.Enabled = false;
             button3.Enabled = false;
+            button5.Enabled = false;
             listDriverDataGrid();
         }
         public listDriver(string name)
@@ -71,6 +72,7 @@ namespace taxiDesktopProg
             button3.Visible = false;
             button4.Visible = false;
             button2.Visible = false;
+            button5.Enabled = false;
             listDriverDataGrid();
         }
         private void button2_Click(object sender, EventArgs e)
@@ -80,8 +82,16 @@ namespace taxiDesktopProg
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
-            searchDriver();
-            fonts();
+            if (checkBox1.Checked == true)
+            {
+                searchInListCarAndDriver();
+                fontlistCarAndDriver();
+            }
+            else
+            {
+                searchDriver();
+                fonts();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -97,12 +107,14 @@ namespace taxiDesktopProg
                 DataGridIndex = (long)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
                 button3.Enabled = true;
                 button1.Enabled = true;
+                button5.Enabled = true;
             }
             catch
             {
                 DataGridIndex = null;
                 button3.Enabled = false;
                 button1.Enabled = false;
+                button5.Enabled = false;
             }
         }
 
@@ -111,12 +123,17 @@ namespace taxiDesktopProg
             DataGridIndex = null;
             button3.Enabled = false;
             button1.Enabled = false;
+            button5.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (DataGridIndex != null)
             {
+                DialogResult result = MessageBox.Show("Изменить данные водителя?", "Изменение",
+                                                                                       MessageBoxButtons.YesNo,
+                                                                                       MessageBoxIcon.Information);
+                    if (result == DialogResult.No) return;
                 addNewDriver fm = new addNewDriver(DataGridIndex);
                 fm.FormClosed += new FormClosedEventHandler(addNewDriver_FormClosed);
                 fm.Show();
@@ -132,7 +149,17 @@ namespace taxiDesktopProg
         }
         void addNewDriver_FormClosed(object sender, FormClosedEventArgs e)
         {
-            listDriverDataGrid();
+            if (checkBox1.Checked == true)
+            {
+                listCarAndDriver();
+                fontlistCarAndDriver();
+            }
+            else
+            {
+
+                listDriverDataGrid();
+                
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -153,10 +180,153 @@ namespace taxiDesktopProg
                     DataGridIndex = null;
                     button3.Enabled = false;
                     button1.Enabled = false;
-                    listDriverDataGrid();
+
+                    if (checkBox1.Checked == true)
+                    {
+                        listCarAndDriver();
+                        fontlistCarAndDriver();
+                    }
+                    else
+                    {
+
+                        listDriverDataGrid();
+
+                    }
                     MessageBox.Show("Водитель был удален");
                 }
             }
         }
+        private void listCarAndDriver()
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var dr = from drive in db.drivers
+                         join c in db.cars
+                         on drive.id_car equals c.id_car
+                         join car_cat in db.car_category on c.id_car_category equals car_cat.id_car_category
+                         select new
+                         {
+                             id_driver = drive.id_driver,
+                             status = drive.status,
+                             driver_readiness = drive.driver_readiness,
+                             call_sign = drive.call_sign,
+                             surname = drive.surname,
+                             name = drive.name,
+                             patronymic = drive.patronymic,
+                             date_bith = drive.date_of_birth,
+                             drivers_license_number = drive.drivers_license_number,
+                             mobilePhone = drive.mobile_phone,
+                             car_brand = c.car_brand,
+                             model_car = c.car_model,
+                             color = c.colour,
+                             state_number = c.state_number,
+                             region_code = c.region_code,
+                             car_categoor = car_cat.name + "_" + car_cat.number_of_passengers
+
+                         };
+                dataGridView1.DataSource = dr.ToList();
+            }
+        }
+        private void searchInListCarAndDriver()
+        {
+            using (Context db = new Context(Form1.connectionString))
+            {
+                var dr = from drive in db.drivers
+                         join c in db.cars
+                         on drive.id_car equals c.id_car
+                         join car_cat in db.car_category on c.id_car_category equals car_cat.id_car_category
+                         select new
+                         {
+                             id_driver = drive.id_driver,
+                             status = drive.status,
+                             driver_readiness = drive.driver_readiness,
+                             call_sign = drive.call_sign,
+                             surname = drive.surname,
+                             name = drive.name,
+                             patronymic = drive.patronymic,
+                             date_bith = drive.date_of_birth,
+                             drivers_license_number = drive.drivers_license_number,
+                             mobilePhone = drive.mobile_phone,
+                             car_brand = c.car_brand,
+                             model_car = c.car_model,
+                             color = c.colour,
+                             state_number = c.state_number,
+                             region_code = c.region_code,
+                             car_categoor = car_cat.name + "_" + car_cat.number_of_passengers
+
+                         };
+                dataGridView1.DataSource = dr.Where(x => x.surname.Contains(textBox2.Text)).ToList();
+
+            }
+        }
+        private void fontlistCarAndDriver()
+        {
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].HeaderText = "Статус";
+            dataGridView1.Columns[2].HeaderText = "Готовность";
+            dataGridView1.Columns[3].HeaderText = "Позывной";
+            dataGridView1.Columns[4].HeaderText = "Фамилия";
+            dataGridView1.Columns[5].HeaderText = "Имя";
+            dataGridView1.Columns[6].HeaderText = "Отчество";
+            dataGridView1.Columns[7].HeaderText = "Дата рождения";
+            dataGridView1.Columns[8].HeaderText = "Номер вод. удостоверения";
+            dataGridView1.Columns[9].HeaderText = "Номер телефона";
+            dataGridView1.Columns[10].HeaderText = "Бренд";
+            dataGridView1.Columns[11].HeaderText = "Модель";
+            dataGridView1.Columns[12].HeaderText = "Цвет";
+            dataGridView1.Columns[13].HeaderText = "Гос. номер";
+            dataGridView1.Columns[14].HeaderText = "Рег. код";
+            dataGridView1.Columns[15].HeaderText = "Категория автомобиля_Кол-во мест";
+        }
+            private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked == true)
+            {
+                listCarAndDriver();
+                fontlistCarAndDriver();
+            }
+            else
+            {
+
+                listDriverDataGrid();
+             
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (DataGridIndex != null)
+            {
+
+                DialogResult res = MessageBox.Show("Отвязать автомобиль у этого водителя?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (res == DialogResult.No)
+                {
+                    return;
+                }
+                using (Context db = new Context(Form1.connectionString))
+                {
+                    var driver = db.drivers.Find(DataGridIndex);
+                    driver.id_car = null;
+                    db.SaveChanges();
+                    DataGridIndex = null;
+                    button5.Enabled = false;
+                    MessageBox.Show("Автомобиль был отвязан", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+            if (checkBox1.Checked == true)
+            {
+                listCarAndDriver();
+                fontlistCarAndDriver();
+            }
+            else
+            {
+
+                listDriverDataGrid();
+
+            }
+        }
+
+       
     }
 }

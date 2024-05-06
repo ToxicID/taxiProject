@@ -93,7 +93,7 @@
             // 
             this.AddDispatcherBut.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddDispatcherBut.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.AddDispatcherBut.Location = new System.Drawing.Point(660, 573);
+            this.AddDispatcherBut.Location = new System.Drawing.Point(662, 570);
             this.AddDispatcherBut.Name = "AddDispatcherBut";
             this.AddDispatcherBut.Size = new System.Drawing.Size(144, 47);
             this.AddDispatcherBut.TabIndex = 87;

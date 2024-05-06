@@ -19,6 +19,14 @@ namespace taxiDesktopProg
             listCar();
 
         }
+        public carForDriver(int a)
+        {
+            InitializeComponent();
+            listDriver();
+            listCar();
+            button1.Visible = false;
+
+        }
         private long? DataGrid1IndexDriver = null;
         private long? DataGrid2IndexCar = null;
         private void listCar()
@@ -31,9 +39,9 @@ namespace taxiDesktopProg
                           select new
                           {
                               id_car = c.id_car,
-                              color = c.colour,
                               car_brand = c.car_brand,
                               model_car = c.car_model,
+                              color = c.colour,
                               state_number = c.state_number,
                               region_code = c.region_code,
                               car_categoor = car_cat.name + "_" + car_cat.number_of_passengers
@@ -41,13 +49,12 @@ namespace taxiDesktopProg
 
                 dataGridView2.DataSource = car.ToList();
                 dataGridView2.Columns[0].Visible = false;
-                dataGridView2.Columns[1].HeaderText = "Цвет";
-                dataGridView2.Columns[2].HeaderText = "Бренд";
-                dataGridView2.Columns[3].HeaderText = "Модель";
+                dataGridView2.Columns[1].HeaderText = "Бренд";
+                dataGridView2.Columns[2].HeaderText = "Модель";
+                dataGridView2.Columns[3].HeaderText = "Цвет";
                 dataGridView2.Columns[4].HeaderText = "Гос. номер";
                 dataGridView2.Columns[5].HeaderText = "Рег. код";
                 dataGridView2.Columns[6].HeaderText = "Категория автомобиля_Кол-во мест";
-
                 foreach (DataGridViewColumn data in dataGridView2.Columns)
                     data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -214,5 +221,7 @@ namespace taxiDesktopProg
             checkCar = false;
             checkDriver = false;
         }
+
+     
     }
 }
