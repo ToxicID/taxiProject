@@ -339,7 +339,7 @@ namespace taxiDesktopProg
                 if (transportationOfPetCheck.Checked == true && cp.transportation_of_pet != null)
                     priceOrder += cp.transportation_of_pet;
 
-                priceBox.Text = Math.Round((double)priceOrder, 2).ToString();
+                priceBox.Text = Math.Round((double)priceOrder, 0).ToString();
                 PlaceOrder.Enabled = true;
                 buttonEdit.Enabled = true;
 

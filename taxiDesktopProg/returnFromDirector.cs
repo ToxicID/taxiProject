@@ -329,20 +329,7 @@ namespace taxiDesktopProg
                     //размер текста
                     range3.Cells.Font.Size = 14;
                 }
-                else if (comboBox2.SelectedIndex == 3)
-                {
-                    //Название в клетке
-                    excelWorksheet.Cells[1, "A"] = "Заказы за промежуток времени";
-                    //Выбор диапазона
-                    var range3 = excelWorksheet.get_Range("A1", "K1");
-                    //Объединение клеток в 1
-                    range3.Merge(Type.Missing);
-                    //выравнивание
-                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
-                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    //размер текста
-                    range3.Cells.Font.Size = 14;
-                }
+               
                 excelWorksheet.Range["A:Z"].EntireColumn.AutoFit();
                 // Сохраняем файл Excel и закрываем приложение
                 excelWorkbook.SaveAs(saveFileDialog.FileName);
