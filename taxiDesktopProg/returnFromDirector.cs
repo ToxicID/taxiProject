@@ -151,9 +151,9 @@ namespace taxiDesktopProg
                 });
                 dataGridView3.DataSource = driver.ToList();
                 dataGridView3.Columns[0].HeaderText = "Позывной";
-                dataGridView3.Columns[1].HeaderText = "Фамилия диспетчера";
-                dataGridView3.Columns[2].HeaderText = "Имя диспетчера";
-                dataGridView3.Columns[3].HeaderText = "Отчество диспетчера";
+                dataGridView3.Columns[1].HeaderText = "Фамилия водителя";
+                dataGridView3.Columns[2].HeaderText = "Имя водителя";
+                dataGridView3.Columns[3].HeaderText = "Отчество водителя";
                 dataGridView3.Columns[4].HeaderText = "Дата рождения";
                 dataGridView3.Columns[5].HeaderText = "Номер водительского удостоверения";
                 dataGridView3.Columns[6].HeaderText = "Мобильный телефон водителя";
@@ -255,14 +255,12 @@ namespace taxiDesktopProg
             {//Приложение
 
 
-                Excel.Application excelApp = new Excel.Application();
-                //Скрытие окна Excel и окна для подтверждения о перезаписи
-                excelApp.Visible = false;
-                excelApp.DisplayAlerts = false;
+                Excel.Application excelApp = new Excel.Application() { SheetsInNewWorkbook = 1, Visible = false, DisplayAlerts = false };
                 //Книга
                 Excel.Workbook excelWorkbook = excelApp.Workbooks.Add();
                 //Страница
-                Excel.Worksheet excelWorksheet = excelWorkbook.Sheets[1];
+                Excel.Worksheet excelWorksheet = (Excel.Worksheet)excelApp.Worksheets.get_Item(1);
+                
 
                 // Заполняем заголовки столбцов (начиная с A2)
                 for (int i = 0; i < dataGridView.Columns.Count; i++)

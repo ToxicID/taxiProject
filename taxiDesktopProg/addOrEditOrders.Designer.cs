@@ -124,7 +124,7 @@
             this.place_of_departureBox.Size = new System.Drawing.Size(427, 263);
             this.place_of_departureBox.TabIndex = 2;
             this.place_of_departureBox.TabStop = false;
-            this.place_of_departureBox.Text = "Место отправления";
+            this.place_of_departureBox.Text = "Пункт отправления";
             // 
             // label4
             // 
@@ -200,7 +200,7 @@
             this.destinationBox.Size = new System.Drawing.Size(427, 263);
             this.destinationBox.TabIndex = 8;
             this.destinationBox.TabStop = false;
-            this.destinationBox.Text = "Место назначения";
+            this.destinationBox.Text = "Пункт назначения";
             // 
             // label5
             // 
