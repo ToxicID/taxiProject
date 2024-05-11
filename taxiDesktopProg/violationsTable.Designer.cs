@@ -112,7 +112,7 @@
             this.Controls.Add(this.ButIzmen);
             this.Controls.Add(this.dataGridView1);
             this.Name = "violationsTable";
-            this.Text = "violationsTable";
+            this.Text = "Список нарушений";
             this.Click += new System.EventHandler(this.violationsTable_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

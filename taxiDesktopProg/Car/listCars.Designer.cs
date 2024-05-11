@@ -137,7 +137,7 @@
             this.Controls.Add(this.AddCarBut);
             this.Controls.Add(this.dataGridView1);
             this.Name = "listCars";
-            this.Text = "listCars";
+            this.Text = "Список автомобилей";
             this.Click += new System.EventHandler(this.listCars_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

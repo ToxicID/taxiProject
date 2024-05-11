@@ -18,12 +18,16 @@ namespace taxiDesktopProg
             InitializeComponent();
             label8.Text = "Номер \nводительского\nудостоверения";
             ButIzmen.Visible = false;
+            label2.Text = "Добавлить водителя";
+            this.Text = "Добавление водителя";
         }
         private long? idDriver;
         private string oldCall_sign;
         public addNewDriver(long? idDriver)
         {
             InitializeComponent();
+            label2.Text = "Изменить данные водителя";
+            this.Text = "Изменение водителя";
             AddDriverBut.Visible = false;
             dateTimePicker1.Enabled = false;
             label8.Text = "Номер \nводительского\nудостоверения";

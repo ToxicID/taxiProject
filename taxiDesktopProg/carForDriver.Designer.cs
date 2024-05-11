@@ -140,7 +140,7 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Name = "carForDriver";
-            this.Text = "carForDriver";
+            this.Text = "Назначить автомобиль";
             this.Click += new System.EventHandler(this.carForDriver_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

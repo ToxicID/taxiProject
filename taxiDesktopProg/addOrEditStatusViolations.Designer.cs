@@ -206,7 +206,7 @@
             this.Controls.Add(this.ButAdd);
             this.Controls.Add(this.label1);
             this.Name = "addOrEditStatusViolations";
-            this.Text = "addOrEditStatusViolations";
+            this.Text = "Нарушение";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -32,6 +32,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.buttonCar = new System.Windows.Forms.Button();
             this.panelDriver = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.panelGlavWin = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +45,7 @@
             this.Profile = new System.Windows.Forms.Button();
             this.driverBut = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.buttonVio = new System.Windows.Forms.Button();
             this.panelRate = new System.Windows.Forms.Panel();
             this.button13 = new System.Windows.Forms.Button();
@@ -51,9 +54,6 @@
             this.buttonRate = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button6 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.panelDriver.SuspendLayout();
             this.panelGlavWin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -110,6 +110,42 @@
             this.panelDriver.Name = "panelDriver";
             this.panelDriver.Size = new System.Drawing.Size(251, 115);
             this.panelDriver.TabIndex = 5;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button2.Location = new System.Drawing.Point(0, 76);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(249, 36);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "История поездок";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button6.Location = new System.Drawing.Point(0, 40);
+            this.button6.Name = "button6";
+            this.button6.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.button6.Size = new System.Drawing.Size(249, 36);
+            this.button6.TabIndex = 11;
+            this.button6.Text = "Назначить водителя";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // panelGlavWin
             // 
@@ -282,6 +318,23 @@
             this.panelMenu.Size = new System.Drawing.Size(253, 697);
             this.panelMenu.TabIndex = 9;
             // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button7.Location = new System.Drawing.Point(0, 638);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(251, 34);
+            this.button7.TabIndex = 15;
+            this.button7.Text = "Отчётность";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // buttonVio
             // 
             this.buttonVio.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -400,59 +453,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button6.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button6.Location = new System.Drawing.Point(0, 40);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(249, 36);
-            this.button6.TabIndex = 11;
-            this.button6.Text = "Назначить водителя";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(0, 76);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(249, 36);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "История поездок";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button7.Location = new System.Drawing.Point(0, 638);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(251, 34);
-            this.button7.TabIndex = 15;
-            this.button7.Text = "Отчётность";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // Form_for_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -461,7 +461,7 @@
             this.Controls.Add(this.panelGlavWin);
             this.Controls.Add(this.panelMenu);
             this.Name = "Form_for_Admin";
-            this.Text = "Form_for_Admin";
+            this.Text = "Главное окно ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_for_Admin_FormClosed);
             this.panelDriver.ResumeLayout(false);
             this.panelGlavWin.ResumeLayout(false);

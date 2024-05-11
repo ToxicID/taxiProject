@@ -137,7 +137,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginTextBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Авторизация";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

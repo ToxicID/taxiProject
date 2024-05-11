@@ -19,6 +19,8 @@ namespace taxiDesktopProg
             InitializeComponent();
             ButIzmen.Visible = false;
             button1.Visible = false;
+            label2.Text = "Добавлить диспетчера";
+            this.Text = "Добавление диспетчера";
         }
         private long? idDispEdit;
         private void listDataDisp()
@@ -50,6 +52,8 @@ namespace taxiDesktopProg
                 textBoxPas.Visible = false;
                 textBoxRepitPas.Visible = false;
                 listDataDisp();
+                label2.Text = "Изменить данные диспетчера";
+                this.Text = "Изменение диспетчера";
 
             }
             else if (whyEdit == "pass")
@@ -60,6 +64,9 @@ namespace taxiDesktopProg
                 textBoxMobule.ReadOnly = true;
                 ButIzmen.Visible = false;
                 listDataDisp();
+                label2.Text = "Изменить пароль диспетчера";
+                this.Text = "Изменение диспетчера";
+
             }
         }
 

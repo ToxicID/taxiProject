@@ -140,7 +140,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Name = "startOrEndWorkDriverForm";
-            this.Text = "startOrEndWorkDriverForm";
+            this.Text = "Начать смену водителя";
             this.ResumeLayout(false);
             this.PerformLayout();
 

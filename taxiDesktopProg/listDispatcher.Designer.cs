@@ -167,7 +167,7 @@
             this.Controls.Add(this.label2);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "listDispatcher";
-            this.Text = "listDispatcher";
+            this.Text = "Список диспетчеров";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

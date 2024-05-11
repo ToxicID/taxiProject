@@ -103,7 +103,7 @@ namespace taxiDesktopProg
                 comboBox2.SelectedValue = idRate.id_rate;
                 textBox1.Text = order.client.mobile_phone;
                 comboBox1.Text = order.payment_method;
-                priceBox.Text = order.order_cost.ToString();
+                priceBox.Text = Math.Round(order.order_cost,0).ToString();
                 if (index == 2)
                 {
                         checkBox1.Checked = true;

@@ -51,6 +51,8 @@ namespace taxiDesktopProg
             label14.Text = "Номер \nводительского\nудостоверения";
             ButIzmen.Visible = false;
            AddCarBut.Visible = true;
+            label2.Text = "Добавить автомобиль";
+            this.Name = "Добавление автомобиля";
         }
         private void UpdateCar(long? id)
         {
@@ -100,6 +102,8 @@ namespace taxiDesktopProg
             UpdateCar(id);
             ButIzmen.Visible = true;
             AddCarBut.Visible = false;
+            label2.Text = "Изменить данные автомобиля";
+            label2.Text = "Изменение автомобиля";
             comboBox3.Enabled = false;
             GosNum1.ReadOnly = true;
             GosNum2.ReadOnly = true;

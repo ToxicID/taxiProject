@@ -210,7 +210,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dgv);
             this.Name = "workDriver";
-            this.Text = "workDriver";
+            this.Text = "График работы водителей";
             this.Click += new System.EventHandler(this.workDriver_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();

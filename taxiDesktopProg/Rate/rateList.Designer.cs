@@ -378,7 +378,7 @@
             this.Controls.Add(this.label9);
             this.KeyPreview = true;
             this.Name = "rateList";
-            this.Text = "rateList";
+            this.Text = "Тарифы";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rateList_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
