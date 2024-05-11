@@ -134,7 +134,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "listClient";
-            this.Text = "listClient";
+            this.Text = "Список клиентов";
             this.Load += new System.EventHandler(this.listClient_Load);
             this.Click += new System.EventHandler(this.listClient_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
