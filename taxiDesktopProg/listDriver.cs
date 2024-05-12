@@ -16,7 +16,7 @@ namespace taxiDesktopProg
         {
             using (Context db = new Context(Form1.connectionString))
             {
-                var dr = db.drivers.ToList();
+                var dr = db.drivers.Select(x=> new { x.id_driver, x.status,x.driver_readiness,x.call_sign,x.surname,x.name,x.patronymic,x.date_of_birth,x.drivers_license_number,x.mobile_phone}).ToList();
                 dataGridView1.DataSource = dr;
             }
             fonts();
@@ -44,11 +44,6 @@ namespace taxiDesktopProg
             dataGridView1.Columns[7].HeaderText = "Дата рождения";
             dataGridView1.Columns[8].HeaderText = "Номер вод. удостоверения";
             dataGridView1.Columns[9].HeaderText = "Номер телефона";
-            dataGridView1.Columns[10].Visible = false;
-            dataGridView1.Columns[11].Visible = false;
-            dataGridView1.Columns[12].Visible = false;
-            dataGridView1.Columns[13].Visible = false;
-            dataGridView1.Columns[14].Visible = false;
             foreach (DataGridViewColumn data in dataGridView1.Columns)
                 data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

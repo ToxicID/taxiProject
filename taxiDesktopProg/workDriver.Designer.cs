@@ -140,9 +140,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(1020, 320);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 22);
+            this.label3.Size = new System.Drawing.Size(19, 22);
             this.label3.TabIndex = 82;
-            this.label3.Text = "С";
+            this.label3.Text = "с";
             // 
             // label4
             // 
@@ -153,9 +153,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label4.Location = new System.Drawing.Point(1011, 371);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 22);
+            this.label4.Size = new System.Drawing.Size(31, 22);
             this.label4.TabIndex = 83;
-            this.label4.Text = "По";
+            this.label4.Text = "по";
             // 
             // dateTimePicker1
             // 

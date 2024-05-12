@@ -118,7 +118,7 @@ namespace taxiDesktopProg
                 this.Width = 1350;
                 LoadMap();
                 // Добавление маркеров
-                AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Место отправления", "Место назначения");
+                AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Пункт отправления", "Пункт назначения");
 
                 // Построение маршрута
                 DrawRoute(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]));
@@ -347,7 +347,7 @@ namespace taxiDesktopProg
                 this.Width = 1350;
                 LoadMap();
                 // Добавление маркеров
-                AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Место отправления", "Место назначения");
+                AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Пункт отправления", "Пункт назначения");
 
                 // Построение маршрута
                 DrawRoute(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]));
