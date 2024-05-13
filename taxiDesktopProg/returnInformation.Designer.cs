@@ -131,7 +131,7 @@
             this.comboBox2.Location = new System.Drawing.Point(139, 63);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(320, 30);
+            this.comboBox2.Size = new System.Drawing.Size(437, 30);
             this.comboBox2.TabIndex = 93;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 

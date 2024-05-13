@@ -26,7 +26,9 @@ namespace taxiDesktopProg
             
                 using (Context db = new Context(Form1.connectionString))
                 {
-                    var dr = db.drivers.Where(x => x.surname.Contains(textBox2.Text)).ToList();
+                var dr = db.drivers.Select(x => new { x.id_driver, x.status, x.driver_readiness, x.call_sign, x.surname, x.name, x.patronymic, x.date_of_birth, x.drivers_license_number, x.mobile_phone }).
+                    Where(x => x.surname.Contains(textBox2.Text)).ToList();
+                
                 dataGridView1.DataSource = dr;
 
                 }
@@ -88,11 +90,13 @@ namespace taxiDesktopProg
                 fonts();
             }
         }
-
+        
         private void button4_Click(object sender, EventArgs e)
         {
             addNewDriver fm = new addNewDriver();
+            fm.FormClosed += new FormClosedEventHandler(addNewDriver_FormClosed);
             fm.Show();
+           
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

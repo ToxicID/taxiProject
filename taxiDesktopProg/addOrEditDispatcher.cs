@@ -129,6 +129,7 @@ namespace taxiDesktopProg
                     return;
                 }
                 idNewDisp = db.Database.SqlQuery<long>("select max(id_dispatcher) + 1 from dispatcher").FirstOrDefault();
+               
                 dispatcher d = new dispatcher()
                 {
                     id_dispatcher = idNewDisp,
@@ -140,7 +141,7 @@ namespace taxiDesktopProg
 
                 };
                 db.dispatchers.Add(d);
-               
+
 
 
 

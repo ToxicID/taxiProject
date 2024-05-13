@@ -65,7 +65,7 @@ namespace taxiDesktopProg
                 comboBox1.DataSource = bindingSource1.DataSource;
                 comboBox1.DisplayMember = "FullName";
                 comboBox1.ValueMember = "id_driverses";
-                
+
             }
         }
         public returnInformation()
@@ -90,7 +90,7 @@ namespace taxiDesktopProg
             long dr = Convert.ToInt64(comboBox1.SelectedValue);
             using (Context db = new Context(Form1.connectionString))
             {
-                
+
                 var drInOrder = db.order_driver_car.Where(x => x.id_driver == dr).Select(x => new
                 {
                     x.call_sign,
@@ -135,7 +135,7 @@ namespace taxiDesktopProg
                 dataGridView2.EnableHeadersVisualStyles = false;
             }
         }
-        private void driverInOrder(DateTimePicker dateTimePicker2,DateTimePicker dateTimePicker1)
+        private void driverInOrder(DateTimePicker dateTimePicker2, DateTimePicker dateTimePicker1)
         {
             long dr = Convert.ToInt64(comboBox1.SelectedValue);
             using (Context db = new Context(Form1.connectionString))
@@ -160,12 +160,19 @@ namespace taxiDesktopProg
                     x.client_mobile_phone
                 });
 
-                dataGridView2.DataSource = drInOrder.Where(x => x.datetime_placing_the_order.Year >= dateTimePicker2.Value.Year &&
-                x.datetime_placing_the_order.Month >= dateTimePicker2.Value.Month &&
-                x.datetime_placing_the_order.Day >= dateTimePicker2.Value.Day && 
-                x.datetime_placing_the_order.Year <= dateTimePicker1.Value.Year &&
-                x.datetime_placing_the_order.Month <= dateTimePicker1.Value.Month &&
-                x.datetime_placing_the_order.Day <= dateTimePicker1.Value.Day).Distinct().ToList();
+                dataGridView2.DataSource = drInOrder.Where(x =>
+               x.datetime_placing_the_order.Year >= dateTimePicker2.Value.Year &&
+            (x.datetime_placing_the_order.Year > dateTimePicker2.Value.Year ||
+            x.datetime_placing_the_order.Month >= dateTimePicker2.Value.Month) &&
+            (x.datetime_placing_the_order.Year > dateTimePicker2.Value.Year ||
+            x.datetime_placing_the_order.Month > dateTimePicker2.Value.Month ||
+            x.datetime_placing_the_order.Day >= dateTimePicker2.Value.Day) &&
+            x.datetime_placing_the_order.Year <= dateTimePicker1.Value.Year &&
+            (x.datetime_placing_the_order.Year < dateTimePicker1.Value.Year ||
+            x.datetime_placing_the_order.Month <= dateTimePicker1.Value.Month) &&
+            (x.datetime_placing_the_order.Year < dateTimePicker1.Value.Year ||
+            x.datetime_placing_the_order.Month < dateTimePicker1.Value.Month ||
+            x.datetime_placing_the_order.Day <= dateTimePicker1.Value.Day)).Distinct().ToList();
                 dataGridView2.Columns[0].HeaderText = "Позывной";
                 dataGridView2.Columns[1].HeaderText = "Фамилия водителя";
                 dataGridView2.Columns[2].HeaderText = "Имя водителя";
@@ -194,7 +201,7 @@ namespace taxiDesktopProg
         {
             using (Context db = new Context(Form1.connectionString))
             {
-                var rateLists = db.rates.Select(x=> new { V = x.availability.ToString(), x.name,x.boarding,x.cost_per_kilometer,x.cost_downtime,x.child_safety_seat,x.transportation_of_pet}).ToList();
+                var rateLists = db.rates.Select(x => new { V = x.availability.ToString(), x.name, x.boarding, x.cost_per_kilometer, x.cost_downtime, x.child_safety_seat, x.transportation_of_pet }).ToList();
                 dataGridView1.DataSource = rateLists;
                 dataGridView1.Columns[0].HeaderText = "Доступность";
                 dataGridView1.Columns[1].HeaderText = "Название";
@@ -203,7 +210,7 @@ namespace taxiDesktopProg
                 dataGridView1.Columns[4].HeaderText = "Цена за ожидаение";
                 dataGridView1.Columns[5].HeaderText = "Детское сидение";
                 dataGridView1.Columns[6].HeaderText = "Перевозка домашних животных";
-                
+
                 foreach (DataGridViewColumn data in dataGridView1.Columns)
                     data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -270,7 +277,7 @@ namespace taxiDesktopProg
                                id_driver = driv.call_sign,
                                id_client = ord.client.mobile_phone,
                                id_rate = ord.rate.name,
-                               
+
                            };
                 dataGridView2.DataSource = list.Distinct().ToList();
                 dataGridView2.Columns[0].HeaderText = "Статус";
@@ -291,7 +298,7 @@ namespace taxiDesktopProg
                 dataGridView2.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
                 dataGridView2.EnableHeadersVisualStyles = false;
             }
-            }
+        }
         private void orderList(DateTimePicker dateTimePicker2, DateTimePicker dateTimePicker1)
         {
             using (Context db = new Context(Form1.connectionString))
@@ -316,13 +323,20 @@ namespace taxiDesktopProg
                                id_rate = ord.rate.name,
 
                            };
-                dataGridView2.DataSource = list.Where(x => 
+                dataGridView2.DataSource = list.Where(x =>
                 x.datetime_placing.Year >= dateTimePicker2.Value.Year &&
-                x.datetime_placing.Month >= dateTimePicker2.Value.Month &&
-                x.datetime_placing.Day >= dateTimePicker2.Value.Day &&
-                x.datetime_placing.Year <= dateTimePicker1.Value.Year &&
-                x.datetime_placing.Month <= dateTimePicker1.Value.Month &&
-                x.datetime_placing.Day <= dateTimePicker1.Value.Day).Distinct().ToList();
+            (x.datetime_placing.Year > dateTimePicker2.Value.Year ||
+            x.datetime_placing.Month >= dateTimePicker2.Value.Month) &&
+            (x.datetime_placing.Year > dateTimePicker2.Value.Year ||
+            x.datetime_placing.Month > dateTimePicker2.Value.Month ||
+            x.datetime_placing.Day >= dateTimePicker2.Value.Day) &&
+            x.datetime_placing.Year <= dateTimePicker1.Value.Year &&
+            (x.datetime_placing.Year < dateTimePicker1.Value.Year ||
+            x.datetime_placing.Month <= dateTimePicker1.Value.Month) &&
+            (x.datetime_placing.Year < dateTimePicker1.Value.Year ||
+            x.datetime_placing.Month < dateTimePicker1.Value.Month ||
+            x.datetime_placing.Day <= dateTimePicker1.Value.Day)).Distinct().ToList();
+
                 dataGridView2.Columns[0].HeaderText = "Статус";
                 dataGridView2.Columns[1].HeaderText = "Причина отмены";
                 dataGridView2.Columns[2].HeaderText = "Адрес подачи";
@@ -360,7 +374,7 @@ namespace taxiDesktopProg
                     label4.Visible = true;
                     dateTimePicker1.Visible = true;
                     dateTimePicker2.Visible = true;
-                    MessageBox.Show("Выберите водителя и промежуто времени","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("Выберите водителя и промежуто времени", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case 1:
                     button2.Enabled = true;
@@ -443,7 +457,7 @@ namespace taxiDesktopProg
             }
         }
         static System.Windows.Forms.SaveFileDialog saveFileDialog;
-        public  void Export(DataGridView dataGridView)
+        public void Export(DataGridView dataGridView)
         {
             // Создаем диалоговое окно для сохранения файла
             saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -483,7 +497,7 @@ namespace taxiDesktopProg
                 //добавление полужирного шрифта для заголовков таблицы
                 excelWorksheet.Rows[1].Font.Bold = true;
                 excelWorksheet.Rows[2].Font.Bold = true;
-                
+
 
                 if (comboBox2.SelectedIndex == 1)
                 {
@@ -501,7 +515,7 @@ namespace taxiDesktopProg
                     //размер текста
                     range3.Cells.Font.Size = 14;
                 }
-                else if(comboBox2.SelectedIndex == 2)
+                else if (comboBox2.SelectedIndex == 2)
                 {
                     excelWorkbook.Worksheets[1].Cells.Replace("ЛОЖЬ", "Личный");
                     excelWorkbook.Worksheets[1].Cells.Replace("ИСТИНА", "Авто фирмы");
@@ -518,7 +532,7 @@ namespace taxiDesktopProg
                     //размер текста
                     range3.Cells.Font.Size = 14;
                 }
-                else if (comboBox2.SelectedIndex== 0)
+                else if (comboBox2.SelectedIndex == 0)
                 {
                     //Название в клетке
                     excelWorksheet.Cells[1, "A"] = "История заказов водителей за определённый промежуток времени";
@@ -585,12 +599,12 @@ namespace taxiDesktopProg
             }
         }
 
-       
+
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (comboBox2.SelectedIndex == 1)
             {
-               
+
                 switch (e.ColumnIndex)
                 {
                     case 0:
@@ -603,13 +617,17 @@ namespace taxiDesktopProg
                             e.Value = "Недоступен";
                         }
                         break;
-                    case 2: case 3: case 4:case 5:case 6:
-                        if(e.Value != null)
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                        if (e.Value != null)
                         {
                             e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
                         }
                         break;
-                  
+
                 }
             }
             else if (comboBox2.SelectedIndex == 2)
@@ -626,9 +644,9 @@ namespace taxiDesktopProg
 
         private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if(comboBox2.SelectedIndex == 3)
+            if (comboBox2.SelectedIndex == 3)
             {
-                if(e.ColumnIndex == 4)
+                if (e.ColumnIndex == 4)
                 {
                     if (e.Value != null)
                     {
@@ -636,7 +654,7 @@ namespace taxiDesktopProg
                     }
                 }
             }
-            else if(comboBox2.SelectedIndex == 0)
+            else if (comboBox2.SelectedIndex == 0)
             {
                 if (e.ColumnIndex == 5)
                     if (Convert.ToBoolean(this.dataGridView2.Rows[e.RowIndex].Cells[5].Value) == true)

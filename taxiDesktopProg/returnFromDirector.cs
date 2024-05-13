@@ -219,9 +219,18 @@ namespace taxiDesktopProg
                                statusVio = vio.violation_status,
                                measuresVio = vio.measures_taken
                            };
-                dataGridView1.DataSource = list.Where(x => x.dateTimeVio.Year >= dateTimePicker2.Value.Year && x.dateTimeVio.Month >= dateTimePicker2.Value.Month &&
-                x.dateTimeVio.Day >= dateTimePicker2.Value.Day && x.dateTimeVio.Year <= dateTimePicker1.Value.Year &&
-                x.dateTimeVio.Month <= dateTimePicker1.Value.Month && x.dateTimeVio.Day <= dateTimePicker1.Value.Day).ToList();
+                dataGridView1.DataSource = list.Where(x => x.dateTimeVio.Year >= dateTimePicker2.Value.Year &&
+                                                            (x.dateTimeVio.Year > dateTimePicker2.Value.Year ||
+                                                            x.dateTimeVio.Month >= dateTimePicker2.Value.Month) &&
+                                                            (x.dateTimeVio.Year > dateTimePicker2.Value.Year ||
+                                                            x.dateTimeVio.Month > dateTimePicker2.Value.Month ||
+                                                            x.dateTimeVio.Day >= dateTimePicker2.Value.Day) &&
+                                                            x.dateTimeVio.Year <= dateTimePicker1.Value.Year &&
+                                                            (x.dateTimeVio.Year < dateTimePicker1.Value.Year ||
+                                                            x.dateTimeVio.Month <= dateTimePicker1.Value.Month) &&
+                                                            (x.dateTimeVio.Year < dateTimePicker1.Value.Year ||
+                                                            x.dateTimeVio.Month < dateTimePicker1.Value.Month ||
+                                                            x.dateTimeVio.Day <= dateTimePicker1.Value.Day)).ToList();
 
 
 
