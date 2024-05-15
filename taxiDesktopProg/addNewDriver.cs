@@ -32,7 +32,7 @@ namespace taxiDesktopProg
             dateTimePicker1.Enabled = false;
             label8.Text = "Номер \nводительского\nудостоверения";
             this.idDriver = idDriver;
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var dr = db.drivers.Where(p => p.id_driver == idDriver).FirstOrDefault();
                 textBox3.Text = dr.call_sign;
@@ -114,7 +114,7 @@ namespace taxiDesktopProg
             if (string.IsNullOrWhiteSpace(textBox4.Text))
                 textBox4.Text = "Отсутствует";
 
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var drOld = db.drivers;
                
@@ -182,7 +182,7 @@ namespace taxiDesktopProg
             }
             if (string.IsNullOrWhiteSpace(textBox4.Text))
                 textBox4.Text = "Отсутствует";
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var drAll = db.drivers;
                 var dr = db.drivers.Where(p => p.id_driver == idDriver).FirstOrDefault();

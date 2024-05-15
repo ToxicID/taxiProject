@@ -31,7 +31,7 @@ namespace taxiDesktopProg
         private long? DataGrid2IndexCar = null;
         private void listCar()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var car = from c in db.cars
                           join car_cat in db.car_category on c.id_car_category equals car_cat.id_car_category
@@ -65,7 +65,7 @@ namespace taxiDesktopProg
         }
         private void listDriver()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var dr = db.drivers.ToList();
 #pragma warning disable CS0472 // Результат значения всегда одинаковый, так как значение этого типа никогда не равно NULL
@@ -169,7 +169,7 @@ namespace taxiDesktopProg
                     checkDriver = false;
                     return;
                 }
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                     //поиск авто
                     var car = db.cars.Where(p => p.id_car == DataGrid2IndexCar).FirstOrDefault();

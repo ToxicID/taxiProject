@@ -14,7 +14,7 @@ namespace taxiDesktopProg
     {
         private void listDriverDataGrid()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var dr = db.drivers.Select(x=> new { x.id_driver, x.status,x.driver_readiness,x.call_sign,x.surname,x.name,x.patronymic,x.date_of_birth,x.drivers_license_number,x.mobile_phone}).ToList();
                 dataGridView1.DataSource = dr;
@@ -24,7 +24,7 @@ namespace taxiDesktopProg
         private void searchDriver()
         {
             
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                 var dr = db.drivers.Select(x => new { x.id_driver, x.status, x.driver_readiness, x.call_sign, x.surname, x.name, x.patronymic, x.date_of_birth, x.drivers_license_number, x.mobile_phone }).
                     Where(x => x.surname.Contains(textBox2.Text)).ToList();
@@ -165,7 +165,7 @@ namespace taxiDesktopProg
         {
             if (DataGridIndex != null)
             {
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                     DialogResult result = MessageBox.Show("Удалить водителя?", "Удаление",
                                                                                        MessageBoxButtons.YesNo,
@@ -197,7 +197,7 @@ namespace taxiDesktopProg
         }
         private void listCarAndDriver()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var dr = from drive in db.drivers
                          join c in db.cars
@@ -228,7 +228,7 @@ namespace taxiDesktopProg
         }
         private void searchInListCarAndDriver()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var dr = from drive in db.drivers
                          join c in db.cars
@@ -302,7 +302,7 @@ namespace taxiDesktopProg
                 {
                     return;
                 }
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                     var driver = db.drivers.Find(DataGridIndex);
                     driver.id_car = null;

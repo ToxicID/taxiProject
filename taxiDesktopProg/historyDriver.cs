@@ -30,7 +30,7 @@ namespace taxiDesktopProg
         }
         private void listDriver()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
 
                 var drInOrder = db.order_driver_car.Select(x => new
@@ -57,7 +57,7 @@ namespace taxiDesktopProg
         }
         private void searchDriver()
         {
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
 
                     var drInOrder = db.order_driver_car.Select(x => new
@@ -84,7 +84,7 @@ namespace taxiDesktopProg
         }
         private void searchDriver(DateTimePicker dateTimePicker)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
 
                 var drInOrder = db.order_driver_car.Select(x => new
@@ -113,7 +113,7 @@ namespace taxiDesktopProg
         }
         private void searchDriverDateAndSurname(DateTimePicker dateTimePicker)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
 
                 var drInOrder = db.order_driver_car.Select(x => new

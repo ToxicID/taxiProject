@@ -15,7 +15,7 @@ namespace taxiDesktopProg
     {
         private void listTable()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var list = from dr in db.drivers
                            join vio in db.violations on dr.id_driver equals vio.id_driver
@@ -50,7 +50,7 @@ namespace taxiDesktopProg
             listTable();
             button1.Enabled = false;
             button5.Visible = false;
-            if(Form1.mode == 2)
+            if(auth.mode == 2)
                 button5.Visible = true;
         }
 
@@ -68,7 +68,7 @@ namespace taxiDesktopProg
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 if (DataGridIndex != null)
                 {
@@ -121,7 +121,7 @@ namespace taxiDesktopProg
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 if (DataGridIndex != null)
                 {

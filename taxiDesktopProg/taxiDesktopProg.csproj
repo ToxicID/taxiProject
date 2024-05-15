@@ -298,6 +298,7 @@
     <Compile Include="addOrEditStatusViolations.Designer.cs">
       <DependentUpon>addOrEditStatusViolations.cs</DependentUpon>
     </Compile>
+    <Compile Include="adminInterface.cs" />
     <Compile Include="Class\address.cs" />
     <Compile Include="Class\car.cs" />
     <Compile Include="carForDriver.cs">
@@ -323,12 +324,14 @@
     <Compile Include="Class\Context.cs" />
     <Compile Include="Class\dispatcher.cs" />
     <Compile Include="Class\driver.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="auth.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="auth.Designer.cs">
+      <DependentUpon>auth.cs</DependentUpon>
     </Compile>
+    <Compile Include="exportExcel.cs" />
+    <Compile Include="forIssuingOrders.cs" />
     <Compile Include="Form_for_Admin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,6 +356,7 @@
     <Compile Include="Client\listClient.Designer.cs">
       <DependentUpon>listClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="forOrders.cs" />
     <Compile Include="historyDriver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -441,8 +445,8 @@
     <EmbeddedResource Include="addOrEditOrders.resx">
       <DependentUpon>addOrEditOrders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="auth.resx">
+      <DependentUpon>auth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_for_Admin.resx">
       <DependentUpon>Form_for_Admin.cs</DependentUpon>
@@ -496,6 +500,7 @@
     <EmbeddedResource Include="workDriver.resx">
       <DependentUpon>workDriver.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DiagramClass.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

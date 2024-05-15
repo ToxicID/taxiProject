@@ -17,7 +17,7 @@ namespace taxiDesktopProg
         private long? DataGridIndex = null;
         private void print(DataGridView dataName)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var car = from c in db.cars
                           join car_cat in db.car_category on c.id_car_category equals car_cat.id_car_category
@@ -46,7 +46,7 @@ namespace taxiDesktopProg
             print(dataGridView1);
             RemoveCar.Enabled = false;
             button2.Enabled = false;
-            if (Form1.mode == 2)
+            if (auth.mode == 2)
                 button5.Visible = true;
         }
 
@@ -67,7 +67,7 @@ namespace taxiDesktopProg
         }
       private void lists()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var car = from c in db.cars
                           join car_cat in db.car_category on c.id_car_category equals car_cat.id_car_category
@@ -163,7 +163,7 @@ namespace taxiDesktopProg
         {
             if (DataGridIndex != null)
             {
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                     DialogResult result = MessageBox.Show("Удалить данный автомобиль?", "Удаление",
                                                                                        MessageBoxButtons.YesNo,

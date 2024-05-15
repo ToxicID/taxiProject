@@ -66,7 +66,7 @@ namespace taxiDesktopProg
             startView();
             //Если с момента добавления нарушения прошло 24 часа, диспетчер не может изменять
             // ничего кроме принятых мер
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var vio = db.violations.Where(p=>p.id_violations == idVio).FirstOrDefault();
                 var dtVio = vio.datetime_of_recording_violation;
@@ -94,7 +94,7 @@ namespace taxiDesktopProg
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
 
                 var dr = db.drivers;
@@ -141,7 +141,7 @@ namespace taxiDesktopProg
                     return;
                 }
           
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 try
                 {
@@ -186,7 +186,7 @@ namespace taxiDesktopProg
                     return;
                 }
            
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var vio = db.violations.Where(p => p.id_violations == idVio).FirstOrDefault();
                 vio.datetime_the_violation = dateTimePicker1.Value;

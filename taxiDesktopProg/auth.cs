@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace taxiDesktopProg
 {
-    public partial class Form1 : Form
+    public partial class auth : Form
     {
         public static string connectionString;
-        public Form1()
+        public auth()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace taxiDesktopProg
 {
-    partial class Form1
+    partial class auth
     {
         /// <summary>
         /// Обязательная переменная конструктора.

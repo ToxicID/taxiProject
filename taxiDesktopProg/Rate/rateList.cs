@@ -72,7 +72,7 @@ namespace taxiDesktopProg
 
             }
 
-            if (Form1.mode == 2)
+            if (auth.mode == 2)
                 button5.Visible = true;
 
         }
@@ -85,7 +85,7 @@ namespace taxiDesktopProg
             ChildKres.ReadOnly = true;
             Perevos.ReadOnly = true;
             
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 indexRate = db.rates.Where(p => p.availability == true).FirstOrDefault().id_rate;
                 List<rate> cp = db.rates.ToList();
@@ -97,7 +97,7 @@ namespace taxiDesktopProg
         }
         private void print()
         {//Доделать
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var rate = db.rates.Where(p => p.id_rate == indexRate).FirstOrDefault();
                 Names.Text = rate.name.ToString();
@@ -182,7 +182,7 @@ namespace taxiDesktopProg
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 rate cps = comboBox1.Items[comboBox1.SelectedIndex] as rate;
                 indexRate = cps.id_rate;
@@ -299,7 +299,7 @@ namespace taxiDesktopProg
         private void button3_Click(object sender, EventArgs e)
         {
            
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 testSt();
                 parsing();
@@ -336,7 +336,7 @@ namespace taxiDesktopProg
         {
             if (status)
             {
-                if (Form1.mode == 2)
+                if (auth.mode == 2)
                 {
 
 
@@ -349,7 +349,7 @@ namespace taxiDesktopProg
                     button2.Enabled = true;
                     statusEditRate = false;
                 }
-                else if (Form1.mode == 1)
+                else if (auth.mode == 1)
                 {
                     status = false;
                     button4.Text = "Сохранить";
@@ -362,7 +362,7 @@ namespace taxiDesktopProg
             {
                 testSt();
                 parsing();
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                     rate c = db.rates.Find(indexRate);
                     c.availability = enOrFalseStatusRate;

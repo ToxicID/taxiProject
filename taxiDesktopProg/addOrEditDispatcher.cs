@@ -25,7 +25,7 @@ namespace taxiDesktopProg
         private long? idDispEdit;
         private void listDataDisp()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var disp = db.dispatchers.Where(p => p.id_dispatcher == idDispEdit).FirstOrDefault();
                 textBox1.Text = disp.surname;
@@ -115,7 +115,7 @@ namespace taxiDesktopProg
                 textBox3.Text = "Отсутствует";
                 checkBox1.Checked = true;
             }
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var dispAll = db.dispatchers;
                 if(dispAll.Where(p=>p.mobile_phone == textBoxMobule.Text).Count() == 1)
@@ -197,7 +197,7 @@ namespace taxiDesktopProg
         }
         private void ButIzmen_Click(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var disp = db.dispatchers.Where(p => p.id_dispatcher == idDispEdit).FirstOrDefault();
                 if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text) || string.IsNullOrWhiteSpace(textBoxMobule.Text))

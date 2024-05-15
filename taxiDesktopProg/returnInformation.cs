@@ -52,7 +52,7 @@ namespace taxiDesktopProg
         private void startView()
         {
 
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
 
                 var dr = db.drivers;
@@ -68,9 +68,11 @@ namespace taxiDesktopProg
 
             }
         }
+        exportExcel eExcel;
         public returnInformation()
         {
             InitializeComponent();
+            eExcel = new exportExcel(this) ;
             button2.Enabled = false;
             //Выбор промежутка
             label1.Visible = false;
@@ -88,7 +90,7 @@ namespace taxiDesktopProg
         private void driverInOrder()
         {
             long dr = Convert.ToInt64(comboBox1.SelectedValue);
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
 
                 var drInOrder = db.order_driver_car.Where(x => x.id_driver == dr).Select(x => new
@@ -138,7 +140,7 @@ namespace taxiDesktopProg
         private void driverInOrder(DateTimePicker dateTimePicker2, DateTimePicker dateTimePicker1)
         {
             long dr = Convert.ToInt64(comboBox1.SelectedValue);
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var drInOrder = db.order_driver_car.Where(x => x.id_driver == dr).Select(x => new
                 {
@@ -199,7 +201,7 @@ namespace taxiDesktopProg
         }
         private void rateList()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var rateLists = db.rates.Select(x => new { V = x.availability.ToString(), x.name, x.boarding, x.cost_per_kilometer, x.cost_downtime, x.child_safety_seat, x.transportation_of_pet }).ToList();
                 dataGridView1.DataSource = rateLists;
@@ -221,7 +223,7 @@ namespace taxiDesktopProg
         }
         private void carList()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var car = from c in db.cars
                           join car_cat in db.car_category on c.id_car_category equals car_cat.id_car_category
@@ -257,7 +259,7 @@ namespace taxiDesktopProg
         }
         private void orderList()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var list = from ord in db.orders
                            join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
@@ -301,7 +303,7 @@ namespace taxiDesktopProg
         }
         private void orderList(DateTimePicker dateTimePicker2, DateTimePicker dateTimePicker1)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var list = from ord in db.orders
                            join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
@@ -456,144 +458,25 @@ namespace taxiDesktopProg
                 button2.Enabled = true;
             }
         }
-        static System.Windows.Forms.SaveFileDialog saveFileDialog;
-        public void Export(DataGridView dataGridView)
-        {
-            // Создаем диалоговое окно для сохранения файла
-            saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-            saveFileDialog.Title = "Save Excel File";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {//Приложение
-
-
-                Excel.Application excelApp = new Excel.Application();
-                //Скрытие окна Excel и окна для подтверждения о перезаписи
-                excelApp.Visible = false;
-                excelApp.DisplayAlerts = false;
-                //Книга
-                Excel.Workbook excelWorkbook = excelApp.Workbooks.Add();
-                //Страница
-                Excel.Worksheet excelWorksheet = excelWorkbook.Sheets[1];
-
-                // Заполняем заголовки столбцов (начиная с A2)
-                for (int i = 0; i < dataGridView.Columns.Count; i++)
-                {
-                    excelWorksheet.Cells[2, i + 1] = dataGridView.Columns[i].HeaderText;
-                }
-
-                // Заполняем ячейки данными из DataGridView (начиная с A3)
-                for (int i = 0; i < dataGridView.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dataGridView.Columns.Count; j++)
-                    {
-                        excelWorksheet.Cells[i + 3, j + 1] = dataGridView.Rows[i].Cells[j].Value?.ToString();
-                    }
-                }
-
-                //Добавление границ
-                excelWorksheet.Cells[1, 1].CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous; //границы
-                //добавление полужирного шрифта для заголовков таблицы
-                excelWorksheet.Rows[1].Font.Bold = true;
-                excelWorksheet.Rows[2].Font.Bold = true;
-
-
-                if (comboBox2.SelectedIndex == 1)
-                {
-                    excelWorkbook.Worksheets[1].Cells.Replace("ЛОЖЬ", "Недоступен");
-                    excelWorkbook.Worksheets[1].Cells.Replace("ИСТИНА", "Доступен");
-                    //Название в клетке
-                    excelWorksheet.Cells[1, "A"] = "Список тарифов";
-                    //Выбор диапазона
-                    var range3 = excelWorksheet.get_Range("A1", "G1");
-                    //Объединение клеток в 1
-                    range3.Merge(Type.Missing);
-                    //выравнивание
-                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
-                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    //размер текста
-                    range3.Cells.Font.Size = 14;
-                }
-                else if (comboBox2.SelectedIndex == 2)
-                {
-                    excelWorkbook.Worksheets[1].Cells.Replace("ЛОЖЬ", "Личный");
-                    excelWorkbook.Worksheets[1].Cells.Replace("ИСТИНА", "Авто фирмы");
-
-                    //Название в клетке
-                    excelWorksheet.Cells[1, "A"] = "Список автомобилей";
-                    //Выбор диапазона
-                    var range3 = excelWorksheet.get_Range("A1", "H1");
-                    //Объединение клеток в 1
-                    range3.Merge(Type.Missing);
-                    //выравнивание
-                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
-                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    //размер текста
-                    range3.Cells.Font.Size = 14;
-                }
-                else if (comboBox2.SelectedIndex == 0)
-                {
-                    //Название в клетке
-                    excelWorksheet.Cells[1, "A"] = "История заказов водителей за определённый промежуток времени";
-                    //Выбор диапазона
-                    var range3 = excelWorksheet.get_Range("A1", "P1");
-                    //Объединение клеток в 1
-                    range3.Merge(Type.Missing);
-                    //выравнивание
-                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
-                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    //размер текста
-                    range3.Cells.Font.Size = 14;
-
-                    var range4 = excelWorksheet.get_Range("F3", "F500");
-                    range4.Cells.Replace("ЛОЖЬ", "Личный");
-                    range4.Cells.Replace("ИСТИНА", "Авто фирмы");
-                }
-                else if (comboBox2.SelectedIndex == 3)
-                {
-                    //Название в клетке
-                    excelWorksheet.Cells[1, "A"] = "Заказы за промежуток времени";
-                    //Выбор диапазона
-                    var range3 = excelWorksheet.get_Range("A1", "K1");
-                    //Объединение клеток в 1
-                    range3.Merge(Type.Missing);
-                    //выравнивание
-                    range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
-                    range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                    //размер текста
-                    range3.Cells.Font.Size = 14;
-                }
-                //автоматическое расстояние столбцов
-                excelWorksheet.Range["A:Z"].EntireColumn.AutoFit();
-                // Сохраняем файл Excel и закрываем приложение
-                excelWorkbook.SaveAs(saveFileDialog.FileName);
-                excelWorkbook.Close();
-                excelApp.Quit();
-            }
-        }
+     
         private void button2_Click(object sender, EventArgs e)
         {
             switch (comboBox2.SelectedIndex)
             {
                 case 0:
-                    Export(dataGridView2);
-                    MessageBox.Show($"Файл был создан по пути: {saveFileDialog.FileName}");
+                    eExcel.Export(dataGridView2);
                     button2.Enabled = false;
                     break;
                 case 1:
-                    Export(dataGridView1);
-                    MessageBox.Show($"Файл был создан по пути: {saveFileDialog.FileName}");
+                    eExcel.Export(dataGridView1);
                     button2.Enabled = false;
                     break;
                 case 2:
-                    Export(dataGridView1);
-                    MessageBox.Show($"Файл был создан по пути: {saveFileDialog.FileName}");
+                    eExcel.Export(dataGridView1);
                     button2.Enabled = false;
                     break;
                 case 3:
-                    Export(dataGridView2);
-                    MessageBox.Show($"Файл был создан по пути: {saveFileDialog.FileName}");
+                    eExcel.Export(dataGridView2);
                     button2.Enabled = false;
                     break;
             }

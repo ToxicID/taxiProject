@@ -15,7 +15,7 @@ namespace taxiDesktopProg
     {
         private void print()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var cl = db.clients.ToList();
                 dataGridView1.DataSource = cl;
@@ -24,7 +24,7 @@ namespace taxiDesktopProg
         }
         private void list()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var cl = db.clients.Where(x=> x.mobile_phone.Contains(textBox2.Text)).ToList();
                 dataGridView1.DataSource = cl;
@@ -51,7 +51,7 @@ namespace taxiDesktopProg
             button2.Visible = false;
             button3.Visible = false;
             button3.Enabled = false;
-            if (Form1.mode == 2) {
+            if (auth.mode == 2) {
                 button2.Visible = true;
                 button3.Visible = true;
             }
@@ -72,7 +72,7 @@ namespace taxiDesktopProg
         private long? DataGridIndex = null;
         private void button1_Click(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 if (DataGridIndex != null)
                 {
@@ -122,7 +122,7 @@ namespace taxiDesktopProg
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 if (DataGridIndex != null)
                 {
@@ -153,7 +153,7 @@ namespace taxiDesktopProg
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 if (DataGridIndex != null)
                 {

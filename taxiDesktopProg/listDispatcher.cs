@@ -16,7 +16,7 @@ namespace taxiDesktopProg
     {
         private void list()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var disp = db.dispatchers.ToList();
                 dataGridView1.DataSource = disp;
@@ -41,7 +41,7 @@ namespace taxiDesktopProg
         }
         private void search()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var disp = db.dispatchers.Where(x => x.surname.Contains(textBox2.Text)).ToList();
                 dataGridView1.DataSource = disp;
@@ -149,7 +149,7 @@ namespace taxiDesktopProg
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 if (DataGridIndex != null)
                 {

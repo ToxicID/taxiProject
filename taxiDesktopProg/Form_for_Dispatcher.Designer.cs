@@ -608,15 +608,10 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage newOrder;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TabPage performedOrders;
         private System.Windows.Forms.TabPage preliminaryOrders;
         private System.Windows.Forms.TabPage completedOrders;
         private System.Windows.Forms.TabPage falseOrders;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.PictureBox addOrder;
         private System.Windows.Forms.PictureBox editOrder;
         private System.Windows.Forms.PictureBox falseOrder;
@@ -640,8 +635,13 @@
         private System.Windows.Forms.ToolStripMenuItem назначитьАвтомобильToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dataGridView7;
         private System.Windows.Forms.ToolStripMenuItem отчётToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem историяЗаказовToolStripMenuItem;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dataGridView2;
+        public System.Windows.Forms.DataGridView dataGridView3;
+        public System.Windows.Forms.DataGridView dataGridView4;
+        public System.Windows.Forms.DataGridView dataGridView5;
+        public System.Windows.Forms.DataGridView dataGridView7;
     }
 }

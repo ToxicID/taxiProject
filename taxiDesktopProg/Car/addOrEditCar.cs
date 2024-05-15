@@ -35,7 +35,7 @@ namespace taxiDesktopProg
             maskedTextBox1.Visible = false;
             button1.Visible = false;
            
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 List<car_category> cc = db.car_category.ToList();
                 comboBox1.DataSource = cc;
@@ -56,7 +56,7 @@ namespace taxiDesktopProg
         }
         private void UpdateCar(long? id)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 car c = db.cars.Find(id);
                 string chars = c.state_number;
@@ -136,7 +136,7 @@ namespace taxiDesktopProg
         private long indexId;
         private void printCarCat()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var cc = db.car_category.Where(p => p.id_car_category == indexId).FirstOrDefault();
                 numericUpDown1.Value = cc.number_of_passengers;
@@ -164,7 +164,7 @@ namespace taxiDesktopProg
         }
         private bool checkCar(string state_number, string regCode)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var car = db.cars;
                 if (car.Where(p => p.state_number == state_number && p.region_code == regCode).Count() == 1)
@@ -200,7 +200,7 @@ namespace taxiDesktopProg
 
                 return;
             }
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 try
                 {
@@ -321,7 +321,7 @@ namespace taxiDesktopProg
         {
            
 
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
 
                 var dr = db.drivers;
@@ -340,7 +340,7 @@ namespace taxiDesktopProg
         }
         private long retIdCC()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var cc=db.car_category.Where(p => p.number_of_passengers == numericUpDown1.Value && p.fuel_consumption == numericUpDown2.Value && p.name == comboBox1.Text).FirstOrDefault();
                 return cc.id_car_category;
@@ -375,7 +375,7 @@ namespace taxiDesktopProg
         {
             testPol();
             string stateNumber = $"{GosNum1.Text}{GosNum2.Text}{GosNum3.Text}{GosNum4.Text}{GosNum5.Text}{GosNum6.Text}";
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 try
                 {
@@ -434,7 +434,7 @@ namespace taxiDesktopProg
         long id_driverForAuto;
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString)) {
+            using (Context db = new Context(auth.connectionString)) {
                 long idDriver;
                 if (comboBox4.SelectedItem != null)
                 {
@@ -455,7 +455,7 @@ namespace taxiDesktopProg
             DialogResult result = MessageBox.Show("Назначить этого водителя на выбранный автомобиль?","Infromation",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
             if(result == DialogResult.Yes)
             {
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                     var driver = db.drivers.Where(x => x.id_driver == id_driverForAuto).FirstOrDefault();
                     driver.id_car = id_carNewCar;

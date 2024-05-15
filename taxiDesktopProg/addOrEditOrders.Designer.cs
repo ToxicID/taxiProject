@@ -736,6 +736,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button buttonEdit;
-        private GMap.NET.WindowsForms.GMapControl gmap;
+        public GMap.NET.WindowsForms.GMapControl gmap;
     }
 }

@@ -18,211 +18,24 @@ namespace taxiDesktopProg
     {
         public static long id;
         private long? DataGridIndex = null;
-        Form1 po;
-        
+        auth po;
+
         //Метод вывода в dataGrid
-        public void printNewOrders()
-        {
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
-                           join ad2 in db.addresses on ord.destination equals ad2.id_address
-                           join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
-                           
-                           select new
-                           {
-                               id_order = ord.id_order,
-                               place = ad1.city+ " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
-                               place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
-                               order_cost = ord.order_cost,
-                               payment_method = ord.payment_method,
-                               datetime_placing = ord.datetime_placing_the_order,
-                              
-                               id_client = ord.client.mobile_phone,
-                               id_rate = ord.rate.name,
-                               status = ord.status
-                           };
-                DateTime dt = DateTime.Now;
-                DateTime dtd = DateTime.Now.Add(new TimeSpan(-1,0,0));
-                DateTime dh = DateTime.Now.AddMinutes(5);
 
-                dataGridView1.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing.Year == dt.Year
-                                            && p.datetime_placing.Month == dt.Month && p.datetime_placing.Day == dt.Day
-                                            && p.datetime_placing <= dh
-                                            && p.datetime_placing >= dtd
-                                            ).Distinct().ToList();
-              
-                dataGridView1.Columns[0].Visible = false;
-                dataGridView1.Columns[1].HeaderText = "Адрес подачи";
-                dataGridView1.Columns[2].HeaderText = "Адрес назначения";
-                dataGridView1.Columns[3].HeaderText = "Стоимость";
-                dataGridView1.Columns[4].HeaderText = "Способ оплаты";
-                dataGridView1.Columns[5].HeaderText = "Дата и время оформления заказа";
-                dataGridView1.Columns[6].HeaderText = "Телефона";
-                dataGridView1.Columns[7].HeaderText = "Тариф";
-                dataGridView1.Columns[8].Visible = false;
-
-                foreach (DataGridViewColumn data in dataGridView1.Columns)
-                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-                dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-                dataGridView1.EnableHeadersVisualStyles = false;
-              
-            }
-        }
-        //Метод вывода в dataGrid
-        public void printNowTimeOrders()
-        {
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
-                           join ad2 in db.addresses on ord.destination equals ad2.id_address
-                           join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
-                           join driv in db.drivers on ord.id_driver equals driv.id_driver
-                           select new
-                           {
-                               id_order = ord.id_order,
-                               place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
-                               place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
-                               order_cost = ord.order_cost,
-                               payment_method = ord.payment_method,
-                               datetime_placing = ord.datetime_placing_the_order,
-                               id_driver = driv.call_sign,
-                               id_client = ord.client.mobile_phone,
-                               id_rate = ord.rate.name,
-                               status = ord.status
-                           };
-
-                dataGridView2.DataSource = list.Where(p => p.status == "Выполнение").Distinct().ToList();
-                dataGridView2.Columns[0].Visible = false;
-                dataGridView2.Columns[1].HeaderText = "Адрес подачи";
-                dataGridView2.Columns[2].HeaderText = "Адрес назначения";
-                dataGridView2.Columns[3].HeaderText = "Стоимость";
-                dataGridView2.Columns[4].HeaderText = "Способ оплаты";
-                dataGridView2.Columns[5].HeaderText = "Дата и время оформления заказа";
-                dataGridView2.Columns[6].HeaderText = "Позывной";
-                dataGridView2.Columns[7].HeaderText = "Телефона";
-                dataGridView2.Columns[8].HeaderText = "Тариф";
-                dataGridView2.Columns[9].Visible = false;
-
-                foreach (DataGridViewColumn data in dataGridView2.Columns)
-                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-                dataGridView2.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-                dataGridView2.EnableHeadersVisualStyles = false;
-            }
-        }
-        //Метод вывода в dataGrid
-        public void printPreliminaryOrders()
-        {
-            using (Context db = new Context(Form1.connectionString))
-            {
-            
-                
-                var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
-                           join ad2 in db.addresses on ord.destination equals ad2.id_address
-                           join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
-                           
-                           select new
-                           {
-                               id_order = ord.id_order,
-                               place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
-                               place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
-                               order_cost = ord.order_cost,
-                               payment_method = ord.payment_method,
-                               datetime_placing = ord.datetime_placing_the_order,
-                               id_client = ord.client.mobile_phone,
-                               id_rate = ord.rate.name,
-                               status = ord.status
-                           };
-
-               
-                DateTime dh = DateTime.Now.AddMinutes(5.0);
-
-                dataGridView3.DataSource = list.Where(p => p.status == "В ожидании" && p.datetime_placing.CompareTo(DateTime.Now) > 0 && p.datetime_placing >= dh
-                                                      ).Distinct().ToList();
-                dataGridView3.Columns[0].Visible = false;
-                dataGridView3.Columns[1].HeaderText = "Адрес подачи";
-                dataGridView3.Columns[2].HeaderText = "Адрес назначения";
-                dataGridView3.Columns[3].HeaderText = "Стоимость";    
-                dataGridView3.Columns[4].HeaderText = "Способ оплаты";
-                dataGridView3.Columns[5].HeaderText = "Дата и время оформления заказа";
-                dataGridView3.Columns[6].HeaderText = "Телефона";
-                dataGridView3.Columns[7].HeaderText = "Тариф";
-                dataGridView3.Columns[8].Visible = false;
-
-                foreach (DataGridViewColumn data in dataGridView3.Columns)
-                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-                dataGridView3.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-                dataGridView3.EnableHeadersVisualStyles = false;
-            }
-        }
-        //Метод вывода в dataGrid
-        public void printOrders(string name, DataGridView dataName)
-        {
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
-                           join ad2 in db.addresses on ord.destination equals ad2.id_address
-                           join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
-                           join driv in db.drivers on ord.id_driver equals driv.id_driver
-                           select new
-                           {
-                               id_order = ord.id_order,
-                               place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
-                               place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
-                               order_cost = ord.order_cost,
-                               payment_method = ord.payment_method,
-                               datetime_placing = ord.datetime_placing_the_order,
-                               datetime_complete_order = ord.order_completion_datetime,
-                               id_driver = driv.call_sign,
-                               id_client = ord.client.mobile_phone,
-                               id_rate = ord.rate.name,
-                               status = ord.status
-                           };
-
-                dataName.DataSource = list.Where(p => p.status == name).Distinct().ToList();
-                dataName.Columns[0].Visible = false;
-                dataName.Columns[1].HeaderText = "Адрес подачи";
-                dataName.Columns[2].HeaderText = "Адрес назначения";
-                dataName.Columns[3].HeaderText = "Стоимость";
-                dataName.Columns[4].HeaderText = "Способ оплаты";
-                dataName.Columns[5].HeaderText = "Дата и время оформления заказа";
-                dataName.Columns[6].HeaderText = "Дата и время завершения заказа";
-                dataName.Columns[7].HeaderText = "Позывной";
-                dataName.Columns[8].HeaderText = "Телефона";
-                dataName.Columns[9].HeaderText = "Тариф";
-                dataName.Columns[10].Visible = false;
-                foreach (DataGridViewColumn data in dataName.Columns)
-                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataName.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataName.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-                dataName.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-                dataName.EnableHeadersVisualStyles = false;
-
-            }
-        }
-        public Form_for_Dispatcher(long id_dis, Form1 po)
+        forIssuingOrders fIO;
+        public Form_for_Dispatcher(long id_dis, auth po)
         {
             InitializeComponent();
+             fIO = new forIssuingOrders(this);
             id = id_dis;
             this.po = po;
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var dispatcher = db.dispatchers.Where(p => p.id_dispatcher == id).FirstOrDefault();
                 
             }
             timer1.Enabled = true;
-            printNewOrders();
+            fIO.printNewOrders(dataGridView1);
             
             label1.Text = "";
             dataGridView6.Visible = false;
@@ -235,7 +48,7 @@ namespace taxiDesktopProg
 
         private void Form_for_Dispatcher_FormClosed(object sender, FormClosedEventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var disp = db.dispatchers.Find(id);
                 disp.activity = false;
@@ -258,30 +71,30 @@ namespace taxiDesktopProg
             switch (tabPageIndex)
             {
                 case 0:
-                    printNewOrders();
+                    fIO.printNewOrders(dataGridView1);
                     DataGridIndex = null;
                     break;
                 case 1:
-                    printNowTimeOrders();
+                     fIO.printNowTimeOrders(dataGridView2);
                     label3.Visible = false;
                     maskedTextBox1.Visible = false;
                     button1.Visible = false;
                     DataGridIndex = null;
                     break;
                 case 2:
-                    printPreliminaryOrders();
+                   fIO.printPreliminaryOrders(dataGridView3);
                     DataGridIndex = null;
                     break;
                 case 3:
-                    printOrders("Завершён", dataGridView4);
+                    fIO.printOrders("Завершён", dataGridView4);
                     DataGridIndex = null;
                     break;
                 case 4:
-                    printOrders("Ложный",dataGridView5);
+                    fIO.printOrders("Ложный",dataGridView5);
                     DataGridIndex = null;
                     break;
                 case 5:
-                    printCancelOrders();
+                    fIO.printCancelOrders(dataGridView7);
                     DataGridIndex = null;
                     break;
                       
@@ -338,7 +151,7 @@ namespace taxiDesktopProg
             {
                 label1.Text = "Назначить водителя";
                 dataGridView6.Visible = true;
-                using (Context db = new Context(Form1.connectionString)) {
+                using (Context db = new Context(auth.connectionString)) {
                     var list = db.drivers.Where(p => p.status == "Свободен" && p.driver_readiness == "Готов" && p.id_car != null && p.car.technical_condition_car == "Исправлено").ToList();
                     dataGridView6.DataSource = list;
                     dataGridView6.Columns[0].Visible = false;
@@ -370,7 +183,7 @@ namespace taxiDesktopProg
         }
         private void directDriver()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 if (DataGridIndex != null && DataGrid6Index != null)
                 {
@@ -393,8 +206,8 @@ namespace taxiDesktopProg
                 }
                 DataGrid6Index = null;
                 DataGridIndex = null;
-                if (tabPageIndex == 0) printNewOrders();
-                if (tabPageIndex == 1) printNowTimeOrders();
+                if (tabPageIndex == 0) fIO.printNewOrders(dataGridView1);
+                if (tabPageIndex == 1)  fIO.printNowTimeOrders(dataGridView2);
 
             }
 
@@ -422,7 +235,7 @@ namespace taxiDesktopProg
         {
             if (tabPageIndex == 1)
             {
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                     if (DataGridIndex != null)
                     {
@@ -457,8 +270,8 @@ namespace taxiDesktopProg
                     }
                     DataGrid6Index = null;
                     DataGridIndex = null;
-                    if (tabPageIndex == 0) printNewOrders();
-                    if (tabPageIndex == 1) printNowTimeOrders();
+                    if (tabPageIndex == 0) fIO.printNewOrders(dataGridView1);
+                    if (tabPageIndex == 1)  fIO.printNowTimeOrders(dataGridView2);
 
                 }
             }
@@ -473,12 +286,12 @@ namespace taxiDesktopProg
         {
             addOrEditOrders fm = new addOrEditOrders();
             fm.ShowDialog();
-            printNewOrders();
+            fIO.printNewOrders(dataGridView1);
 
         }
         private void orderComplete()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
                 order.status = "Завершён";
@@ -490,7 +303,7 @@ namespace taxiDesktopProg
         }
         private void orderComplete(string stringTime)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var str = stringTime.Split(':');
                 if (string.IsNullOrWhiteSpace(str[0]) || string.IsNullOrWhiteSpace(str[1]))
@@ -515,7 +328,7 @@ namespace taxiDesktopProg
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 if (DataGridIndex != null)
                 {
@@ -531,7 +344,7 @@ namespace taxiDesktopProg
                     {
                         orderComplete();
                         DataGridIndex = null;
-                        printNowTimeOrders();
+                         fIO.printNowTimeOrders(dataGridView2);
                     }
                     else
                     {
@@ -553,9 +366,9 @@ namespace taxiDesktopProg
                     fm.ShowDialog();
 
                     if (tabPageIndex == 0)
-                        printNewOrders();
+                        fIO.printNewOrders(dataGridView1);
                     else if (tabPageIndex == 2)
-                        printPreliminaryOrders();
+                        fIO.printPreliminaryOrders(dataGridView3);
                 }
                 else
                 {
@@ -596,7 +409,7 @@ namespace taxiDesktopProg
                 if (result == DialogResult.No) return;
                 orderComplete(maskedTextBox1.Text);
                 DataGridIndex = null;
-                printNowTimeOrders();
+                fIO.printNowTimeOrders(dataGridView2);
             
                 label3.Visible = false;
                 maskedTextBox1.Visible = false;
@@ -689,7 +502,7 @@ namespace taxiDesktopProg
         {
             if (tabPageIndex == 1)
             {
-                using (Context db = new Context(Form1.connectionString))
+                using (Context db = new Context(auth.connectionString))
                 {
                     if (DataGridIndex != null)
                     {
@@ -744,7 +557,7 @@ namespace taxiDesktopProg
                     }
                     DataGrid6Index = null;
                     DataGridIndex = null;
-                    if (tabPageIndex == 1) printNowTimeOrders();
+                    if (tabPageIndex == 1)  fIO.printNowTimeOrders(dataGridView2);
 
                 }
             }
@@ -754,51 +567,7 @@ namespace taxiDesktopProg
                 return;
             }
         }
-        public void printCancelOrders()
-        {
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var list = from ord in db.orders
-                           join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
-                           join ad2 in db.addresses on ord.destination equals ad2.id_address
-                           join rateOrder in db.orders on ord.id_rate equals rateOrder.id_rate
-                           join driv in db.drivers on ord.id_driver equals driv.id_driver
-                           select new
-                           {
-                               id_order = ord.id_order,
-                               reason_cancellation = ord.reason_cancellation,
-                               place = ad1.city + " " + ad1.street + " Д" + ad1.house + " " + ad1.enrance,
-                               place2 = ad2.city + " " + ad2.street + " Д" + ad2.house + " " + ad2.enrance,
-                               order_cost = ord.order_cost,
-                               payment_method = ord.payment_method,
-                               datetime_placing = ord.datetime_placing_the_order,
-                               id_driver = driv.call_sign,
-                               id_client = ord.client.mobile_phone,
-                               id_rate = ord.rate.name,
-                               status = ord.status
-                           };
-                
-                dataGridView7.DataSource = list.Where(p => p.status == "Отменён").Distinct().ToList();
-                dataGridView7.Columns[0].Visible = false;
-                dataGridView7.Columns[1].HeaderText = "Причина";
-                dataGridView7.Columns[2].HeaderText = "Адрес подачи";
-                dataGridView7.Columns[3].HeaderText = "Адрес назначения";
-                dataGridView7.Columns[4].HeaderText = "Стоимость";
-                dataGridView7.Columns[5].HeaderText = "Способ оплаты";
-                dataGridView7.Columns[6].HeaderText = "Дата и время оформления заказа";
-                dataGridView7.Columns[7].HeaderText = "Позывной";
-                dataGridView7.Columns[8].HeaderText = "Телефона";
-                dataGridView7.Columns[9].HeaderText = "Тариф";
-                dataGridView7.Columns[10].Visible = false;
-                
-                foreach (DataGridViewColumn data in dataGridView7.Columns)
-                    data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridView7.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataGridView7.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-                dataGridView7.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
-                dataGridView7.EnableHeadersVisualStyles = false;
-            }
-        }
+       
 
         private void dataGridView7_CellClick(object sender, DataGridViewCellEventArgs e)
         {

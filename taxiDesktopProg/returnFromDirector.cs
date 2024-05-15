@@ -48,7 +48,7 @@ namespace taxiDesktopProg
         private void startView()
         {
 
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
 
                 var dr = db.drivers;
@@ -85,7 +85,7 @@ namespace taxiDesktopProg
         }
         private void rateList()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var rateLists = db.rates.Select(x => new { V = x.availability.ToString(), x.name, x.boarding, x.cost_per_kilometer, x.cost_downtime, x.child_safety_seat, x.transportation_of_pet }).ToList();
                 dataGridView4.DataSource = rateLists;
@@ -107,7 +107,7 @@ namespace taxiDesktopProg
         }
         private void listClientFromBlackList()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var client = db.clients.Where(x => x.blacklist == true).Select(x => new { V = x.mobile_phone }).ToList();
                 dataGridView1.DataSource = client;
@@ -123,7 +123,7 @@ namespace taxiDesktopProg
         }
         private void personalList()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var disp = db.dispatchers.Select(x => new { V = x.surname, V1 = x.name, V2 = x.patronymic, V3 = x.mobile_phone });
                 dataGridView2.DataSource = disp.ToList();
@@ -168,7 +168,7 @@ namespace taxiDesktopProg
         private void violationsDriver()
         {
             long driv = Convert.ToInt64(comboBox1.SelectedValue);
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var list = from dr in db.drivers
                            join vio in db.violations on dr.id_driver equals vio.id_driver
@@ -204,7 +204,7 @@ namespace taxiDesktopProg
         private void violationsDriver(DateTimePicker dateTimePicker2, DateTimePicker dateTimePicker1)
         {
             long driv = Convert.ToInt64(comboBox1.SelectedValue);
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var list = from dr in db.drivers
                            join vio in db.violations on dr.id_driver equals vio.id_driver

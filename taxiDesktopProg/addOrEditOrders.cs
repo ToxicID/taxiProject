@@ -25,6 +25,7 @@ namespace taxiDesktopProg
 {
     public partial class addOrEditOrders : Form
     {
+        forOrders fO;
         //ID для редактирования заказа
         private long? idOrder = 0;
         //Конструктор для добавления
@@ -33,12 +34,13 @@ namespace taxiDesktopProg
             InitializeComponent();
             this.Width = 820;
             gmap.Visible = false;
+            fO = new forOrders(this);
             label16.Text = "Перевозка" + Environment.NewLine + "домашних животных";
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
-                findAddressCity(textBoxCity1);
-                findAddressCity(textBoxCity2);
-                findClientMobile(textBox1);
+                fO.findAddressCity(textBoxCity1);
+                fO.findAddressCity(textBoxCity2);
+                fO.findClientMobile(textBox1);
 
                 List<rate> cp = db.rates.Where(p=>p.availability == true).ToList();
                 
@@ -62,8 +64,9 @@ namespace taxiDesktopProg
         {
             idOrder = id;
             InitializeComponent();
+            forOrders fO = new forOrders(this);
             label16.Text = "Перевозка" + Environment.NewLine + "домашних животных";
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var cp = db.rates.Where(p => p.availability == true).ToList();
 
@@ -116,12 +119,12 @@ namespace taxiDesktopProg
                 Coords($"{textBoxCity2.Text},{textBoxStreet2.Text},{textBoxHouse2.Text}", out array2); //!!!!!
                 gmap.Visible = true;
                 this.Width = 1350;
-                LoadMap();
+                fO.LoadMap();
                 // Добавление маркеров
-                AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Пункт отправления", "Пункт назначения");
+                fO.AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Пункт отправления", "Пункт назначения");
 
                 // Построение маршрута
-                DrawRoute(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]));
+                fO.DrawRoute(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]));
 
                 // Обновление карты
                 gmap.ZoomAndCenterMarkers("markers");
@@ -129,84 +132,6 @@ namespace taxiDesktopProg
 
             }
         }
-        
-            private void findClientMobile(TextBox text)
-        {
-            AutoCompleteStringCollection textComplete = new AutoCompleteStringCollection();
-
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var Client = db.clients.Where(p=>p.blacklist != true);
-
-                foreach (client cl in Client)
-                {
-                    textComplete.Add(cl.mobile_phone);
-                }
-
-                text.AutoCompleteCustomSource = textComplete;
-                text.AutoCompleteMode = AutoCompleteMode.Suggest;
-                text.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            }
-        }
-        //следующие три метода осуществляют автозаполнение Города, Улицы и Дома адреса
-        private void findAddressCity(TextBox text)
-        {
-            AutoCompleteStringCollection textComplete = new AutoCompleteStringCollection();
-
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var city = db.addresses;
-
-                foreach (address City in city)
-                {
-                    textComplete.Add(City.city);
-                }
-
-                text.AutoCompleteCustomSource = textComplete;
-                text.AutoCompleteMode = AutoCompleteMode.Suggest;
-                text.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                
-            }
-        }
-        private void findAddressStreet(TextBox text,string cityText)
-        {
-            AutoCompleteStringCollection textComplete = new AutoCompleteStringCollection();
-
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var city = db.addresses.Where(p=>p.city == cityText);
-
-                foreach (address City in city)
-                {
-                    textComplete.Add(City.street);
-                }
-
-                text.AutoCompleteCustomSource = textComplete;
-                text.AutoCompleteMode = AutoCompleteMode.Suggest;
-                text.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            }
-        }
-        private void findAddressHouse(TextBox text,string cityText, string streetText)
-        {
-            AutoCompleteStringCollection textComplete = new AutoCompleteStringCollection();
-
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var city = db.addresses.Where(p=> p.city == cityText && p.street == streetText);
-
-                foreach (address City in city)
-                {
-                    textComplete.Add(City.house);
-                }
-
-                text.AutoCompleteCustomSource = textComplete;
-                text.AutoCompleteMode = AutoCompleteMode.Suggest;
-                text.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                
-            }
-        }
-
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
            
@@ -273,38 +198,8 @@ namespace taxiDesktopProg
             return array;
             
         }
-        //Расчёт дистанции с помощью Bing Maps API
-       private string BingMapsApiKey = "vSu0ER5x3HHYD5rGxVaB~YuU-4x1i_kyBbcC_YW2ipA~AvEK6xCobjGDdWvUXvsi8MDhiuaduWxeSveNhLTBOVTP9B7lgi1vT_DYA4CGvIuD";
-        private double Distance(double lat1, double lon1, double lat2, double lon2)
-        {
-            string originCoordinates = $"{lat1},{lon1}";
-            string destinationCoordinates = $"{lat2},{lon2}";
-            
-            string encodedOriginCoordinates = Uri.EscapeDataString(originCoordinates);
-            string encodedDestinationCoordinates = Uri.EscapeDataString(destinationCoordinates);
-
-            
-            string requestUrl = string.Format("http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0={0}&wp.1={1}&key={2}", encodedOriginCoordinates, encodedDestinationCoordinates, BingMapsApiKey);
-
-            
-            WebRequest request = WebRequest.Create(requestUrl);
-            WebResponse response = request.GetResponse();
-
-            
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string responseString = reader.ReadToEnd();
-
-            dynamic result = JsonConvert.DeserializeObject(responseString);
-            
-            
-            double distanceInMiles = result.resourceSets[0].resources[0].travelDistance;
-            response.Close();
-            reader.Close();
-            
-            //вывод расстояния
-            //MessageBox.Show(distanceInMiles.ToString());
-            return distanceInMiles;
-        }
+      
+       
         private decimal? priceOrder = 0;
         double[] array1;
         double[] array2;
@@ -328,7 +223,7 @@ namespace taxiDesktopProg
                 Coords($"{textBoxCity2.Text},{textBoxStreet2.Text},{textBoxHouse2.Text}", out array2); //!!!!!
                 var dist1 = new GeoCoordinate(array1[0], array1[1]);
                 var dist2 = new GeoCoordinate(array2[0], array2[1]);
-                var distances = Distance(dist1.Latitude,dist1.Longitude,dist2.Latitude,dist2.Longitude);
+                var distances = fO.Distance(dist1.Latitude,dist1.Longitude,dist2.Latitude,dist2.Longitude);
                 rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
 
                 priceOrder = cp.boarding + cp.cost_per_kilometer * (decimal)distances;
@@ -345,12 +240,14 @@ namespace taxiDesktopProg
 
                 gmap.Visible = true;
                 this.Width = 1350;
-                LoadMap();
+                fO.array1 = array1;
+                fO.array2 = array2 ;
+                fO.LoadMap();
                 // Добавление маркеров
-                AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Пункт отправления", "Пункт назначения");
+                fO.AddMarker(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]), "Пункт отправления", "Пункт назначения");
 
                 // Построение маршрута
-                DrawRoute(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]));
+                fO.DrawRoute(new PointLatLng(array1[0], array1[1]), new PointLatLng(array2[0], array2[1]));
 
                 // Обновление карты
                 gmap.ZoomAndCenterMarkers("markers");
@@ -368,90 +265,18 @@ namespace taxiDesktopProg
             calculatingPrice();
             
         }
-        //Проверка клиента, если нет такого в таблице, то добавляется, если есть, просто передаётся id
-        private long checkClient()
-        {
-            long idClient;
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var client = db.clients;
-                
-                if (client.Where(p => p.mobile_phone == textBox1.Text).Count()!= 1)
-                {
-                    client cl = new client
-                    {
-                        mobile_phone = textBox1.Text,
-                        blacklist = false
-                    };
-                    db.clients.Add(cl);
-                    db.SaveChanges();
-                    idClient = cl.id_client;
-                    return idClient;
-                }
-                else
-                {
-                   var findClient = client.Where(p => p.mobile_phone == textBox1.Text).FirstOrDefault();
-                    idClient = findClient.id_client;
-                    return idClient;
-
-                }
-            }
-        }
-        //Проверка адреса, если нет такого адреса в списках, добавляется, если есть то просто возращает его id
-        private long checkAddress(string cityAd, string streetAd,string houseAd,string enranceAd)
-        {
-            using (Context db = new Context(Form1.connectionString))
-            {
-                var address = db.addresses;
-                long idAddress;
-                string newEnranced = "";
-                if (string.IsNullOrWhiteSpace(enranceAd))
-                    newEnranced = "";
-                else
-                    newEnranced = $"П{enranceAd}";
-
-                if (address.Where(p => p.city == cityAd &&
-                                 p.street == streetAd &&
-                                 p.house == houseAd &&
-                                 p.enrance == newEnranced).Count() != 1)
-                {
-                   
-                    address ad = new address
-                    {
-                        enrance = newEnranced,
-                        city = cityAd,
-                        street = streetAd,
-                        house = houseAd
-                    };
-                    db.addresses.Add(ad);
-                   
-                        db.SaveChanges();
-                   
-
-                    idAddress = ad.id_address;
-                    return idAddress;
-                }
-                else
-                {
-                    var findAddress = address.Where(p => p.city == cityAd &&
-                                 p.street == streetAd &&
-                                 p.house == houseAd &&
-                                 p.enrance == newEnranced).FirstOrDefault();
-                    idAddress = findAddress.id_address;
-                    return idAddress;
-                    
-                }
-            }
-        }
+        
+       
+       
         //Оформление заказа
         private void addOrder()
         {
             Check();
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
-                var idClient = checkClient();
-                var idAdddress1 = checkAddress(textBoxCity1.Text, textBoxStreet1.Text, textBoxHouse1.Text, textBox4.Text);
-                var idAdddress2 = checkAddress(textBoxCity2.Text, textBoxStreet2.Text, textBoxHouse2.Text, textBox6.Text);
+                var idClient = fO.checkClient(textBox1.Text);
+                var idAdddress1 = fO.checkAddress(textBoxCity1.Text, textBoxStreet1.Text, textBoxHouse1.Text, textBox4.Text);
+                var idAdddress2 = fO.checkAddress(textBoxCity2.Text, textBoxStreet2.Text, textBoxHouse2.Text, textBox6.Text);
 
                 rate cp = comboBox2.Items[comboBox2.SelectedIndex] as rate;
                 DateTime dateAndTime = DateTime.Now;
@@ -505,7 +330,7 @@ namespace taxiDesktopProg
                 textBoxStreet1.Clear();
                 textBox4.Clear();
                 textBoxHouse1.Clear();
-                findAddressStreet(textBoxStreet1, textBoxCity1.Text);
+                fO.findAddressStreet(textBoxStreet1, textBoxCity1.Text);
             }
         }
 
@@ -516,7 +341,7 @@ namespace taxiDesktopProg
                 textBoxStreet2.Clear();
                 textBox6.Clear();
                 textBoxHouse2.Clear();
-                findAddressStreet(textBoxStreet2, textBoxCity2.Text);
+                fO.findAddressStreet(textBoxStreet2, textBoxCity2.Text);
             }
         }
 
@@ -526,7 +351,7 @@ namespace taxiDesktopProg
             {
                 textBox4.Clear();
                 textBoxHouse1.Clear();
-                findAddressHouse(textBoxHouse1, textBoxCity1.Text, textBoxStreet1.Text);
+                fO.findAddressHouse(textBoxHouse1, textBoxCity1.Text, textBoxStreet1.Text);
             }
         }
 
@@ -536,7 +361,7 @@ namespace taxiDesktopProg
             {
                 textBox6.Clear();
                 textBoxHouse2.Clear();
-                findAddressHouse(textBoxHouse2, textBoxCity2.Text, textBoxStreet2.Text);
+                fO.findAddressHouse(textBoxHouse2, textBoxCity2.Text, textBoxStreet2.Text);
             }
         }
 
@@ -583,7 +408,7 @@ namespace taxiDesktopProg
         }
         private void editOrder(long? idOrder)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var orderView = db.orders.Where(p => p.id_order == idOrder).FirstOrDefault();
                 Check();
@@ -602,7 +427,7 @@ namespace taxiDesktopProg
                     }
                 }
 
-                var idClient = checkClient();
+                var idClient = fO.checkClient(textBox1.Text);
 
                 orderView.id_client = idClient;
                 orderView.order_cost = (decimal)priceOrder;
@@ -618,59 +443,7 @@ namespace taxiDesktopProg
         {
             editOrder(idOrder);
         }
-        private GMapOverlay markersOverlay;
-        private GMapOverlay routesOverlay;
-        private void LoadMap()
-        {
-            if (gmap.Overlays.Count > 0)
-            {
-                for (int i = 0; i < gmap.Overlays.Count; i++)
-                {
-                    gmap.Overlays.RemoveAt(0);
-                    
-                    gmap.Refresh();
-                }
-                routesOverlay.Clear();
-            }
-           
-            BingMapProvider.Instance.ClientKey = BingMapsApiKey;
-            //gmap.MapProvider = BingMapProvider.Instance;
-            gmap.MapProvider = GMapProviders.GoogleMap;
-            GMapProvider.Language = LanguageType.Russian;
-            gmap.PolygonsEnabled = true;
-            gmap.RoutesEnabled = true;
-            GMaps.Instance.Mode = AccessMode.ServerAndCache;
-            gmap.Position = new PointLatLng(array1[0], array1[1]); // Начальные координаты 
-            gmap.MinZoom = 1;
-            gmap.MaxZoom = 18;
-            gmap.Zoom = 10;
-            gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
-            gmap.ShowCenter = false;
-            // Создание оверлеев для маркеров и маршрута
-            markersOverlay = new GMapOverlay("markers");
-            routesOverlay = new GMapOverlay("routes");
-            gmap.Overlays.Add(markersOverlay);
-            gmap.Overlays.Add(routesOverlay);
-        }
-        private void AddMarker(PointLatLng start, PointLatLng end, string label1,string label2)
-        {
-            GMarkerGoogle markerStart = new GMarkerGoogle(start, GMarkerGoogleType.green);
-            markerStart.ToolTip = new GMapRoundedToolTip(markerStart);
-            markerStart.ToolTipText = label1;
-            markersOverlay.Markers.Add(markerStart);
-
-            GMarkerGoogle markerEnd = new GMarkerGoogle(end, GMarkerGoogleType.red);
-            markerEnd.ToolTip = new GMapRoundedToolTip(markerEnd);
-            markerEnd.ToolTipText = label2;
-            markersOverlay.Markers.Add(markerEnd);
-        }
-        
-        private void DrawRoute(PointLatLng start, PointLatLng end)
-        {
-            MapRoute route = GMap.NET.MapProviders.GMapProviders.BingMap.GetRoute(start, end, false, false, 15);
-            GMap.NET.WindowsForms.GMapRoute routeOverlay = new GMap.NET.WindowsForms.GMapRoute(route.Points, "Route");
-            routeOverlay.Stroke = new Pen(System.Drawing.Color.Red, 3);
-            routesOverlay.Routes.Add(routeOverlay);
-        }
+ 
+      
     }
 }

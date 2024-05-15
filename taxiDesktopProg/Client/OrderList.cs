@@ -16,7 +16,7 @@ namespace taxiDesktopProg
        
         public void printOrders(DataGridView dataName)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var list = from ord in db.orders
                            join ad1 in db.addresses on ord.place_of_departure equals ad1.id_address
@@ -67,7 +67,7 @@ namespace taxiDesktopProg
         {
             InitializeComponent();
             id = idClient;
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var cl = db.clients.Where(p => p.id_client == id).FirstOrDefault();
                 this.Text = "Заказы клиента " + cl.mobile_phone;

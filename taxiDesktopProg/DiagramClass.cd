@@ -1,0 +1,888 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="taxiDesktopProg.listClient">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <Members>
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="button3" Hidden="true" />
+      <Method Name="button3_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DataGridIndex" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellClick" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting_1" Hidden="true" />
+      <Method Name="dataGridView1_DoubleClick" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Method Name="list" Hidden="true" />
+      <Method Name="listClient" Hidden="true" />
+      <Method Name="listClient_Click" Hidden="true" />
+      <Method Name="listClient_Load" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Method Name="textBox2_KeyDown" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACaAAoAAACAEABAABACAAAAiAAg4AAAAAHAAAAAADAA=</HashCode>
+      <FileName>Client\listClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.addOrEditCar">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="AddCarBut" Hidden="true" />
+      <Method Name="AddCarBut_Click" Hidden="true" />
+      <Method Name="addOrEditCar" Hidden="true" />
+      <Method Name="bazSetting" Hidden="true" />
+      <Field Name="ButIzmen" Hidden="true" />
+      <Method Name="ButIzmen_Click" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="checkBox1" Hidden="true" />
+      <Method Name="checkBox1_CheckedChanged" Hidden="true" />
+      <Method Name="checkCar" Hidden="true" />
+      <Field Name="comboBox1" Hidden="true" />
+      <Method Name="comboBox1_SelectedIndexChanged" Hidden="true" />
+      <Field Name="comboBox2" Hidden="true" />
+      <Field Name="comboBox3" Hidden="true" />
+      <Field Name="comboBox4" Hidden="true" />
+      <Method Name="comboBox4_SelectedIndexChanged" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="enableNaznachDriver" Hidden="true" />
+      <Field Name="GosNum1" Hidden="true" />
+      <Method Name="GosNum1_KeyPress" Hidden="true" />
+      <Field Name="GosNum2" Hidden="true" />
+      <Method Name="GosNum2_KeyPress" Hidden="true" />
+      <Field Name="GosNum3" Hidden="true" />
+      <Field Name="GosNum4" Hidden="true" />
+      <Field Name="GosNum5" Hidden="true" />
+      <Field Name="GosNum6" Hidden="true" />
+      <Field Name="id_carNewCar" Hidden="true" />
+      <Field Name="id_driverForAuto" Hidden="true" />
+      <Field Name="idCar" Hidden="true" />
+      <Field Name="indexId" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label10" Hidden="true" />
+      <Field Name="label11" Hidden="true" />
+      <Field Name="label12" Hidden="true" />
+      <Field Name="label13" Hidden="true" />
+      <Field Name="label14" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="label6" Hidden="true" />
+      <Field Name="label7" Hidden="true" />
+      <Field Name="label8" Hidden="true" />
+      <Field Name="label9" Hidden="true" />
+      <Field Name="maskedTextBox1" Hidden="true" />
+      <Field Name="numericUpDown1" Hidden="true" />
+      <Field Name="numericUpDown2" Hidden="true" />
+      <Method Name="retIdCC" Hidden="true" />
+      <Field Name="textBox1" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Field Name="textBox3" Hidden="true" />
+      <Method Name="textBox3_KeyPress" Hidden="true" />
+      <Field Name="textBox4" Hidden="true" />
+      <Field Name="textBox5" Hidden="true" />
+      <Field Name="textBox6" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="taxiDesktopProg.addOrEditCar.driverses" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Car\addOrEditCar.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>8SAAAUCAESAgIBGUAACAQABCJAAIAAYKEkAQAMFUOAc=</HashCode>
+      <FileName>Car\addOrEditCar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.listCars">
+    <Position X="6.75" Y="3" Width="1.5" />
+    <Members>
+      <Field Name="AddCarBut" Hidden="true" />
+      <Method Name="AddCarBut_Click" Hidden="true" />
+      <Method Name="addOrEditCar_FormClosed" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="button5" Hidden="true" />
+      <Method Name="button5_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DataGridIndex" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellClick" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting" Hidden="true" />
+      <Method Name="dataGridView1_DoubleClick" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Method Name="listCars" Hidden="true" />
+      <Method Name="listCars_Click" Hidden="true" />
+      <Method Name="print" Hidden="true" />
+      <Field Name="RemoveCar" Hidden="true" />
+      <Method Name="RemoveCar_Click" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Method Name="textBox2_KeyDown" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QCSCAAAAQCAEABAABACAAAADAIgQAAAAEWAEAABQBAA=</HashCode>
+      <FileName>Car\listCars.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.OrderList">
+    <Position X="10.5" Y="2.25" Width="1.5" />
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="id" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Method Name="OrderList" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAACAAAICAAgAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Client\OrderList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.addNewDriver">
+    <Position X="10.5" Y="0.75" Width="1.5" />
+    <Members>
+      <Method Name="AddCarBut_Click" Hidden="true" />
+      <Field Name="AddDriverBut" Hidden="true" />
+      <Method Name="addNewDriver" Hidden="true" />
+      <Field Name="ButIzmen" Hidden="true" />
+      <Method Name="ButIzmen_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="checkBox1" Hidden="true" />
+      <Method Name="checkBox1_CheckedChanged" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="dateTimePicker1" Hidden="true" />
+      <Method Name="dateTimePicker1_ValueChanged" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="idDriver" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label10" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="label6" Hidden="true" />
+      <Field Name="label8" Hidden="true" />
+      <Field Name="maskedTextBox1" Hidden="true" />
+      <Field Name="textBox1" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Field Name="textBox3" Hidden="true" />
+      <Field Name="textBox4" Hidden="true" />
+      <Field Name="textBox5" Hidden="true" />
+      <Method Name="textBox5_KeyPress" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ECAAAFgAASAAABECgACAAABSJAAQAAAAEiAAIAEAAAA=</HashCode>
+      <FileName>addNewDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.addOrEditDispatcher">
+    <Position X="12.25" Y="5" Width="1.75" />
+    <Members>
+      <Field Name="AddDispatcherBut" Hidden="true" />
+      <Method Name="AddDriverBut_Click" Hidden="true" />
+      <Method Name="addOrEditDispatcher" Hidden="true" />
+      <Field Name="ButIzmen" Hidden="true" />
+      <Method Name="ButIzmen_Click" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button5" Hidden="true" />
+      <Method Name="button5_Click" Hidden="true" />
+      <Field Name="checkBox1" Hidden="true" />
+      <Method Name="checkBox1_CheckedChanged" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="conStr" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetRemoteConnectionString" Hidden="true" />
+      <Field Name="idDispEdit" Hidden="true" />
+      <Field Name="idNewDisp" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label6" Hidden="true" />
+      <Field Name="label8" Hidden="true" />
+      <Field Name="label9" Hidden="true" />
+      <Field Name="preliminaryPatronymic" Hidden="true" />
+      <Field Name="textBox1" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Field Name="textBox3" Hidden="true" />
+      <Field Name="textBoxMobule" Hidden="true" />
+      <Method Name="textBoxMobule_KeyPress" Hidden="true" />
+      <Field Name="textBoxPas" Hidden="true" />
+      <Field Name="textBoxRepitPas" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAEiIACAAABEAEACgCABCAIAcAAACFkAEAQEAAAg=</HashCode>
+      <FileName>addOrEditDispatcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.addOrEditOrders">
+    <Position X="2.75" Y="0.75" Width="1.75" />
+    <Members>
+      <Method Name="addOrEditOrders" Hidden="true" />
+      <Field Name="boardingBox" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="buttonEdit" Hidden="true" />
+      <Method Name="buttonEdit_Click" Hidden="true" />
+      <Method Name="calculatingPrice" Hidden="true" />
+      <Field Name="checkBox1" Hidden="true" />
+      <Method Name="checkBox1_CheckedChanged" Hidden="true" />
+      <Field Name="childSafetySeatBox" Hidden="true" />
+      <Field Name="childSafetySeatCheck" Hidden="true" />
+      <Field Name="comboBox1" Hidden="true" />
+      <Field Name="comboBox2" Hidden="true" />
+      <Method Name="comboBox2_SelectedIndexChanged" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="costDowntimeBox" Hidden="true" />
+      <Field Name="costPerKilometerBox" Hidden="true" />
+      <Field Name="dateTimePicker1" Hidden="true" />
+      <Field Name="dateTimePicker2" Hidden="true" />
+      <Method Name="dateTimePicker2_ValueChanged" Hidden="true" />
+      <Field Name="destinationBox" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="estimatedСost" Hidden="true" />
+      <Method Name="estimatedСost_Click" Hidden="true" />
+      <Field Name="gmap" Hidden="true" />
+      <Field Name="groupBox1" Hidden="true" />
+      <Field Name="groupBox2" Hidden="true" />
+      <Field Name="idOrder" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label10" Hidden="true" />
+      <Field Name="label11" Hidden="true" />
+      <Field Name="label12" Hidden="true" />
+      <Field Name="label13" Hidden="true" />
+      <Field Name="label14" Hidden="true" />
+      <Field Name="label15" Hidden="true" />
+      <Field Name="label16" Hidden="true" />
+      <Field Name="label17" Hidden="true" />
+      <Field Name="label18" Hidden="true" />
+      <Field Name="label19" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="label6" Hidden="true" />
+      <Field Name="label7" Hidden="true" />
+      <Field Name="label8" Hidden="true" />
+      <Field Name="label9" Hidden="true" />
+      <Field Name="place_of_departureBox" Hidden="true" />
+      <Field Name="PlaceOrder" Hidden="true" />
+      <Field Name="priceBox" Hidden="true" />
+      <Field Name="textBox1" Hidden="true" />
+      <Method Name="textBox1_KeyPress" Hidden="true" />
+      <Method Name="textBox2_KeyDown" Hidden="true" />
+      <Field Name="textBox4" Hidden="true" />
+      <Field Name="textBox6" Hidden="true" />
+      <Field Name="textBoxCity1" Hidden="true" />
+      <Method Name="textBoxCity1_Leave" Hidden="true" />
+      <Field Name="textBoxCity2" Hidden="true" />
+      <Method Name="textBoxCity2_Leave" Hidden="true" />
+      <Field Name="textBoxHouse1" Hidden="true" />
+      <Field Name="textBoxHouse2" Hidden="true" />
+      <Field Name="textBoxStreet1" Hidden="true" />
+      <Method Name="textBoxStreet1_Leave" Hidden="true" />
+      <Field Name="textBoxStreet2" Hidden="true" />
+      <Method Name="textBoxStreet2_Leave" Hidden="true" />
+      <Field Name="transportationOfPetBox" Hidden="true" />
+      <Field Name="transportationOfPetCheck" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>/yAgAAgIEOBoChGWhAiggAIDJQDAAOAAUGIgQREAEDg=</HashCode>
+      <FileName>addOrEditOrders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.addOrEditStatusViolations">
+    <Position X="14" Y="0.75" Width="2" />
+    <Members>
+      <Method Name="addOrEditStatusViolations" Hidden="true" />
+      <Field Name="ButAdd" Hidden="true" />
+      <Method Name="ButAdd_Click" Hidden="true" />
+      <Field Name="ButEdit" Hidden="true" />
+      <Method Name="ButEdit_Click" Hidden="true" />
+      <Field Name="checkBox1" Hidden="true" />
+      <Method Name="checkBox1_CheckedChanged" Hidden="true" />
+      <Field Name="comboBox3" Hidden="true" />
+      <Method Name="comboBox3_SelectedIndexChanged" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="dateTimePicker1" Hidden="true" />
+      <Method Name="dateTimePicker1_ValueChanged" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="idDriver" Hidden="true" />
+      <Field Name="idVio" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="richTextBox1" Hidden="true" />
+      <Field Name="richTextBox2" Hidden="true" />
+      <Field Name="statusmeasuresNotReady" Hidden="true" />
+      <Field Name="statusmeasuresReady" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="taxiDesktopProg.addOrEditStatusViolations.driverses" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>addOrEditStatusViolations.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgQACBgIBESgACAAAAGAAAAAAAAAAAwACEAAAA=</HashCode>
+      <FileName>addOrEditStatusViolations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.carForDriver">
+    <Position X="5" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="AddDispatcherBut" Hidden="true" />
+      <Method Name="AddDispatcherBut_Click" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Method Name="carForDriver" Hidden="true" />
+      <Method Name="carForDriver_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellClick" Hidden="true" />
+      <Field Name="dataGridView2" Hidden="true" />
+      <Method Name="dataGridView2_CellClick" Hidden="true" />
+      <Method Name="dataGridView2_CellFormatting" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACQEABAAEACIAAgCABgYAAEIAEAAECAAAAA=</HashCode>
+      <FileName>carForDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.Form_for_Admin">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="addNewDriver_FormClosed" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button13" Hidden="true" />
+      <Method Name="button13_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="button3" Hidden="true" />
+      <Method Name="button3_Click" Hidden="true" />
+      <Field Name="button4" Hidden="true" />
+      <Method Name="button4_Click" Hidden="true" />
+      <Field Name="button5" Hidden="true" />
+      <Method Name="button5_Click" Hidden="true" />
+      <Field Name="button6" Hidden="true" />
+      <Method Name="button6_Click" Hidden="true" />
+      <Field Name="button7" Hidden="true" />
+      <Method Name="button7_Click" Hidden="true" />
+      <Field Name="button9" Hidden="true" />
+      <Method Name="button9_Click" Hidden="true" />
+      <Field Name="buttonCar" Hidden="true" />
+      <Method Name="buttonCar_Click" Hidden="true" />
+      <Field Name="buttonRate" Hidden="true" />
+      <Method Name="buttonRate_Click" Hidden="true" />
+      <Field Name="buttonVio" Hidden="true" />
+      <Method Name="buttonVio_Click" Hidden="true" />
+      <Method Name="carForDriver_FormClosed" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="driver_List" Hidden="true" />
+      <Method Name="driver_List_Click" Hidden="true" />
+      <Field Name="driverBut" Hidden="true" />
+      <Method Name="driverBut_Click" Hidden="true" />
+      <Method Name="Form_for_Admin" Hidden="true" />
+      <Method Name="Form_for_Admin_FormClosed" Hidden="true" />
+      <Method Name="historyDriver_FormClosed" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Method Name="listCars_FormClosed" Hidden="true" />
+      <Method Name="listClient_FormClosed" Hidden="true" />
+      <Method Name="listDispatcher_FormClosed" Hidden="true" />
+      <Method Name="listDriver_FormClosed" Hidden="true" />
+      <Field Name="panel2" Hidden="true" />
+      <Field Name="panelDriver" Hidden="true" />
+      <Field Name="panelGlavWin" Hidden="true" />
+      <Field Name="panelMenu" Hidden="true" />
+      <Field Name="panelProfiles" Hidden="true" />
+      <Field Name="panelRate" Hidden="true" />
+      <Field Name="po" Hidden="true" />
+      <Field Name="Profile" Hidden="true" />
+      <Method Name="Profile_Click" Hidden="true" />
+      <Method Name="rateList_FormClosed" Hidden="true" />
+      <Method Name="returnFromDirector_FormClosed" Hidden="true" />
+      <Field Name="startHeight" Hidden="true" />
+      <Field Name="startWidth" Hidden="true" />
+      <Field Name="timer1" Hidden="true" />
+      <Method Name="timer1_Tick_1" Hidden="true" />
+      <Method Name="violationsTable_FormClosed" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QgQKEAUBCCRgADEAJASIAIACIPj7AAAgwHAPQUIAAAg=</HashCode>
+      <FileName>Form_for_Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.Form_for_Dispatcher">
+    <Position X="0.5" Y="0.75" Width="2" />
+    <Members>
+      <Field Name="addOrder" Hidden="true" />
+      <Method Name="addOrder_Click" Hidden="true" />
+      <Field Name="assignDriver" Hidden="true" />
+      <Method Name="assignDriver_Click" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="completedOrders" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DataGrid6Index" Hidden="true" />
+      <Field Name="DataGridIndex" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellClick" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting" Hidden="true" />
+      <Method Name="dataGridView1_DoubleClick" Hidden="true" />
+      <Field Name="dataGridView2" Hidden="true" />
+      <Method Name="dataGridView2_CellClick" Hidden="true" />
+      <Method Name="dataGridView2_CellFormatting" Hidden="true" />
+      <Field Name="dataGridView3" Hidden="true" />
+      <Method Name="dataGridView3_CellClick" Hidden="true" />
+      <Method Name="dataGridView3_CellFormatting" Hidden="true" />
+      <Method Name="dataGridView3_DoubleClick" Hidden="true" />
+      <Field Name="dataGridView4" Hidden="true" />
+      <Method Name="dataGridView4_CellClick" Hidden="true" />
+      <Method Name="dataGridView4_CellFormatting" Hidden="true" />
+      <Field Name="dataGridView5" Hidden="true" />
+      <Method Name="dataGridView5_CellClick" Hidden="true" />
+      <Method Name="dataGridView5_CellFormatting" Hidden="true" />
+      <Field Name="dataGridView6" Hidden="true" />
+      <Method Name="dataGridView6_CellClick" Hidden="true" />
+      <Method Name="dataGridView6_DoubleClick" Hidden="true" />
+      <Field Name="dataGridView7" Hidden="true" />
+      <Method Name="dataGridView7_CellClick" Hidden="true" />
+      <Method Name="dataGridView7_CellFormatting" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="editOrder" Hidden="true" />
+      <Method Name="editOrder_Click" Hidden="true" />
+      <Field Name="falseOrder" Hidden="true" />
+      <Method Name="falseOrder_Click" Hidden="true" />
+      <Field Name="falseOrders" Hidden="true" />
+      <Method Name="Form_for_Dispatcher" Hidden="true" />
+      <Method Name="Form_for_Dispatcher_Click" Hidden="true" />
+      <Method Name="Form_for_Dispatcher_FormClosed" Hidden="true" />
+      <Method Name="getIndexDataGrid" Hidden="true" />
+      <Field Name="id" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="maskedTextBox1" Hidden="true" />
+      <Field Name="menuStrip1" Hidden="true" />
+      <Field Name="newOrder" Hidden="true" />
+      <Field Name="nowTime" Hidden="true" />
+      <Field Name="performedOrders" Hidden="true" />
+      <Field Name="pictureBox1" Hidden="true" />
+      <Method Name="pictureBox1_Click" Hidden="true" />
+      <Field Name="pictureBox2" Hidden="true" />
+      <Method Name="pictureBox2_Click" Hidden="true" />
+      <Field Name="po" Hidden="true" />
+      <Field Name="preliminaryOrders" Hidden="true" />
+      <Field Name="tabControl1" Hidden="true" />
+      <Method Name="tabControl1_Selecting" Hidden="true" />
+      <Field Name="tabPage1" Hidden="true" />
+      <Field Name="timer1" Hidden="true" />
+      <Method Name="timer1_Tick" Hidden="true" />
+      <Field Name="автомобилиToolStripMenuItem" Hidden="true" />
+      <Field Name="водителиToolStripMenuItem" Hidden="true" />
+      <Field Name="добавитьToolStripMenuItem" Hidden="true" />
+      <Method Name="добавитьToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="изменитьПоказателиToolStripMenuItem" Hidden="true" />
+      <Method Name="изменитьПоказателиToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="историяЗаказовToolStripMenuItem" Hidden="true" />
+      <Method Name="историяЗаказовToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="клиентыToolStripMenuItem" Hidden="true" />
+      <Field Name="назначитьАвтомобильToolStripMenuItem" Hidden="true" />
+      <Method Name="назначитьАвтомобильToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="отчётToolStripMenuItem" Hidden="true" />
+      <Method Name="отчётToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="режимРаботыToolStripMenuItem" Hidden="true" />
+      <Method Name="режимРаботыToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="списокToolStripMenuItem" Hidden="true" />
+      <Method Name="списокToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="списокToolStripMenuItem1" Hidden="true" />
+      <Method Name="списокToolStripMenuItem1_Click" Hidden="true" />
+      <Field Name="списокToolStripMenuItem2" Hidden="true" />
+      <Method Name="списокToolStripMenuItem2_Click" Hidden="true" />
+      <Field Name="списокВодителейToolStripMenuItem" Hidden="true" />
+      <Method Name="списокВодителейToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="тарифToolStripMenuItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>USSArAYSwGIUAVihCgKUBtUOJPyLKoBAUEUADChBB4I=</HashCode>
+      <FileName>Form_for_Dispatcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.auth">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <Members>
+      <Method Name="auth" Hidden="true" />
+      <Field Name="authorizationBut" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="LoginTextBox" Hidden="true" />
+      <Field Name="mode" Hidden="true" />
+      <Field Name="PassTextBox" Hidden="true" />
+      <Field Name="pictureBox1" Hidden="true" />
+      <Method Name="pictureBox1_Click_1" Hidden="true" />
+      <Field Name="pictureBox2" Hidden="true" />
+      <Method Name="pictureBox2_Click" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACBAABiAAECAIASCAAAAAAAAAEAAABBAAAA=</HashCode>
+      <FileName>auth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.historyDriver">
+    <Position X="0.75" Y="4" Width="1.5" />
+    <Members>
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting" Hidden="true" />
+      <Field Name="dateTimePicker2" Hidden="true" />
+      <Method Name="dateTimePicker2_ValueChanged" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="historyDriver" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Method Name="searchDriverDateAndSurname" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Method Name="textBox2_KeyDown" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAACAAABAChACAAAACAAwYAAAAAOAAAAAAAAE=</HashCode>
+      <FileName>historyDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.listDispatcher">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <Members>
+      <Field Name="AddDispatcherBut" Hidden="true" />
+      <Method Name="AddDispatcherBut_Click" Hidden="true" />
+      <Method Name="addOrEditDispatcher_FormClosed" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="button3" Hidden="true" />
+      <Method Name="button3_Click" Hidden="true" />
+      <Field Name="button5" Hidden="true" />
+      <Method Name="button5_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DataGridIndex" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellClick" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting" Hidden="true" />
+      <Method Name="dataGridView1_DoubleClick" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Method Name="listDispatcher" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Method Name="textBox2_KeyDown" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QCCAAgAAACAECBAAFACAAAACAIg4AAAIAHAEAAAQBAA=</HashCode>
+      <FileName>listDispatcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.listDriver">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="addNewDriver_FormClosed" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="button3" Hidden="true" />
+      <Method Name="button3_Click" Hidden="true" />
+      <Field Name="button4" Hidden="true" />
+      <Method Name="button4_Click" Hidden="true" />
+      <Field Name="button5" Hidden="true" />
+      <Method Name="button5_Click" Hidden="true" />
+      <Field Name="checkBox1" Hidden="true" />
+      <Method Name="checkBox1_CheckedChanged" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DataGridIndex" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellClick" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="fontlistCarAndDriver" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Method Name="listCarAndDriver" Hidden="true" />
+      <Method Name="listDriver" Hidden="true" />
+      <Method Name="listDriver_Click" Hidden="true" />
+      <Method Name="listDriverDataGrid" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Method Name="textBox2_KeyDown" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAkAJEABACAFAACgMw4AAAAAHAMAAFQBAA=</HashCode>
+      <FileName>listDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.returnFromDirector">
+    <Position X="8.5" Y="0.75" Width="1.75" />
+    <Members>
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click_1" Hidden="true" />
+      <Field Name="comboBox1" Hidden="true" />
+      <Method Name="comboBox1_SelectedIndexChanged_1" Hidden="true" />
+      <Field Name="comboBox2" Hidden="true" />
+      <Method Name="comboBox2_SelectedIndexChanged_1" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Field Name="dataGridView2" Hidden="true" />
+      <Field Name="dataGridView3" Hidden="true" />
+      <Field Name="dataGridView4" Hidden="true" />
+      <Method Name="dataGridView4_CellFormatting" Hidden="true" />
+      <Field Name="dateTimePicker1" Hidden="true" />
+      <Field Name="dateTimePicker2" Hidden="true" />
+      <Method Name="dateTimePicker2_ValueChanged_1" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="label6" Hidden="true" />
+      <Field Name="panel1" Hidden="true" />
+      <Field Name="panel2" Hidden="true" />
+      <Field Name="panel3" Hidden="true" />
+      <Field Name="panel4" Hidden="true" />
+      <Field Name="panel5" Hidden="true" />
+      <Method Name="returnFromDirector" Hidden="true" />
+      <Field Name="saveFileDialog" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="taxiDesktopProg.returnFromDirector.driverses" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>returnFromDirector.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BCAAAAQAACAAIBASAEKABAACAngQABAAAAAAAQBAAAA=</HashCode>
+      <FileName>returnFromDirector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.startOrEndWorkDriverForm">
+    <Position X="14.25" Y="4.25" Width="2.25" />
+    <Members>
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="comboBox1" Hidden="true" />
+      <Method Name="comboBox1_SelectedIndexChanged" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="idDriver" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Method Name="startOrEndWorkDriverForm" Hidden="true" />
+      <Field Name="textBox1" Hidden="true" />
+      <Field Name="textBox2" Hidden="true" />
+      <Field Name="textBox3" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAgABAQAACAAEBCAAAIAAAAEEAAAAAAAAA=</HashCode>
+      <FileName>startOrEndWorkDriverForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.violationsTable">
+    <Position X="10.5" Y="3.75" Width="1.5" />
+    <Members>
+      <Method Name="addOrEditStatusViolations_FormClosed" Hidden="true" />
+      <Field Name="ButIzmen" Hidden="true" />
+      <Method Name="ButIzmen_Click" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button5" Hidden="true" />
+      <Method Name="button5_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DataGridIndex" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellClick" Hidden="true" />
+      <Method Name="dataGridView1_DoubleClick" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Method Name="violationsTable" Hidden="true" />
+      <Method Name="violationsTable_Click" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAEAAACAEABAAAACAAAACAIgIAAAAAsAEIAAADAA=</HashCode>
+      <FileName>violationsTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.workDriver">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <Members>
+      <Method Name="AddCarBut_Click" Hidden="true" />
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DatagridIndex" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellClick" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting" Hidden="true" />
+      <Field Name="dateTimePicker1" Hidden="true" />
+      <Field Name="dateTimePicker2" Hidden="true" />
+      <Field Name="dgv" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="endWorkDriver" Hidden="true" />
+      <Method Name="endWorkDriver_Click" Hidden="true" />
+      <Field Name="id_driver" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="saveFileDialog" Hidden="true" />
+      <Method Name="startOrEndWorkDriverForm_FormClosed" Hidden="true" />
+      <Field Name="startWorkDriver" Hidden="true" />
+      <Method Name="workDriver" Hidden="true" />
+      <Method Name="workDriver_Click" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>xAAAAAAAACAFiBACAAiABAASAAgYQAAAEGgAAAAAIAA=</HashCode>
+      <FileName>workDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.returnInformation">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="comboBox1" Hidden="true" />
+      <Method Name="comboBox1_SelectedIndexChanged" Hidden="true" />
+      <Field Name="comboBox2" Hidden="true" />
+      <Method Name="comboBox2_SelectedIndexChanged" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="dataGridView1" Hidden="true" />
+      <Method Name="dataGridView1_CellFormatting" Hidden="true" />
+      <Field Name="dataGridView2" Hidden="true" />
+      <Method Name="dataGridView2_CellFormatting" Hidden="true" />
+      <Field Name="dateTimePicker1" Hidden="true" />
+      <Method Name="dateTimePicker1_ValueChanged" Hidden="true" />
+      <Field Name="dateTimePicker2" Hidden="true" />
+      <Method Name="dateTimePicker2_ValueChanged" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="label6" Hidden="true" />
+      <Method Name="returnInformation" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="taxiDesktopProg.returnInformation.driverses" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>returnInformation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAACAgIBASgADAAAACABgYAAAAAiAQAAAAAAA=</HashCode>
+      <FileName>returnInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.forOrders">
+    <Position X="0.75" Y="7" Width="1.5" />
+    <Members>
+      <Field Name="form" Hidden="true" />
+      <Method Name="forOrders" Hidden="true" />
+      <Field Name="markersOverlay" Hidden="true" />
+      <Field Name="routesOverlay" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ASABAACAAAAIIAAAgEgACAECAAAAAQBAAAACAAAAAAA=</HashCode>
+      <FileName>forOrders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.forIssuingOrders">
+    <Position X="2.5" Y="9" Width="1.5" />
+    <Members>
+      <Method Name="forIssuingOrders" Hidden="true" />
+      <Field Name="form" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAEAAAAAAAAQAAAAIAAAAAAAgAAAAIAAAAAAA=</HashCode>
+      <FileName>forIssuingOrders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.exportExcel">
+    <Position X="4.25" Y="8.25" Width="1.5" />
+    <Members>
+      <Method Name="exportExcel" Hidden="true" />
+      <Field Name="rI" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BCAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>exportExcel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="taxiDesktopProg.adminInterface">
+    <Position X="2.5" Y="7" Width="1.5" />
+    <Members>
+      <Field Name="activeForm" Hidden="true" />
+      <Method Name="adminInterface" Hidden="true" />
+      <Field Name="form_For_Admin" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIEAAAAAQAAQAAAAAAAAAAAAAAAAAACAAAAAAIAAAAA=</HashCode>
+      <FileName>adminInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -475,30 +475,31 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button buttonCar;
-        private System.Windows.Forms.Panel panelDriver;
-        private System.Windows.Forms.Panel panelGlavWin;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panelProfiles;
-        private System.Windows.Forms.Button Profile;
-        private System.Windows.Forms.Button driverBut;
-        private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button buttonRate;
-        private System.Windows.Forms.Button buttonVio;
-        private System.Windows.Forms.Panel panelRate;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button driver_List;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+
+        public System.Windows.Forms.Button button3;
+        public System.Windows.Forms.Button buttonCar;
+        public System.Windows.Forms.Panel panelDriver;
+        public System.Windows.Forms.Panel panelGlavWin;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button button4;
+        public System.Windows.Forms.Panel panelProfiles;
+        public System.Windows.Forms.Button Profile;
+        public System.Windows.Forms.Button driverBut;
+        public System.Windows.Forms.Panel panelMenu;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Button buttonRate;
+        public System.Windows.Forms.Button buttonVio;
+        public System.Windows.Forms.Panel panelRate;
+        public System.Windows.Forms.Button button13;
+        public System.Windows.Forms.Button button5;
+        public System.Windows.Forms.Button button9;
+        public System.Windows.Forms.Button driver_List;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Button button6;
+        public System.Windows.Forms.Button button7;
     }
 }

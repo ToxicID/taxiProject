@@ -18,7 +18,7 @@ namespace taxiDesktopProg
         private void listWorkDriver()
         {
            
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 DateTime now = DateTime.Now;
             
@@ -102,7 +102,7 @@ namespace taxiDesktopProg
         {
             DialogResult result = MessageBox.Show($"Завершить смену {fullnameDriver}?","Завершить", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (result == DialogResult.No) return;
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var wc = db.work_schedule.Where(p => p.id_work_schedule == DatagridIndex).FirstOrDefault();
                 var dr = db.drivers.Where(p => p.id_driver == id_driver).FirstOrDefault();
@@ -239,7 +239,7 @@ namespace taxiDesktopProg
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var list = from dr in db.drivers
                            join work in db.work_schedule on dr.id_driver equals work.id_driver

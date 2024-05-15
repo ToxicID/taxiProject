@@ -15,7 +15,7 @@ namespace taxiDesktopProg
     {
         private void comboboxListFioDriver()
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 var driver = db.drivers.ToList();
 
@@ -47,7 +47,7 @@ namespace taxiDesktopProg
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (Context db = new Context(Form1.connectionString))
+            using (Context db = new Context(auth.connectionString))
             {
                 DialogResult result = MessageBox.Show("Начать смену данного водителя", "Начало смены",
                                                                                          MessageBoxButtons.YesNo,
