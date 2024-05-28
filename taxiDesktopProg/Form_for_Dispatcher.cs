@@ -26,17 +26,17 @@ namespace taxiDesktopProg
         public Form_for_Dispatcher(long id_dis, auth po)
         {
             InitializeComponent();
-             fIO = new forIssuingOrders(this);
+            fIO = new forIssuingOrders(this);
             id = id_dis;
             this.po = po;
             using (Context db = new Context(auth.connectionString))
             {
                 var dispatcher = db.dispatchers.Where(p => p.id_dispatcher == id).FirstOrDefault();
-                
+
             }
             timer1.Enabled = true;
             fIO.printNewOrders(dataGridView1);
-            
+
             label1.Text = "";
             dataGridView6.Visible = false;
             label3.Visible = false;
@@ -54,13 +54,13 @@ namespace taxiDesktopProg
                 disp.activity = false;
                 db.SaveChanges();
             }
-                Application.Restart();
-            
+            Application.Restart();
+
         }
         //Таймер
         private void timer1_Tick(object sender, EventArgs e)
         {
-            nowTime.Text = DateTime.Now.ToLongTimeString().ToString() ;
+            nowTime.Text = DateTime.Now.ToLongTimeString().ToString();
         }
         private int tabPageIndex = 0;
         //Вывод данных в dataGrid при переходе в определённую вкладку
@@ -75,14 +75,14 @@ namespace taxiDesktopProg
                     DataGridIndex = null;
                     break;
                 case 1:
-                     fIO.printNowTimeOrders(dataGridView2);
+                    fIO.printNowTimeOrders(dataGridView2);
                     label3.Visible = false;
                     maskedTextBox1.Visible = false;
                     button1.Visible = false;
                     DataGridIndex = null;
                     break;
                 case 2:
-                   fIO.printPreliminaryOrders(dataGridView3);
+                    fIO.printPreliminaryOrders(dataGridView3);
                     DataGridIndex = null;
                     break;
                 case 3:
@@ -90,14 +90,14 @@ namespace taxiDesktopProg
                     DataGridIndex = null;
                     break;
                 case 4:
-                    fIO.printOrders("Ложный",dataGridView5);
+                    fIO.printOrders("Ложный", dataGridView5);
                     DataGridIndex = null;
                     break;
                 case 5:
                     fIO.printCancelOrders(dataGridView7);
                     DataGridIndex = null;
                     break;
-                      
+
 
             }
         }
@@ -117,7 +117,7 @@ namespace taxiDesktopProg
             {
                 DataGridIndex = null;
             }
-        } 
+        }
         //Получение id и запись в DataGrigindex из всех datagrid
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -149,9 +149,19 @@ namespace taxiDesktopProg
         {
             if (tabPageIndex == 0)
             {
-                label1.Text = "Назначить водителя";
-                dataGridView6.Visible = true;
-                using (Context db = new Context(auth.connectionString)) {
+                
+                using (Context db = new Context(auth.connectionString))
+                {
+                    var orderTest = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+                    if (id != orderTest.id_dispatcher)
+                    {
+
+                        MessageBox.Show("Этим заказом уже занимается другой диспетчер", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+
+                    }
+                    label1.Text = "Назначить водителя";
+                    dataGridView6.Visible = true;
                     var list = db.drivers.Where(p => p.status == "Свободен" && p.driver_readiness == "Готов" && p.id_car != null && p.car.technical_condition_car == "Исправлено").ToList();
                     dataGridView6.DataSource = list;
                     dataGridView6.Columns[0].Visible = false;
@@ -173,7 +183,7 @@ namespace taxiDesktopProg
                     dataGridView6.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray;
                     dataGridView6.EnableHeadersVisualStyles = false;
                 }
-                
+
             }
             else
             {
@@ -207,7 +217,7 @@ namespace taxiDesktopProg
                 DataGrid6Index = null;
                 DataGridIndex = null;
                 if (tabPageIndex == 0) fIO.printNewOrders(dataGridView1);
-                if (tabPageIndex == 1)  fIO.printNowTimeOrders(dataGridView2);
+                if (tabPageIndex == 1) fIO.printNowTimeOrders(dataGridView2);
 
             }
 
@@ -239,12 +249,22 @@ namespace taxiDesktopProg
                 {
                     if (DataGridIndex != null)
                     {
+
+                        var orderTest = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+                        if (id != orderTest.id_dispatcher)
+                        {
+
+                            MessageBox.Show("Этим заказом уже занимается другой диспетчер", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+
+                        }
+
                         DialogResult result = MessageBox.Show("Перенести заказ в ложные?", "Перенос",
-                                                                                           MessageBoxButtons.YesNo,
-                                                                                           MessageBoxIcon.Information);
+                                                                                   MessageBoxButtons.YesNo,
+                                                                                   MessageBoxIcon.Information);
                         if (result == DialogResult.No) return;
                         var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
-                       
+
 
                         order.status = "Ложный";
                         if (order.order_completion_datetime == null)
@@ -253,10 +273,10 @@ namespace taxiDesktopProg
                         DateTime dt = DateTime.Now.AddYears(-1);
 
                         var lastOrderClient = db.orders.Where(p => p.id_client == order.id_client);
-                        if (lastOrderClient.Where(p=>p.status == "Ложный" && p.order_completion_datetime.Value.Year > dt.Year).Count() > 2)
+                        if (lastOrderClient.Where(p => p.status == "Ложный" && p.order_completion_datetime.Value.Year > dt.Year).Count() > 2)
                         {
 
-                            
+
                             var cl = db.clients.Where(p => p.id_client == order.id_client).FirstOrDefault();
                             cl.blacklist = true;
                         }
@@ -271,7 +291,7 @@ namespace taxiDesktopProg
                     DataGrid6Index = null;
                     DataGridIndex = null;
                     if (tabPageIndex == 0) fIO.printNewOrders(dataGridView1);
-                    if (tabPageIndex == 1)  fIO.printNowTimeOrders(dataGridView2);
+                    if (tabPageIndex == 1) fIO.printNowTimeOrders(dataGridView2);
 
                 }
             }
@@ -308,16 +328,16 @@ namespace taxiDesktopProg
                 var str = stringTime.Split(':');
                 if (string.IsNullOrWhiteSpace(str[0]) || string.IsNullOrWhiteSpace(str[1]))
                 {
-                    MessageBox.Show("Заполните поле","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Заполните поле", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-               
-                
+
+
                 var minTime = int.Parse(str[0]);
                 var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
                 order.status = "Завершён";
                 minTime -= 10;
-                    if(minTime>0)
+                if (minTime > 0)
                     order.order_cost += order.rate.cost_downtime * minTime;
                 var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
                 driver.status = "Свободен";
@@ -336,7 +356,7 @@ namespace taxiDesktopProg
                                                                                        MessageBoxButtons.YesNo,
                                                                                        MessageBoxIcon.Information);
                     if (result == DialogResult.No) return;
-                   
+
                     DialogResult res = MessageBox.Show("Водитель ждал клиента?", "Подсчёт",
                                                                                   MessageBoxButtons.YesNo,
                                                                                   MessageBoxIcon.Information);
@@ -344,15 +364,15 @@ namespace taxiDesktopProg
                     {
                         orderComplete();
                         DataGridIndex = null;
-                         fIO.printNowTimeOrders(dataGridView2);
+                        fIO.printNowTimeOrders(dataGridView2);
                     }
                     else
                     {
                         label3.Visible = true;
                         maskedTextBox1.Visible = true;
-                        button1.Visible= true;
+                        button1.Visible = true;
                     }
-                    
+
                 }
             }
         }
@@ -362,13 +382,27 @@ namespace taxiDesktopProg
             {
                 if (DataGridIndex != null)
                 {
-                    addOrEditOrders fm = new addOrEditOrders(DataGridIndex, tabPageIndex);
-                    fm.ShowDialog();
+                    using (Context db = new Context(auth.connectionString))
+                    {
+                        var order = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+                        if (id == order.id_dispatcher)
+                        {
 
-                    if (tabPageIndex == 0)
-                        fIO.printNewOrders(dataGridView1);
-                    else if (tabPageIndex == 2)
-                        fIO.printPreliminaryOrders(dataGridView3);
+                            addOrEditOrders fm = new addOrEditOrders(DataGridIndex, tabPageIndex);
+                            fm.ShowDialog();
+
+                            if (tabPageIndex == 0)
+                                fIO.printNewOrders(dataGridView1);
+                            else if (tabPageIndex == 2)
+                                fIO.printPreliminaryOrders(dataGridView3);
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Этим заказом уже занимается другой диспетчер", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
                 }
                 else
                 {
@@ -410,14 +444,14 @@ namespace taxiDesktopProg
                 orderComplete(maskedTextBox1.Text);
                 DataGridIndex = null;
                 fIO.printNowTimeOrders(dataGridView2);
-            
+
                 label3.Visible = false;
                 maskedTextBox1.Visible = false;
                 button1.Visible = false;
                 maskedTextBox1.Clear();
             }
             else MessageBox.Show("Выбирите заказ, который нужно завершить");
-            
+
         }
 
         private void списокToolStripMenuItem_Click(object sender, EventArgs e)
@@ -459,7 +493,7 @@ namespace taxiDesktopProg
 
         private void dataGridView4_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if(e.ColumnIndex == 3)
+            if (e.ColumnIndex == 3)
             {
                 e.Value = Math.Round(double.Parse(e.Value.ToString()), 0);
             }
@@ -506,6 +540,14 @@ namespace taxiDesktopProg
                 {
                     if (DataGridIndex != null)
                     {
+                        var orderTest = db.orders.Where(p => p.id_order == DataGridIndex).FirstOrDefault();
+                        if (id != orderTest.id_dispatcher)
+                        {
+
+                            MessageBox.Show("Этим заказом уже занимается другой диспетчер", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+
+                        }
                         DialogResult result = MessageBox.Show("Отменить заказ?", "Отмена",
                                                                                            MessageBoxButtons.YesNo,
                                                                                            MessageBoxIcon.Information);
@@ -518,8 +560,8 @@ namespace taxiDesktopProg
                         if (order.order_completion_datetime == null)
                             order.order_completion_datetime = DateTime.Now;
 
-                        DialogResult rs = MessageBox.Show("Заказ отменён по вине клиента?","Отмена", MessageBoxButtons.YesNo,MessageBoxIcon.Information);
-                        if(rs == DialogResult.Yes)
+                        DialogResult rs = MessageBox.Show("Заказ отменён по вине клиента?", "Отмена", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (rs == DialogResult.Yes)
                         {
                             order.reason_cancellation = "По причине клиента";
                             int count = 0;
@@ -532,7 +574,7 @@ namespace taxiDesktopProg
                                 }
                                 else
                                     count = 0;
-                                if(count == 3)
+                                if (count == 3)
                                 {
                                     var cl = db.clients.Where(p => p.id_client == order.id_client).FirstOrDefault();
                                     cl.blacklist = true;
@@ -540,13 +582,13 @@ namespace taxiDesktopProg
                                 }
                             }
                         }
-                        else if(rs== DialogResult.No)
+                        else if (rs == DialogResult.No)
                         {
                             order.reason_cancellation = "По причине фирмы";
                         }
 
 
-                        
+
                         var driver = db.drivers.Where(p => p.id_driver == order.id_driver).FirstOrDefault();
                         driver.status = "Свободен";
                         db.SaveChanges();
@@ -557,7 +599,7 @@ namespace taxiDesktopProg
                     }
                     DataGrid6Index = null;
                     DataGridIndex = null;
-                    if (tabPageIndex == 1)  fIO.printNowTimeOrders(dataGridView2);
+                    if (tabPageIndex == 1) fIO.printNowTimeOrders(dataGridView2);
 
                 }
             }
@@ -567,7 +609,7 @@ namespace taxiDesktopProg
                 return;
             }
         }
-       
+
 
         private void dataGridView7_CellClick(object sender, DataGridViewCellEventArgs e)
         {

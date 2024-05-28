@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_for_Admin));
             this.button3 = new System.Windows.Forms.Button();
             this.buttonCar = new System.Windows.Forms.Button();
             this.panelDriver = new System.Windows.Forms.Panel();
@@ -460,6 +461,7 @@
             this.ClientSize = new System.Drawing.Size(1002, 697);
             this.Controls.Add(this.panelGlavWin);
             this.Controls.Add(this.panelMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_for_Admin";
             this.Text = "Главное окно ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_for_Admin_FormClosed);
