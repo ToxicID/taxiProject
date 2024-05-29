@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(listDispatcher));
             this.label2 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -166,6 +167,7 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label2);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "listDispatcher";
             this.Text = "Список диспетчеров";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

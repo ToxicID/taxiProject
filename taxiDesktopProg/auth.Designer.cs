@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(auth));
             this.LoginTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.authorizationBut = new System.Windows.Forms.Button();
@@ -123,7 +124,7 @@
             this.PassTextBox.Tag = "2";
             this.PassTextBox.UseSystemPasswordChar = true;
             // 
-            // Form1
+            // auth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -136,7 +137,8 @@
             this.Controls.Add(this.authorizationBut);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginTextBox);
-            this.Name = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "auth";
             this.Text = "Авторизация";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

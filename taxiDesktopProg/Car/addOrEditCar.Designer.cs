@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addOrEditCar));
             this.ButIzmen = new System.Windows.Forms.Button();
             this.GosNum6 = new System.Windows.Forms.TextBox();
             this.GosNum5 = new System.Windows.Forms.TextBox();
@@ -560,6 +561,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AddCarBut);
             this.Controls.Add(this.label2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "addOrEditCar";
             this.Text = "addOrEditCar";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

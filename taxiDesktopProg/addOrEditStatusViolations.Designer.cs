@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addOrEditStatusViolations));
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.ButAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -205,6 +206,7 @@
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.ButAdd);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "addOrEditStatusViolations";
             this.Text = "Нарушение";
             this.ResumeLayout(false);

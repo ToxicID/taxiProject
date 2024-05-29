@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(workDriver));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.startWorkDriver = new System.Windows.Forms.Button();
             this.endWorkDriver = new System.Windows.Forms.Button();
@@ -209,6 +210,7 @@
             this.Controls.Add(this.startWorkDriver);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dgv);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "workDriver";
             this.Text = "График работы водителей";
             this.Click += new System.EventHandler(this.workDriver_Click);
