@@ -227,7 +227,7 @@ namespace taxiDesktopProg
 
         public void DrawRoute(PointLatLng start, PointLatLng end)
         {
-            MapRoute route = GMap.NET.MapProviders.GMapProviders.BingMap.GetRoute(start, end, false, false, 15);
+            MapRoute route = GMap.NET.MapProviders.GMapProviders.BingMap.GetRoute(start, end, true, true, 18);
             GMap.NET.WindowsForms.GMapRoute routeOverlay = new GMap.NET.WindowsForms.GMapRoute(route.Points, "Route");
             routeOverlay.Stroke = new Pen(System.Drawing.Color.Red, 3);
             routesOverlay.Routes.Add(routeOverlay);
