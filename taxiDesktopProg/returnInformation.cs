@@ -93,7 +93,7 @@ namespace taxiDesktopProg
             using (Context db = new Context(auth.connectionString))
             {
 
-                var drInOrder = db.order_driver_car.Where(x => x.id_driver == dr).Select(x => new
+                var drInOrder = db.order_history.Where(x => x.id_driver == dr).Select(x => new
                 {
                     x.call_sign,
                     x.surname,
@@ -142,7 +142,7 @@ namespace taxiDesktopProg
             long dr = Convert.ToInt64(comboBox1.SelectedValue);
             using (Context db = new Context(auth.connectionString))
             {
-                var drInOrder = db.order_driver_car.Where(x => x.id_driver == dr).Select(x => new
+                var drInOrder = db.order_history.Where(x => x.id_driver == dr).Select(x => new
                 {
                     x.call_sign,
                     x.surname,

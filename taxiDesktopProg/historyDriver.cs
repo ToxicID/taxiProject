@@ -33,7 +33,7 @@ namespace taxiDesktopProg
             using (Context db = new Context(auth.connectionString))
             {
 
-                var drInOrder = db.order_driver_car.Select(x => new
+                var drInOrder = db.order_history.Select(x => new
                 {
                     x.call_sign,
                     x.surname,
@@ -60,7 +60,7 @@ namespace taxiDesktopProg
                 using (Context db = new Context(auth.connectionString))
                 {
 
-                    var drInOrder = db.order_driver_car.Select(x => new
+                    var drInOrder = db.order_history.Select(x => new
                     {
                         x.call_sign,
                         x.surname,
@@ -87,7 +87,7 @@ namespace taxiDesktopProg
             using (Context db = new Context(auth.connectionString))
             {
 
-                var drInOrder = db.order_driver_car.Select(x => new
+                var drInOrder = db.order_history.Select(x => new
                 {
                     x.call_sign,
                     x.surname,
@@ -116,7 +116,7 @@ namespace taxiDesktopProg
             using (Context db = new Context(auth.connectionString))
             {
 
-                var drInOrder = db.order_driver_car.Select(x => new
+                var drInOrder = db.order_history.Select(x => new
                 {
                     x.call_sign,
                     x.surname,

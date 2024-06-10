@@ -298,8 +298,8 @@
     <Compile Include="addOrEditStatusViolations.Designer.cs">
       <DependentUpon>addOrEditStatusViolations.cs</DependentUpon>
     </Compile>
-    <Compile Include="adminInterface.cs" />
     <Compile Include="Class\address.cs" />
+    <Compile Include="adminInterface.cs" />
     <Compile Include="Class\car.cs" />
     <Compile Include="carForDriver.cs">
       <SubType>Form</SubType>
@@ -319,17 +319,17 @@
     <Compile Include="addOrEditOrders.Designer.cs">
       <DependentUpon>addOrEditOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class\car_category.cs" />
-    <Compile Include="Class\client.cs" />
-    <Compile Include="Class\Context.cs" />
-    <Compile Include="Class\dispatcher.cs" />
-    <Compile Include="Class\driver.cs" />
     <Compile Include="auth.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="auth.Designer.cs">
       <DependentUpon>auth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class\car_category.cs" />
+    <Compile Include="Class\client.cs" />
+    <Compile Include="Class\Context.cs" />
+    <Compile Include="Class\dispatcher.cs" />
+    <Compile Include="Class\driver.cs" />
     <Compile Include="exportExcel.cs" />
     <Compile Include="forIssuingOrders.cs" />
     <Compile Include="Form_for_Admin.cs">
@@ -383,7 +383,7 @@
       <DependentUpon>OrderList.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\order.cs" />
-    <Compile Include="Class\order_driver_car.cs" />
+    <Compile Include="Class\order_history.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\rate.cs" />

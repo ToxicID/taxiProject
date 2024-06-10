@@ -6,10 +6,10 @@ namespace taxiDesktopProg
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class order_driver_car
+    public partial class order_history
     {
         [Key]
-        public long id_order_driver_car { get; set; }
+        public long id_order_history { get; set; }
 
         public long id_driver { get; set; }
 
