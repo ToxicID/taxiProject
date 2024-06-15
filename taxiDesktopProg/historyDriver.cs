@@ -39,7 +39,7 @@ namespace taxiDesktopProg
                     x.surname,
                     x.name,
                     x.patronymic,
-                    x.mobile_phone,
+                    x.client_mobile_phone,
                     V = x.rented_car.ToString(),
                     x.car_brand,
                     x.car_model,
@@ -50,7 +50,7 @@ namespace taxiDesktopProg
                     x.destination,
                     x.datetime_placing_the_order,
                     x.order_completion_datetime,
-                    x.client_mobile_phone
+                    x.mobile_phone
                 });
                 dataGridView1.DataSource = drInOrder.ToList();
             }
@@ -66,7 +66,7 @@ namespace taxiDesktopProg
                         x.surname,
                         x.name,
                         x.patronymic,
-                        x.mobile_phone,
+                        x.client_mobile_phone,
                         V = x.rented_car.ToString(),
                         x.car_brand,
                         x.car_model,
@@ -77,7 +77,7 @@ namespace taxiDesktopProg
                         x.destination,
                         x.datetime_placing_the_order,
                         x.order_completion_datetime,
-                        x.client_mobile_phone
+                        x.mobile_phone
                     });
                     dataGridView1.DataSource = drInOrder.Where(x => x.surname.Contains(textBox2.Text)).ToList();
                 }
@@ -93,7 +93,7 @@ namespace taxiDesktopProg
                     x.surname,
                     x.name,
                     x.patronymic,
-                    x.mobile_phone,
+                    x.client_mobile_phone,
                     V = x.rented_car.ToString(),
                     x.car_brand,
                     x.car_model,
@@ -104,7 +104,7 @@ namespace taxiDesktopProg
                     x.destination,
                     x.datetime_placing_the_order,
                     x.order_completion_datetime,
-                    x.client_mobile_phone
+                    x.mobile_phone
                 });
                 dataGridView1.DataSource = drInOrder.Where(x => x.datetime_placing_the_order.Year == dateTimePicker.Value.Year &&
                                                                 x.datetime_placing_the_order.Month == dateTimePicker.Value.Month &&
@@ -122,7 +122,7 @@ namespace taxiDesktopProg
                     x.surname,
                     x.name,
                     x.patronymic,
-                    x.mobile_phone,
+                    x.client_mobile_phone,
                     V = x.rented_car.ToString(),
                     x.car_brand,
                     x.car_model,
@@ -133,7 +133,7 @@ namespace taxiDesktopProg
                     x.destination,
                     x.datetime_placing_the_order,
                     x.order_completion_datetime,
-                    x.client_mobile_phone
+                    x.mobile_phone
                 });
                 dataGridView1.DataSource = drInOrder.Where(x => x.datetime_placing_the_order.Year == dateTimePicker.Value.Year &&
                                                                 x.datetime_placing_the_order.Month == dateTimePicker.Value.Month &&
@@ -158,7 +158,7 @@ namespace taxiDesktopProg
             dataGridView1.Columns[12].HeaderText = "Адрес назначения";
             dataGridView1.Columns[13].HeaderText = "Дата и время оформления заказа";
             dataGridView1.Columns[14].HeaderText = "Дата и время завершения заказа";
-            dataGridView1.Columns[15].HeaderText = "Мобильный телефон клиента";
+            dataGridView1.Columns[15].HeaderText = "Мобильный телефон водителя";
             foreach (DataGridViewColumn data in dataGridView1.Columns)
                 data.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

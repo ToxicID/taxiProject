@@ -117,7 +117,7 @@ namespace taxiDesktopProg
                 dataGridView2.Columns[1].HeaderText = "Фамилия водителя";
                 dataGridView2.Columns[2].HeaderText = "Имя водителя";
                 dataGridView2.Columns[3].HeaderText = "Отчество водителя";
-                dataGridView2.Columns[4].HeaderText = "Мобильный телефон клиента";
+                dataGridView2.Columns[4].HeaderText = "Мобильный телефон водителя";
                 dataGridView2.Columns[5].HeaderText = "Принадлежность";
                 dataGridView2.Columns[6].HeaderText = "Бренд";
                 dataGridView2.Columns[7].HeaderText = "Модель";
@@ -179,7 +179,7 @@ namespace taxiDesktopProg
                 dataGridView2.Columns[1].HeaderText = "Фамилия водителя";
                 dataGridView2.Columns[2].HeaderText = "Имя водителя";
                 dataGridView2.Columns[3].HeaderText = "Отчество водителя";
-                dataGridView2.Columns[4].HeaderText = "Мобильный телефон клиента";
+                dataGridView2.Columns[4].HeaderText = "Мобильный телефон водителя";
                 dataGridView2.Columns[5].HeaderText = "Принадлежность";
                 dataGridView2.Columns[6].HeaderText = "Бренд";
                 dataGridView2.Columns[7].HeaderText = "Модель";
