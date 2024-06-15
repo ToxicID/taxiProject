@@ -168,8 +168,8 @@ namespace taxiDesktopProg
                 }
             }
 
-            string connectionStrings = addOrEditDispatcher.GetRemoteConnectionString("DESKTOP-HV3NQ7V\\Илья", "");
-
+            string connectionStrings = addOrEditDispatcher.GetRemoteConnectionString("Petrov_sysadmin", "qwerty123456"); 
+            
             SqlConnection con = new SqlConnection(connectionStrings);
             SqlCommand cmd = new SqlCommand();
             con.Open();

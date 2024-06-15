@@ -145,7 +145,7 @@ namespace taxiDesktopProg
 
 
 
-                conStr = GetRemoteConnectionString("DESKTOP-HV3NQ7V\\Илья", "");
+                conStr = GetRemoteConnectionString("Petrov_sysadmin", "qwerty123456");
             SqlConnection con = new SqlConnection(conStr);
             SqlCommand cmd = new SqlCommand();
             con.Open();
@@ -240,7 +240,7 @@ namespace taxiDesktopProg
                 MessageBox.Show("Пароли не совпадают", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            conStr = GetRemoteConnectionString("DESKTOP-HV3NQ7V\\Илья", "");
+            conStr = GetRemoteConnectionString("Petrov_sysadmin", "qwerty123456");
             SqlConnection con = new SqlConnection(conStr);
             SqlCommand cmd = new SqlCommand();
             con.Open();
