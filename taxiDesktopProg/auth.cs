@@ -47,6 +47,8 @@ namespace taxiDesktopProg
             PassTextBox.UseSystemPasswordChar = false;
         }
         public static int mode;
+        public static string log;
+        public static string pass;
         private void button1_Click(object sender, EventArgs e)
         {
             connectionString = GetConnection(LoginTextBox.Text, PassTextBox.Text);
@@ -89,6 +91,8 @@ namespace taxiDesktopProg
                     case 2:
                         Form fm = new Form_for_Admin(this);
                         fm.Show();
+                        log = LoginTextBox.Text;
+                        pass = PassTextBox.Text;
                         this.Hide();
                         LoginTextBox.Text = "";
                         PassTextBox.Text = "";

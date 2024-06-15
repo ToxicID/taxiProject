@@ -168,8 +168,8 @@ namespace taxiDesktopProg
                 }
             }
 
-            string connectionStrings = addOrEditDispatcher.GetRemoteConnectionString("Petrov_sysadmin", "qwerty123456"); 
-            
+            string connectionStrings = addOrEditDispatcher.GetRemoteConnectionString(auth.log, auth.pass);
+
             SqlConnection con = new SqlConnection(connectionStrings);
             SqlCommand cmd = new SqlCommand();
             con.Open();
